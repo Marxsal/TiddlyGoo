@@ -11560,6 +11560,9 @@ exports.newtiddler = NewtiddlerWidget;
     }
 }</pre>
 </div>
+<div created="20210210222657116" modified="20210210222657116" title="$:/state/advancedsearch/currentTab">
+<pre>$:/core/ui/AdvancedSearch/Shadows</pre>
+</div>
 <div created="20210210145628071" modified="20210210145631524" title="$:/state/plugin-info--896887961-$:/plugins/TWaddle/SideEditor">
 <pre>no</pre>
 </div>
@@ -11569,8 +11572,8 @@ exports.newtiddler = NewtiddlerWidget;
 <div created="20210210183933135" modified="20210210184617593" title="$:/state/sidebar">
 <pre>yes</pre>
 </div>
-<div created="20210210120308151" modified="20210210144838661" title="$:/state/tab--1498284803">
-<pre>$:/core/ui/AdvancedSearch/System</pre>
+<div created="20210210120308151" modified="20210210222657116" title="$:/state/tab--1498284803">
+<pre>$:/core/ui/AdvancedSearch/Shadows</pre>
 </div>
 <div created="20210210145423789" modified="20210210145423789" title="$:/state/tab--1963855381">
 <pre>$:/themes/tiddlywiki/vanilla/themetweaks</pre>
@@ -11587,8 +11590,8 @@ exports.newtiddler = NewtiddlerWidget;
 <div created="20210210141411719" modified="20210210144753018" title="$:/state/tab/moresidebar-1850697562">
 <pre>$:/core/ui/MoreSideBar/Tags</pre>
 </div>
-<div created="20210210133823998" modified="20210210144852453" title="$:/state/tab/sidebar--595412856">
-<pre>$:/core/ui/SideBar/Recent</pre>
+<div created="20210210133823998" modified="20210210215913059" title="$:/state/tab/sidebar--595412856">
+<pre>$:/core/ui/SideBar/Open</pre>
 </div>
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
@@ -11596,7 +11599,7 @@ exports.newtiddler = NewtiddlerWidget;
 <div caption="Manager name" created="20200518194152849" creator="HEEG.HTML free on-line store" i="34" modified="20210209112905043" modifier="HEEG.HTML free on-line store" title="$:/status/UserName">
 <pre></pre>
 </div>
-<div list="[[Import from public Google Sheets]] [[mg Notes]] $:/boot/bootprefix1.js" title="$:/StoryList">
+<div created="20210210201502860" list="[[mas Notes]] batchmanipulator $:/AdvancedSearch $:/core/modules/startup.js $:/core/templates/tiddlywiki5.html $:/boot/bootprefix.js $:/core/modules/saver-handler.js [[Import from public Google Sheets]] [[mg Notes]] $:/boot/bootprefix1.js" modified="20210210222704037" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20210209090055836" creator="HEEG.HTML free on-line store" modified="20210210111905983" modifier="HEEG.HTML free on-line store" title="$:/theme">
@@ -12502,6 +12505,33 @@ This would open up for a LOT of uses because Googles have a lot of services that
       &lt;&lt;iframe-youtube &quot;$param$&quot;&gt;&gt;
 &lt;/$list&gt;
 \end</pre>
+</div>
+<div created="20210210220133213" modified="20210210230603494" tags="" title="mas Notes">
+<pre>!! [[$:/core/modules/saver-handler.js]]
+!! [[$:/boot/bootprefix1.js]]
+!! [[$:/core/templates/tiddlywiki5.html]]
+
+!! $:/core/modules/saver-handler.js
+
+$tw.rootWidget.addEventListener(&quot;tm-sheetgetdata&quot;,function(event) {getSheetsData($tw.wiki.renderTiddler(&quot;text/plain&quot;,&quot;$:/constant/_spreadsheetid&quot;))});
+
+if(HEEGreadyState!==&quot;isload&quot;){this.numChanges = 0; document.body.className = 'tc-body';}else{
+		$tw.utils.toggleClass(document.body,&quot;tc-dirty&quot;,this.isDirty());};
+	}
+};
+
+!! $:/boot/bootprefix1.js
+
+!! [[$:/core/templates/tiddlywiki5.html]]
+
+&lt;div id=&quot;bootKernelPrefix1&quot; style=&quot;display:none;&quot;&gt;
+{{ $:/boot/bootprefix1.js ||$:/core/templates/javascript-tiddler}}
+&lt;/div&gt;
+
+$tw.saverHandler
+
+application/javascript
+</pre>
 </div>
 <div created="20210210085025291" modified="20210210112225426" tags="TiddlyGoo" title="mg Notes">
 <pre>I put all my pure Javascript to one tiddler  
