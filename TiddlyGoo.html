@@ -10656,7 +10656,7 @@ exports.split = function(source,operator,options) {
 
 })();</pre>
 </div>
-<div created="20170428172703045" creator="HEEG.HTML free on-line store" modified="20210210111048090" modifier="HEEG.HTML free on-line store" module-type="global" title="$:/core/modules/saver-handler.js" type="application/javascript">
+<div created="20170428172703045" creator="HEEG.HTML free on-line store" modified="20210211172929160" modifier="HEEG.HTML free on-line store" module-type="global" title="$:/core/modules/saver-handler.js" type="application/javascript">
 <pre>/*\
 title: $:/core/modules/saver-handler.js
 type: application/javascript
@@ -10753,7 +10753,7 @@ function SaverHandler(options) {
 			});
 		});
 
-$tw.rootWidget.addEventListener(&quot;tm-sheetgetdata&quot;,function(event) {getSheetsData($tw.wiki.renderTiddler(&quot;text/plain&quot;,&quot;$:/constant/_spreadsheetid&quot;))});
+//$tw.rootWidget.addEventListener(&quot;tm-sheetgetdata&quot;,function(event) {getSheetsData($tw.wiki.renderTiddler(&quot;text/plain&quot;,&quot;$:/constant/_spreadsheetid&quot;))});
 $tw.rootWidget.addEventListener(&quot;tm-up&quot;, function(event) {up()});
 //$tw.rootWidget.addEventListener(&quot;tm-cart&quot;, function(event) {simpleCart.hide()});
 //$tw.rootWidget.addEventListener(&quot;tm-ContactFormSubmit&quot;, function(event) {ContactFormSubmit()});
@@ -10874,13 +10874,28 @@ Update the document body with the class &quot;tc-dirty&quot; if the wiki has uns
 SaverHandler.prototype.updateDirtyStatusNum = function() {this.numChanges = 0;};
 
 
+/*
 SaverHandler.prototype.updateDirtyStatus = function() {
 	if($tw.browser) {
 
+HEEGreadyState = typeof HEEGreadyState === 'undefined' ? &quot;xxx&quot;  :  HEEGreadyState ; 
 if(HEEGreadyState!==&quot;isload&quot;){this.numChanges = 0; document.body.className = 'tc-body';}else{
 		$tw.utils.toggleClass(document.body,&quot;tc-dirty&quot;,this.isDirty());};
 	}
+
 };
+*/
+
+SaverHandler.prototype.updateDirtyStatus = function() {
+	var self = this;
+	if($tw.browser) {
+		$tw.utils.toggleClass(document.body,&quot;tc-dirty&quot;,this.isDirty());
+		$tw.utils.each($tw.windows,function(win) {
+			$tw.utils.toggleClass(win.document.body,&quot;tc-dirty&quot;,self.isDirty());
+		});
+	}
+};
+
 
 exports.SaverHandler = SaverHandler;
 
@@ -11219,6 +11234,40 @@ filename=&quot;header.html&quot;/&gt;
 </div>
 <div title="$:/isEncrypted">
 <pre>no</pre>
+</div>
+<div created="20210211012842921" modified="20210211012931210" module-type="startup" tags="" title="$:/mas/sheethandler.js" type="application/javascript">
+<pre>/*\
+title: $:/sheethandler.js
+type: application/javascript
+module-type: startup
+
+Add event handler for fetching google sheets
+
+\*/
+(function(){
+
+/*jslint node: true, browser: true */
+/*global $tw: false */
+&quot;use strict&quot;;
+
+// Export name and synchronous status
+exports.name = &quot;sheethandler&quot;;
+exports.after = [&quot;startup&quot;];
+//exports.synchronous = true;
+
+//var TITLE_INFO_PLUGIN = &quot;$:/temp/info-plugin&quot;;
+
+exports.startup = function() {
+
+$tw.rootWidget.addEventListener(&quot;tm-sheetgetdata&quot;,
+    function(event) {
+        getSheetsData($tw.wiki.renderTiddler(&quot;text/plain&quot;,&quot;$:/constant/_spreadsheetid&quot;))
+    });
+
+};
+
+})();
+</pre>
 </div>
 <div created="20210210111832250" modified="20210210111832250" title="$:/palette">
 <pre>$:/palettes/Vanilla</pre>
@@ -11560,8 +11609,8 @@ exports.newtiddler = NewtiddlerWidget;
     }
 }</pre>
 </div>
-<div created="20210210222657116" modified="20210210222657116" title="$:/state/advancedsearch/currentTab">
-<pre>$:/core/ui/AdvancedSearch/Shadows</pre>
+<div created="20210210222657116" modified="20210211012820296" title="$:/state/advancedsearch/currentTab">
+<pre>$:/core/ui/AdvancedSearch/Filter</pre>
 </div>
 <div created="20210210145628071" modified="20210210145631524" title="$:/state/plugin-info--896887961-$:/plugins/TWaddle/SideEditor">
 <pre>no</pre>
@@ -11572,8 +11621,8 @@ exports.newtiddler = NewtiddlerWidget;
 <div created="20210210183933135" modified="20210210184617593" title="$:/state/sidebar">
 <pre>yes</pre>
 </div>
-<div created="20210210120308151" modified="20210210222657116" title="$:/state/tab--1498284803">
-<pre>$:/core/ui/AdvancedSearch/Shadows</pre>
+<div created="20210210120308151" modified="20210211012820297" title="$:/state/tab--1498284803">
+<pre>$:/core/ui/AdvancedSearch/Filter</pre>
 </div>
 <div created="20210210145423789" modified="20210210145423789" title="$:/state/tab--1963855381">
 <pre>$:/themes/tiddlywiki/vanilla/themetweaks</pre>
@@ -11590,8 +11639,8 @@ exports.newtiddler = NewtiddlerWidget;
 <div created="20210210141411719" modified="20210210144753018" title="$:/state/tab/moresidebar-1850697562">
 <pre>$:/core/ui/MoreSideBar/Tags</pre>
 </div>
-<div created="20210210133823998" modified="20210210215913059" title="$:/state/tab/sidebar--595412856">
-<pre>$:/core/ui/SideBar/Open</pre>
+<div created="20210210133823998" modified="20210211173134978" title="$:/state/tab/sidebar--595412856">
+<pre>$:/core/ui/SideBar/Recent</pre>
 </div>
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
@@ -11599,7 +11648,7 @@ exports.newtiddler = NewtiddlerWidget;
 <div caption="Manager name" created="20200518194152849" creator="HEEG.HTML free on-line store" i="34" modified="20210209112905043" modifier="HEEG.HTML free on-line store" title="$:/status/UserName">
 <pre></pre>
 </div>
-<div created="20210210201502860" list="[[mas Notes]] batchmanipulator $:/AdvancedSearch $:/core/modules/startup.js $:/core/templates/tiddlywiki5.html $:/boot/bootprefix.js $:/core/modules/saver-handler.js [[Import from public Google Sheets]] [[mg Notes]] $:/boot/bootprefix1.js" modified="20210210222704037" title="$:/StoryList">
+<div list="$:/mas/sheethandler.js [[mas Notes]] $:/AdvancedSearch $:/core/modules/startup/password.js $:/core/modules/startup.js $:/boot/bootprefix.js $:/core/modules/saver-handler.js [[Import from public Google Sheets]] [[mg Notes]] $:/boot/bootprefix1.js" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20210209090055836" creator="HEEG.HTML free on-line store" modified="20210210111905983" modifier="HEEG.HTML free on-line store" title="$:/theme">
