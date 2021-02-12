@@ -1,3 +1,4 @@
+<script>
 //Yandex metric counter is located $:/boot/Yandex_Metrika_Counter.js  
 
 var HEEGreadyState="onload";
@@ -272,6 +273,8 @@ function ok2(data2) {
                 //$tw.pageWidgetNode.refresh(deferredChanges);
                 //window.location.hash=currhash;
 
+// setTimeout(alert("Hello"),2000) ;
+
 /*
                 setTimeout(
                     function(){
@@ -369,3 +372,4 @@ function addSpaces(nStr){
 	return x1 + x2;
 }
 
+</script>
