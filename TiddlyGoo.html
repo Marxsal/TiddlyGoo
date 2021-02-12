@@ -1,16 +1,20 @@
+
 <!doctype html>
 <!-- The following comment is called a MOTW comment and is necessary for the TiddlyIE Internet Explorer extension -->
 <!-- saved from url=(0021)https://tiddlywiki.com -->
-<html>
+<html lang="en-GB">
 <head>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />		<!-- Force IE standards mode for Intranet and HTA - should be the first meta -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<!--~~ Raw markup for the top of the head section ~~-->
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
 <meta name="application-name" content="TiddlyWiki" />
 <meta name="generator" content="TiddlyWiki" />
 <meta name="tiddlywiki-version" content="5.1.23" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="mobile-web-app-capable" content="yes"/>
 <meta name="format-detection" content="telephone=no" />
 <meta name="copyright" content="TiddlyWiki created by Jeremy Ruston, (jeremy [at] jermolene [dot] com)
 
@@ -42,10 +46,714 @@ SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
 CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE." />
-<link id="faviconLink" rel="shortcut icon" href="favicon.ico"><title>My ~TiddlyWiki — a non-linear personal web notebook</title>
-<!--~~ This is a Tiddlywiki file. The points of interest in the file are marked with this pattern ~~--><!--~~ Raw markup ~~-->
+<link id="faviconLink" rel="shortcut icon" href="favicon.ico">
+<title>My ~TiddlyWiki — a non-linear personal web notebook</title>
+<!--~~ This is a Tiddlywiki file. The points of interest in the file are marked with this pattern ~~-->
+
+<!--~~ Raw markup ~~-->
+
+<script>
+//Yandex metric counter is located $:/boot/Yandex_Metrika_Counter.js  
+
+var HEEGreadyState="onload";
+var corsmax=0;
+var corscurrent=0;
+
+function ContactFormSubmit(){
+	var re = /^[\w-\.]+@[\w-]+\.[a-z]{2,14}$/i;
+	var myMail = document.querySelector('.userOO_form').value;
+	var valid = re.test(myMail);
+
+	document.querySelector('[aria-label^="name"]').value=document.querySelector('.userFF_form').value;
+	document.querySelector('[aria-label^="telephone"]').value=document.querySelector('.userII_form').value;
+	document.querySelector('[aria-label^="email"]').value=document.querySelector('.userOO_form').value;
+	document.querySelector('[aria-label^="client_comments"]').value=document.querySelector('.userCC_form').value;
+	document.querySelector('[aria-label^="order_number"]').value="Z_Запрос из контактной формы";
+	document.querySelector('[aria-label^="link_for_your_order"]').value="https:\\\\heeg.ru";
+
+	if (document.querySelector('.userFF_form').value === ""){ $tw.modal.display("$:/_alert/noname"); return;}
+	if (document.querySelector('.userII_form').value === ""){$tw.modal.display("$:/_alert/notelephone"); return;}
+	if (document.querySelector('.userOO_form').value=="") {document.querySelector('[aria-label^="email"]').value=$tw.wiki.renderTiddler("text/plain","$:/constant/_nomail");}
+	if (valid || document.querySelector('.userOO_form').value=="") {} else{ $tw.modal.display("$:/_alert/noemail"); return;}
+
+	document.querySelector('[name="rsubmit"]').click();
+	$tw.modal.display("$:/_alert/form_send");
+	document.querySelector('[target="my_iframe"]').reset();
+};
+
+
+function isLocalStorageAvailable() {
+	var test2 = 'test2';
+	try {
+		localStorage.setItem(test2, test2);
+		return true;
+	} catch(e) {
+		return false;
+	}
+};
+
+
+function StaticCut(){
+	if (isLocalStorageAvailable()) { 
+		var dataSt= localStorage.getItem("userStaticCutLS"+getUrlVars()["id"]); 
+		if(dataSt!=null){
+			var fields = Object.create(null);
+			fields.title="$:/temp/userStaticCutLS";
+			fields.text=dataSt.replace (/\+\+/g, '\n').replace (/\|\|/g, ':');
+			fields.type="application/x-tiddler-dictionary"
+			if($tw.browser) {$tw.wiki.addTiddler(new $tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))};
+		}}
+};
+
+StaticCut();
+
+function download(file,className) {
+	for(var a=0;a<file.length;a++) {
+		const link = document.createElement("a");
+		const objectURL = URL.createObjectURL(file[a]);
+		var fields = Object.create(null);
+		if(typeof className == "string"){ 
+			link.download =className+"_"+ file[a].name.replace (/\~/g, '_'); fields.tags=className;
+		}else{link.download =file[a].name};
+		link.href = objectURL;
+		document.body.appendChild(link);
+
+		fields.title=link.download;fields._canonical_uri=link.download;fields.type="image/jpeg";
+		if($tw.browser) {$tw.wiki.addTiddler(new $tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))};
+
+		//	requestAnimationFrame(() => {
+		link.click();
+		link.remove();
+		URL.revokeObjectURL(objectURL);
+		//	});
+	}
+	alert("Check pictures");
+}
+
+function a(i){
+	var text="";
+	for (var k = 0; k < i; k++){
+		text=text+" ";
+
+	}
+	return text;
+}
+
+
+function stickmenu() {
+	if (document.getElementById('aside1')){
+		var a = document.querySelector('#aside1'), b = null;  
+		window.addEventListener('scroll', Ascroll, false);
+		document.body.addEventListener('scroll', Ascroll, false); 
+		function Ascroll() {
+			if (b == null) {  
+				var Sa = getComputedStyle(a, ''), s = '';
+				for (var i = 0; i < Sa.length; i++) {  
+					if (Sa[i].indexOf('box-sizing') == 0 || Sa[i].indexOf('overflow') == 0 || Sa[i].indexOf('padding') == 0 || Sa[i].indexOf('border') == 0 || Sa[i].indexOf('outline') == 0 || Sa[i].indexOf('box-shadow') == 0 || Sa[i].indexOf('background') == 0) {
+						s += Sa[i] + ': ' +Sa.getPropertyValue(Sa[i]) + '; '
+					}
+				}
+				//  document.querySelector('#stick').outerHTML = '<div id="stick"  style="'+s+'">'+document.querySelector('#stick').innerHTML+'</div>';
+				b = document.querySelector('#stick');
+				//  a.style.height = b.getBoundingClientRect().height +6+ 'px';  
+				a.style.padding = '0';
+				a.style.border = '0';  
+
+				// simpleCart.initialize();
+			}
+			if (a.getBoundingClientRect().top <= 0) { 
+				b.className = 'sticky';
+			} else {
+				b.className = 'sticky2';
+			}
+		}
+	}
+}
+
+
+function setAttr(prmName,val) {
+	var res = '';
+	var d = location.href.split("#")[0].split("?");
+	var base = d[0];
+	var query = d[1];
+	if(query) {
+		var params = query.split("&");
+		for(var i = 0; i < params.length; i++) {
+			var keyval = params[i].split("=");
+			if(keyval[0] != prmName) {
+				res += params[i] + '&';
+			}
+		}
+	}
+	res += prmName + '=' + val;
+	window.history.pushState(null, null, base + '?' + res);
+	return false;
+}
+
+
+var disqus_developer = 1;
+var strlocat3 = window.location.toString();
+var pinframe=0;
+
+
+//var currhash=window.location.hash;
+//if (currhash =="" || currhash =="#" || currhash =="null" ) { currhash ="index"};
+
+
+if (window.parent.frames.length > 0) {pinframe=1;
+}
+
+var mytext="";
+var CallbackRegistry = {}; 
+function scriptRequest(url, onSuccess, onError) {
+	var scriptOk = false; 
+	var callbackName = 'cb' + String(Math.random()).slice(-6);
+	url += ~url.indexOf('?') ? '&' : '?';
+	url += 'callback=CallbackRegistry.' + callbackName;
+	CallbackRegistry[callbackName] = function(data) {
+		scriptOk = true; 
+		delete CallbackRegistry[callbackName]; 
+		onSuccess(data); 
+	};
+
+	function checkCallback() {
+		if (scriptOk) return; 
+		delete CallbackRegistry[callbackName];
+		onError(url); 
+	}
+
+	var script = document.createElement('script');
+	script.onreadystatechange = function() {
+		if (this.readyState == 'complete' || this.readyState == 'loaded') {
+			this.onreadystatechange = null;
+			setTimeout(checkCallback, 0); 
+		}
+	}
+	script.onload = script.onerror = checkCallback;
+	script.src = url;
+	document.head.appendChild(script);
+}
+
+
+function ok(data) { 
+    var spreadsheetsmail=data.feed.author[0].email.$t;
+    //if(SpreadsheetsUse!="hide"){ setAttr("mail", spreadsheetsmail); }
+    if (typeof banlist !== 'undefined') { 
+        for (var i=0; i<banlist.length; i++){
+            if(banlist[i]+"@gmail.com"==spreadsheetsmail) {
+                $tw.modal.display("$:/_alert/banlist"); 
+                return;
+            }; 
+        } 
+    }
+    var fields = Object.create(null);
+
+    fields.title="googlespreadsheetmail";
+    fields.text=spreadsheetsmail;
+    if($tw.browser) {
+        $tw.wiki.addTiddler(
+            new $tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))
+    };
+    fields.title="googlespreadsheet";
+    fields.text="https://docs.google.com/spreadsheets/d/"+getUrlVars()["id"]+"/";
+    if($tw.browser) {
+        $tw.wiki.addTiddler(
+            new $tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))
+    };
+    fields.title="googlespreadsheettime";
+    fields.text=data.feed.updated.$t;
+    if($tw.browser) {
+        $tw.wiki.addTiddler(
+            new $tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))
+    };
+
+    //console.log( "Загружен пользователь " + spreadsheetsmail);
+    //console.log(data.feed.entry[0].link[0].href);
+    //console.log(data.feed.updated.$t);
+    corsmax=data.feed.entry.length; 
+    for (var i1=0; i1<data.feed.entry.length; i1++) {
+        scriptRequest(data.feed.entry[i1].link[0].href+"?alt=json-in-script", ok2, fail);
+    }
+}
+
+
+function ok2(data2) {  
+    var currsheet=data2.feed.title.$t;
+
+    if(currsheet.indexOf("hide")==0 || data2.feed.entry==undefined){return;};
+    //console.log(currsheet);
+    var new_value="";
+
+    for (var i=0; i<data2.feed.entry.length; i++){ 
+        var fields = Object.create(null); 
+        for (var key in data2.feed.entry[i]) {
+            if(key.match(/^gsx\$+/ig)=="gsx$"){ 
+                new_value=data2.feed.entry[i][key].$t;
+                if(key=="gsx$id" && currsheet=="ostatki"){ 
+                    fields.title="ostatok_"+new_value;
+                }else if(key=="gsx$id"){ 
+                    if(currsheet=="GD-images"){
+                        fields.tags=new_value.split('_')[0]; } 
+                    fields.title=new_value} 
+                else if(key=="gsx$name"){
+                    fields.caption=new_value}
+                else if(key=="gsx$tags" && currsheet=="parts"){ 
+                    fields.tags=new_value+" $:/TOC"; }
+                else if(key=="gsx$tags" && currsheet=="goods"){ 
+                    fields.tags=new_value+" $:/Note"; }
+                else if(key=="gsx$url" && currsheet=="images"){ 
+                    fields._canonical_uri=new_value; }
+                else if(key=="gsx$url" && currsheet=="GD-images"){
+                    fields._canonical_uri="https://drive.google.com/uc?export=download&confirm=no_antivirus&id=" + new_value; }
+                else if(key.indexOf("gsx$hide")==0){
+                    //console.log(key)
+                } 
+                else { 
+                    var new_key=key.slice(4);
+                    if(new_value.length>0){fields[new_key]=new_value; }
+                };
+            } // if key match
+        } // for (var key...
+
+        if(currsheet=="images" || currsheet=="GD-images" ){ fields.type="image/jpeg"  } ;
+        fields.i=i+2;
+        if($tw.browser) {$tw.wiki.addTiddler(new $tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))}   
+
+        if(i==data2.feed.entry.length-1){
+            corscurrent=corscurrent+1;
+            if(corscurrent==corsmax-1){
+
+                //var       deferredChanges = Object.create(null);
+                //$tw.pageWidgetNode.refresh(deferredChanges);
+                //window.location.hash=currhash;
+
+// setTimeout(alert("Hello"),2000) ;
+
+/*
+                setTimeout(
+                    function(){
+                        HEEGreadyState="isload"; 
+                        stickmenu();
+
+ 
+                        var elements = document.querySelectorAll('.tw-table-of-contents-top>ul');
+
+                        document.querySelector(".tw-table-of-contents-top>ul").onclick = function(event) {
+                            for (var i = 0; i < elements.length; i++) {
+                                elements[i].className="hover";
+                            }
+                        };
+
+                        document.querySelector(".tw-table-of-contents-top>ul").onmouseover = 
+                            function(event) {
+                                for (var i = 0; i < elements.length; i++) {
+                                    elements[i].className="hover";
+                                }
+                            } ;
+                        
+                    }
+                ,2000); // setTimeout()
+*/
+            } // if corscurrent=corsmax-1
+        } // if i==data2.feed.entry ....
+    } // for var=0 loop
+
+    if (typeof Swiper== 'function' && currsheet=="GD-images") {
+        setTimeout(function(){sliderInit(); },700);
+    };
+
+} // function ok2
+
+
+
+function fail(url) {
+	alert( 'Error on request ' + url );
+}
+
+
+function getUrlVars() {
+	var vars = {};
+	var parts = window.location.href.replace(/[?&|?#]+([^=&|^=#]+)=([^&|^#]*)/gi, function(m,key,value) {
+		vars[key] = value;
+	});
+	return vars;
+}
+
+var con_spreadsheetid=$tw.wiki.renderTiddler("text/plain","$:/constant/_spreadsheetid");
+var SpreadsheetsUse=$tw.wiki.renderTiddler("text/plain","SpreadsheetsUse");
+idfromURL=getUrlVars()["id"];
+
+if(idfromURL===undefined && con_spreadsheetid!="" && SpreadsheetsUse=="hide"){
+	getSheetsData(con_spreadsheetid);
+}else if(idfromURL!=undefined && SpreadsheetsUse=="yes"){
+	getSheetsData(idfromURL);
+	var fields = Object.create(null);
+	fields.title="$:/constant/_spreadsheetid";fields.text=idfromURL;
+	if($tw.browser) {$tw.wiki.addTiddler(new 
+		$tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))};
+	fields = Object.create(null);
+	fields.title="SpreadsheetsUse";fields.text="no";
+	if($tw.browser) {$tw.wiki.addTiddler(new 
+		$tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))};
+}else if(SpreadsheetsUse=="no"){
+	stickmenu();
+	HEEGreadyState="isload";}else if(SpreadsheetsUse=="ondemand" && idfromURL== con_spreadsheetid ){
+	getSheetsData(idfromURL);
+}else{
+	$tw.notifier.display("$:/_noidNotify");
+	stickmenu();
+	HEEGreadyState="isload";
+}
+
+
+function getSheetsData(worksheets_id) {
+	//var fields = Object.create(null);
+	//fields.title="$:/StoryList";fields.list="";
+	//       if($tw.browser) {$tw.wiki.addTiddler(new $tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))};
+	scriptRequest("https://spreadsheets.google.com/feeds/worksheets/"+worksheets_id+"/public/values?alt=json-in-script", ok, fail);
+}
+
+
+function addSpaces(nStr){
+	nStr += '';
+	x = nStr.split('.');
+	x1 = x[0];
+	x2 = x.length > 1 ? '.' + x[1] : '';
+	var rgx = /(\d+)(\d{3})/;
+	while (rgx.test(x1)) {
+		x1 = x1.replace(rgx, '$1' + ' ' + '$2');
+	}
+	return x1 + x2;
+}
+
+</script>
+
+
 </head>
-<body class="tc-body"><!--~~ Ordinary tiddlers ~~-->
+<body class="tc-body">
+<!--~~ Raw markup for the top of the body section ~~-->
+
+<!--~~ Static styles ~~-->
+<div id="styleArea">
+<style type="text/css"></style>
+</div>
+<!--~~ Static content for Google and browsers without JavaScript ~~-->
+<noscript>
+<div id="splashArea">
+
+
+<p>This <a class="tc-tiddlylink-external" href="https://tiddlywiki.com" rel="noopener noreferrer" target="_blank">TiddlyWiki</a> contains the following tiddlers:</p><p><ul>
+
+<li>$:/_heeg.js</li>
+
+<li>$:/_TWaddle/ImageGallery</li>
+
+<li>$:/.tb/templates/delete-filter</li>
+
+<li>$:/boot/bootprefix1.js</li>
+
+<li>$:/boot/Yandex_Metrika_Counter.js</li>
+
+<li>$:/build</li>
+
+<li>$:/config/Plugins/Disabled/$:/plugins/bj/listhack</li>
+
+<li>$:/config/Plugins/Disabled/$:/plugins/bj/listsRefreshOFF</li>
+
+<li>$:/config/Plugins/Disabled/$:/plugins/heeg/Green</li>
+
+<li>$:/config/Plugins/Disabled/$:/plugins/TWaddle/SideEditor</li>
+
+<li>$:/config/Plugins/Disabled/$:/plugins/TWaddle/TabLinks</li>
+
+<li>$:/config/Plugins/Disabled/$:/temp/info-plugin</li>
+
+<li>$:/config/plugins/tiddlywiki/xlsx-utils/default-import-spec</li>
+
+<li>$:/config/RelinkOnRename</li>
+
+<li>$:/config/Tiddlers/TitleLinks</li>
+
+<li>$:/config/ViewToolbarButtons/Visibility/$:/_aa/button/KrNavigator</li>
+
+<li>$:/config/ViewToolbarButtons/Visibility/$:/_aa/button/KrTovar</li>
+
+<li>$:/config/ViewToolbarButtons/Visibility/$:/_aa/button/KrYandex</li>
+
+<li>$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/add_theme</li>
+
+<li>$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/delete_ALL</li>
+
+<li>$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/edit</li>
+
+<li>$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/facebook</li>
+
+<li>$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/heegSave.html</li>
+
+<li>$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/home</li>
+
+<li>$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/home1</li>
+
+<li>$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/import</li>
+
+<li>$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/mysearch</li>
+
+<li>$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/odnoklassniki</li>
+
+<li>$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/save-wiki</li>
+
+<li>$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/ShopPublish</li>
+
+<li>$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/StaticCut</li>
+
+<li>$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/top_menu</li>
+
+<li>$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/twitter</li>
+
+<li>$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/vkontakte</li>
+
+<li>$:/config/ViewToolbarButtons/Visibility/$:/core/ui/TopBar/menu</li>
+
+<li>$:/config/WikiParserRules/Inline/wikilink</li>
+
+<li>$:/constant/_00</li>
+
+<li>$:/constant/_Cart_button_name</li>
+
+<li>$:/constant/_cartName</li>
+
+<li>$:/constant/_CartViz</li>
+
+<li>$:/constant/_chooseOrder</li>
+
+<li>$:/constant/_controls</li>
+
+<li>$:/constant/_deliveryFreeFrom</li>
+
+<li>$:/constant/_deliveryPrice</li>
+
+<li>$:/constant/_deliveryPrice2</li>
+
+<li>$:/constant/_fix_top_menu</li>
+
+<li>$:/constant/_gorodOtprav</li>
+
+<li>$:/constant/_header</li>
+
+<li>$:/constant/_leftmenu</li>
+
+<li>$:/constant/_mail_form</li>
+
+<li>$:/constant/_minzakaz</li>
+
+<li>$:/constant/_nomail</li>
+
+<li>$:/constant/_quantityName</li>
+
+<li>$:/constant/_readMore</li>
+
+<li>$:/constant/_saleFinish</li>
+
+<li>$:/constant/_saleStart</li>
+
+<li>$:/constant/_saleTimeEnable</li>
+
+<li>$:/constant/_saleval</li>
+
+<li>$:/constant/_showQ</li>
+
+<li>$:/constant/_SortBlock</li>
+
+<li>$:/constant/_spreadsheetid</li>
+
+<li>$:/constant/_tile_height_percent</li>
+
+<li>$:/constant/_tileWidth</li>
+
+<li>$:/constant/_tileWidth_padding</li>
+
+<li>$:/constant/_top_slider</li>
+
+<li>$:/constant/_topmenu</li>
+
+<li>$:/constant/_valuta</li>
+
+<li>$:/constant/_vkwidth</li>
+
+<li>$:/constant/LazyLoad</li>
+
+<li>$:/ControlPanel</li>
+
+<li>$:/core</li>
+
+<li>$:/core/modules/filters/split.js</li>
+
+<li>$:/core/modules/saver-handler.js</li>
+
+<li>$:/core/templates/heeg.template.css</li>
+
+<li>$:/core/templates/HEEG/static.tiddler.html</li>
+
+<li>$:/core/templates/HEEG2/static.tiddler.html</li>
+
+<li>$:/core/templates/heegStatic.tiddler.html</li>
+
+<li>$:/core/ui/Buttons/add_theme</li>
+
+<li>$:/core/ui/Buttons/delete_ALL</li>
+
+<li>$:/core/ui/Buttons/heegSave.html</li>
+
+<li>$:/core/ui/Buttons/home1</li>
+
+<li>$:/core/ui/Buttons/mysearch</li>
+
+<li>$:/core/ui/Buttons/top_menu</li>
+
+<li>$:/core/ui/EditTemplate/fieldinfo/caption</li>
+
+<li>$:/core/ui/EditTemplate/fieldinfo/description</li>
+
+<li>$:/core/ui/EditTemplate/fieldinfo/fontawesome</li>
+
+<li>$:/core/ui/EditTemplate/fieldinfo/old-price</li>
+
+<li>$:/core/ui/EditTemplate/fieldinfo/preview</li>
+
+<li>$:/core/ui/EditTemplate/fieldinfo/price</li>
+
+<li>$:/core/ui/EditTemplate/fieldinfo/text</li>
+
+<li>$:/core/ui/EditTemplate/fieldinfo/title</li>
+
+<li>$:/DefaultTiddlers</li>
+
+<li>$:/ExcelImporter/ImportSpecifiers/Field</li>
+
+<li>$:/ExcelImporter/ImportSpecifiers/Field 1</li>
+
+<li>$:/ExcelImporter/ImportSpecifiers/Field 10</li>
+
+<li>$:/ExcelImporter/ImportSpecifiers/Field 11</li>
+
+<li>$:/ExcelImporter/ImportSpecifiers/Field 12</li>
+
+<li>$:/ExcelImporter/ImportSpecifiers/Field 13</li>
+
+<li>$:/ExcelImporter/ImportSpecifiers/Field 14</li>
+
+<li>$:/ExcelImporter/ImportSpecifiers/Field 15</li>
+
+<li>$:/ExcelImporter/ImportSpecifiers/Field 16</li>
+
+<li>$:/ExcelImporter/ImportSpecifiers/Field 2</li>
+
+<li>$:/ExcelImporter/ImportSpecifiers/Field 3</li>
+
+<li>$:/ExcelImporter/ImportSpecifiers/Field 4</li>
+
+<li>$:/ExcelImporter/ImportSpecifiers/Field 7</li>
+
+<li>$:/ExcelImporter/ImportSpecifiers/Field 8</li>
+
+<li>$:/ExcelImporter/ImportSpecifiers/Field 9</li>
+
+<li>$:/ExcelImporter/ImportSpecifiers/Field_d</li>
+
+<li>$:/ExcelImporter/ImportSpecifiers/Field_pr</li>
+
+<li>$:/ExcelImporter/ImportSpecifiers/Row</li>
+
+<li>$:/ExcelImporter/ImportSpecifiers/Row 1</li>
+
+<li>$:/ExcelImporter/ImportSpecifiers/Row 2</li>
+
+<li>$:/ExcelImporter/ImportSpecifiers/Sheet</li>
+
+<li>$:/Import</li>
+
+<li>$:/isEncrypted</li>
+
+<li>$:/mas/sheethandler.js</li>
+
+<li>$:/palette</li>
+
+<li>$:/plugins/skeeve/newtiddler.js</li>
+
+<li>$:/plugins/TWaddle/SideEditor</li>
+
+<li>$:/plugins/TWaddle/SideEditor/Metrics</li>
+
+<li>$:/plugins/TWaddle/TabLinks</li>
+
+<li>$:/state/advancedsearch/currentTab</li>
+
+<li>$:/state/plugin-info--896887961-$:/plugins/TWaddle/SideEditor</li>
+
+<li>$:/state/plugin-info--896887961-$:/plugins/TWaddle/TabLinks</li>
+
+<li>$:/state/sidebar</li>
+
+<li>$:/state/tab--1498284803</li>
+
+<li>$:/state/tab--1963855381</li>
+
+<li>$:/state/tab--590003362</li>
+
+<li>$:/state/tab--86143343</li>
+
+<li>$:/state/tab-1749438307</li>
+
+<li>$:/state/tab/moresidebar-1850697562</li>
+
+<li>$:/state/tab/sidebar--595412856</li>
+
+<li>$:/status/RequireReloadDueToPluginChange</li>
+
+<li>$:/status/UserName</li>
+
+<li>$:/StoryList</li>
+
+<li>$:/theme</li>
+
+<li>$:/themes/tiddlywiki/snowwhite</li>
+
+<li>$:/themes/tiddlywiki/vanilla</li>
+
+<li>$:/themes/tiddlywiki/vanilla/options/sidebarlayout</li>
+
+<li>$:/themes/tiddlywiki/vanilla/options/stickytitles</li>
+
+<li>$:/UploadName</li>
+
+<li>$:/view</li>
+
+<li>batchmanipulator</li>
+
+<li>batchmanipulator/Stylesheet</li>
+
+<li>Import from public Google Sheets</li>
+
+<li>Initialize bootprefix1</li>
+
+<li>macro/iframe</li>
+
+<li>mas Notes</li>
+
+<li>mg Notes</li>
+
+</ul>
+</p>
+
+
+
+<style>
+.tc-remove-when-wiki-loaded {display: none;}
+</style>
+
+</div>
+</noscript>
+<!--~~ Ordinary tiddlers ~~-->
 
 <div id="storeArea" style="display:none;">
 <div created="20141130175523951" modified="20190104132924256" title="$:/_heeg.js" type="application/javascript">
@@ -142,8 +850,9 @@ if (document.getElementById('nomodal')){} else{
 
 &lt;/$list&gt;</pre>
 </div>
-<div created="20151208182031538" creator="Татьяна Воронина" modified="20210211233205800" modifier="HEEG.HTML free on-line store" tags="" title="$:/boot/bootprefix1.js" type="application/javascript">
-<pre>//Yandex metric counter is located $:/boot/Yandex_Metrika_Counter.js  
+<div created="20151208182031538" creator="Татьяна Воронина" modified="20210212020019542" modifier="HEEG.HTML free on-line store" tags="$:/tags/RawMarkup" title="$:/boot/bootprefix1.js" type="application/javascript">
+<pre>&lt;script&gt;
+//Yandex metric counter is located $:/boot/Yandex_Metrika_Counter.js  
 
 var HEEGreadyState=&quot;onload&quot;;
 var corsmax=0;
@@ -516,6 +1225,7 @@ function addSpaces(nStr){
 	return x1 + x2;
 }
 
+&lt;/script&gt;
 </pre>
 </div>
 <div created="20151215071837897" creator="Татьяна Воронина" modified="20200506041423416" modifier="HEEG.HTML free on-line store" tags="" title="$:/boot/Yandex_Metrika_Counter.js" type="application/javascript">
@@ -10961,61 +11671,6 @@ exports.SaverHandler = SaverHandler;
 &lt;/html&gt;`
 </pre>
 </div>
-<div created="20150306182057624" creator="HEEG.HTML free on-line store" modified="20210210093141575" modifier="HEEG.HTML free on-line store" title="$:/core/templates/tiddlywiki5.html">
-<pre>\rules only filteredtranscludeinline transcludeinline
-&lt;!doctype html&gt;
-{{$:/core/templates/MOTW.html}}&lt;html&gt;
-&lt;head&gt;
-&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot; /&gt;		&lt;!-- Force IE standards mode for Intranet and HTA - should be the first meta --&gt;
-&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html;charset=utf-8&quot; /&gt;
-&lt;meta name=&quot;application-name&quot; content=&quot;TiddlyWiki&quot; /&gt;
-&lt;meta name=&quot;generator&quot; content=&quot;TiddlyWiki&quot; /&gt;
-&lt;meta name=&quot;tiddlywiki-version&quot; content=&quot;{{$:/core/templates/version}}&quot; /&gt;
-&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
-&lt;meta name=&quot;apple-mobile-web-app-capable&quot; content=&quot;yes&quot; /&gt;
-&lt;meta name=&quot;apple-mobile-web-app-status-bar-style&quot; content=&quot;black-translucent&quot; /&gt;
-&lt;meta name=&quot;format-detection&quot; content=&quot;telephone=no&quot; /&gt;
-&lt;meta name=&quot;copyright&quot; content=&quot;{{$:/core/copyright.txt}}&quot; /&gt;
-&lt;link id=&quot;faviconLink&quot; rel=&quot;shortcut icon&quot; href=&quot;favicon.ico&quot;&gt;
-
-
-
-&lt;title&gt;{{$:/core/wiki/title}}&lt;/title&gt;
-&lt;!--~~ This is a Tiddlywiki file. The points of interest in the file are marked with this pattern ~~--&gt;
-
-&lt;!--~~ Raw markup ~~--&gt;
-{{{ [all[shadows+tiddlers]tag[$:/core/wiki/rawmarkup]] [all[shadows+tiddlers]tag[$:/tags/RawMarkup]] ||$:/core/templates/plain-text-tiddler}}}
-
-
-&lt;/head&gt;
-&lt;body class=&quot;tc-body&quot;&gt;
-
-
-&lt;!--~~ Ordinary tiddlers ~~--&gt;
-{{$:/core/templates/store.area.template.html}}
-&lt;!--~~ Library modules ~~--&gt;
-&lt;div id=&quot;libraryModules&quot; style=&quot;display:none;&quot;&gt;
-{{{ [is[system]type[application/javascript]library[yes]] ||$:/core/templates/javascript-tiddler}}}
-&lt;/div&gt;
-&lt;!--~~ Boot kernel prologue ~~--&gt;
-&lt;div id=&quot;bootKernelPrefix&quot; style=&quot;display:none;&quot;&gt;
-{{ $:/boot/bootprefix.js ||$:/core/templates/javascript-tiddler}}
-&lt;/div&gt;
-&lt;!--~~ Boot kernel ~~--&gt;
-&lt;div id=&quot;bootKernel&quot; style=&quot;display:none;&quot;&gt;
-{{ $:/boot/boot.js ||$:/core/templates/javascript-tiddler}}
-&lt;/div&gt;
-&lt;!--~~ Static styles ~~--&gt;
-{{$:/boot/boot.css||$:/core/templates/css-tiddler}}
-
-
-&lt;div id=&quot;bootKernelPrefix1&quot; style=&quot;display:none;&quot;&gt;
-{{ $:/boot/bootprefix1.js ||$:/core/templates/javascript-tiddler}}
-&lt;/div&gt;
-
-&lt;/body&gt;
-&lt;/html&gt;</pre>
-</div>
 <div caption="{{$:/core/images/picture}}{{$:/language/Buttons/add_theme/Caption}}" created="20170510201505370" description="{{$:/language/Buttons/add_theme/Hint}}" modified="20170510201828079" tags="$:/tags/ViewToolbar" title="$:/core/ui/Buttons/add_theme">
 <pre>&lt;$button tooltip={{$:/language/Buttons/add_theme/Hint}} aria-label={{$:/language/Buttons/add_themeCaption}} class=&lt;&lt;tv-config-toolbar-class&gt;&gt;&gt;
 &lt;$action-navigate $to=&quot;$:/core/ui/ControlPanel/Modals/AddPlugins&quot;/&gt;
@@ -11615,8 +12270,8 @@ exports.newtiddler = NewtiddlerWidget;
     }
 }</pre>
 </div>
-<div created="20210210222657116" modified="20210211012820296" title="$:/state/advancedsearch/currentTab">
-<pre>$:/core/ui/AdvancedSearch/Filter</pre>
+<div created="20210210222657116" modified="20210212014347268" title="$:/state/advancedsearch/currentTab">
+<pre>$:/core/ui/AdvancedSearch/Shadows</pre>
 </div>
 <div created="20210210145628071" modified="20210210145631524" title="$:/state/plugin-info--896887961-$:/plugins/TWaddle/SideEditor">
 <pre>no</pre>
@@ -11627,8 +12282,8 @@ exports.newtiddler = NewtiddlerWidget;
 <div created="20210210183933135" modified="20210210184617593" title="$:/state/sidebar">
 <pre>yes</pre>
 </div>
-<div created="20210210120308151" modified="20210211012820297" title="$:/state/tab--1498284803">
-<pre>$:/core/ui/AdvancedSearch/Filter</pre>
+<div created="20210210120308151" modified="20210212014347269" title="$:/state/tab--1498284803">
+<pre>$:/core/ui/AdvancedSearch/Shadows</pre>
 </div>
 <div created="20210210145423789" modified="20210210145423789" title="$:/state/tab--1963855381">
 <pre>$:/themes/tiddlywiki/vanilla/themetweaks</pre>
@@ -11639,13 +12294,13 @@ exports.newtiddler = NewtiddlerWidget;
 <div created="20210210145615695" modified="20210210145617848" title="$:/state/tab--86143343">
 <pre>$:/core/ui/ControlPanel/Plugins/Installed/Plugins</pre>
 </div>
-<div created="20210210135049658" modified="20210210145612552" title="$:/state/tab-1749438307">
-<pre>$:/core/ui/ControlPanel/Plugins</pre>
+<div created="20210210135049658" modified="20210212013725605" title="$:/state/tab-1749438307">
+<pre>$:/core/ui/ControlPanel/Info</pre>
 </div>
 <div created="20210210141411719" modified="20210210144753018" title="$:/state/tab/moresidebar-1850697562">
 <pre>$:/core/ui/MoreSideBar/Tags</pre>
 </div>
-<div created="20210210133823998" modified="20210211233106100" title="$:/state/tab/sidebar--595412856">
+<div created="20210210133823998" modified="20210212015239591" title="$:/state/tab/sidebar--595412856">
 <pre>$:/core/ui/SideBar/Open</pre>
 </div>
 <div title="$:/status/RequireReloadDueToPluginChange">
@@ -11654,7 +12309,7 @@ exports.newtiddler = NewtiddlerWidget;
 <div caption="Manager name" created="20200518194152849" creator="HEEG.HTML free on-line store" i="34" modified="20210209112905043" modifier="HEEG.HTML free on-line store" title="$:/status/UserName">
 <pre></pre>
 </div>
-<div list="$:/mas/sheethandler.js [[mas Notes]] $:/AdvancedSearch $:/core/modules/startup/password.js $:/core/modules/startup.js $:/core/modules/saver-handler.js [[Import from public Google Sheets]] [[mg Notes]] $:/boot/bootprefix1.js" title="$:/StoryList">
+<div list="$:/mas/sheethandler.js [[mas Notes]] $:/AdvancedSearch $:/core/templates/plain-text-tiddler $:/core/modules/saver-handler.js [[Import from public Google Sheets]] [[mg Notes]] $:/boot/bootprefix1.js" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20210209090055836" creator="HEEG.HTML free on-line store" modified="20210210111905983" modifier="HEEG.HTML free on-line store" title="$:/theme">
@@ -12493,6 +13148,11 @@ This is all [[Siniy-Kits Tiddly based webshop|https://groups.google.com/u/1/g/ti
 This would open up for a LOT of uses because Googles have a lot of services that integrate with, specifically, Google Sheets. So we can piggyback on this and just take the ready data!
 
 </pre>
+</div>
+<div created="20210212013716846" modified="20210212015913971" tags="" title="Initialize bootprefix1">
+<pre>&lt;div id=&quot;bootKernelPrefix1&quot; style=&quot;display:none;&quot;&gt;
+{{ $:/boot/bootprefix1.js ||$:/core/templates/javascript-tiddler}}
+&lt;/div&gt;</pre>
 </div>
 <div created="20190828115535148" description="For showing drive files and folders, and local folders&lt;br&gt;iframe(url, param) - param is currently only used for start-time in youtube vids." modified="20210206081934271" tags="$:/matias $:/tags/Macro" title="macro/iframe">
 <pre>\define iframe-youtube(time:&quot;0&quot;)
@@ -15367,381 +16027,7 @@ if(typeof(exports) !== "undefined") {
 }
 </script>
 </div>
-<!--~~ Static styles ~~-->
-<style type="text/css"></style><div id="bootKernelPrefix1" style="display:none;">
-<script data-tiddler-created="20151208182031538" data-tiddler-creator="Татьяна Воронина" data-tiddler-modified="20210211233205800" data-tiddler-modifier="HEEG.HTML free on-line store" data-tiddler-tags="" data-tiddler-title="$:/boot/bootprefix1.js" data-tiddler-type="application/javascript" type="text/javascript">//Yandex metric counter is located $:/boot/Yandex_Metrika_Counter.js  
+<!--~~ Raw markup for the bottom of the body section ~~-->
 
-var HEEGreadyState="onload";
-var corsmax=0;
-var corscurrent=0;
-
-function ContactFormSubmit(){
-	var re = /^[\w-\.]+@[\w-]+\.[a-z]{2,14}$/i;
-	var myMail = document.querySelector('.userOO_form').value;
-	var valid = re.test(myMail);
-
-	document.querySelector('[aria-label^="name"]').value=document.querySelector('.userFF_form').value;
-	document.querySelector('[aria-label^="telephone"]').value=document.querySelector('.userII_form').value;
-	document.querySelector('[aria-label^="email"]').value=document.querySelector('.userOO_form').value;
-	document.querySelector('[aria-label^="client_comments"]').value=document.querySelector('.userCC_form').value;
-	document.querySelector('[aria-label^="order_number"]').value="Z_Запрос из контактной формы";
-	document.querySelector('[aria-label^="link_for_your_order"]').value="https:\\\\heeg.ru";
-
-	if (document.querySelector('.userFF_form').value === ""){ $tw.modal.display("$:/_alert/noname"); return;}
-	if (document.querySelector('.userII_form').value === ""){$tw.modal.display("$:/_alert/notelephone"); return;}
-	if (document.querySelector('.userOO_form').value=="") {document.querySelector('[aria-label^="email"]').value=$tw.wiki.renderTiddler("text/plain","$:/constant/_nomail");}
-	if (valid || document.querySelector('.userOO_form').value=="") {} else{ $tw.modal.display("$:/_alert/noemail"); return;}
-
-	document.querySelector('[name="rsubmit"]').click();
-	$tw.modal.display("$:/_alert/form_send");
-	document.querySelector('[target="my_iframe"]').reset();
-};
-
-
-function isLocalStorageAvailable() {
-	var test2 = 'test2';
-	try {
-		localStorage.setItem(test2, test2);
-		return true;
-	} catch(e) {
-		return false;
-	}
-};
-
-
-function StaticCut(){
-	if (isLocalStorageAvailable()) { 
-		var dataSt= localStorage.getItem("userStaticCutLS"+getUrlVars()["id"]); 
-		if(dataSt!=null){
-			var fields = Object.create(null);
-			fields.title="$:/temp/userStaticCutLS";
-			fields.text=dataSt.replace (/\+\+/g, '\n').replace (/\|\|/g, ':');
-			fields.type="application/x-tiddler-dictionary"
-			if($tw.browser) {$tw.wiki.addTiddler(new $tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))};
-		}}
-};
-
-StaticCut();
-
-function download(file,className) {
-	for(var a=0;a<file.length;a++) {
-		const link = document.createElement("a");
-		const objectURL = URL.createObjectURL(file[a]);
-		var fields = Object.create(null);
-		if(typeof className == "string"){ 
-			link.download =className+"_"+ file[a].name.replace (/\~/g, '_'); fields.tags=className;
-		}else{link.download =file[a].name};
-		link.href = objectURL;
-		document.body.appendChild(link);
-
-		fields.title=link.download;fields._canonical_uri=link.download;fields.type="image/jpeg";
-		if($tw.browser) {$tw.wiki.addTiddler(new $tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))};
-
-		//	requestAnimationFrame(() => {
-		link.click();
-		link.remove();
-		URL.revokeObjectURL(objectURL);
-		//	});
-	}
-	alert("Check pictures");
-}
-
-function a(i){
-	var text="";
-	for (var k = 0; k < i; k++){
-		text=text+" ";
-
-	}
-	return text;
-}
-
-
-function stickmenu() {
-	if (document.getElementById('aside1')){
-		var a = document.querySelector('#aside1'), b = null;  
-		window.addEventListener('scroll', Ascroll, false);
-		document.body.addEventListener('scroll', Ascroll, false); 
-		function Ascroll() {
-			if (b == null) {  
-				var Sa = getComputedStyle(a, ''), s = '';
-				for (var i = 0; i < Sa.length; i++) {  
-					if (Sa[i].indexOf('box-sizing') == 0 || Sa[i].indexOf('overflow') == 0 || Sa[i].indexOf('padding') == 0 || Sa[i].indexOf('border') == 0 || Sa[i].indexOf('outline') == 0 || Sa[i].indexOf('box-shadow') == 0 || Sa[i].indexOf('background') == 0) {
-						s += Sa[i] + ': ' +Sa.getPropertyValue(Sa[i]) + '; '
-					}
-				}
-				//  document.querySelector('#stick').outerHTML = '<div id="stick"  style="'+s+'">'+document.querySelector('#stick').innerHTML+'</div>';
-				b = document.querySelector('#stick');
-				//  a.style.height = b.getBoundingClientRect().height +6+ 'px';  
-				a.style.padding = '0';
-				a.style.border = '0';  
-
-				// simpleCart.initialize();
-			}
-			if (a.getBoundingClientRect().top <= 0) { 
-				b.className = 'sticky';
-			} else {
-				b.className = 'sticky2';
-			}
-		}
-	}
-}
-
-
-function setAttr(prmName,val) {
-	var res = '';
-	var d = location.href.split("#")[0].split("?");
-	var base = d[0];
-	var query = d[1];
-	if(query) {
-		var params = query.split("&");
-		for(var i = 0; i < params.length; i++) {
-			var keyval = params[i].split("=");
-			if(keyval[0] != prmName) {
-				res += params[i] + '&';
-			}
-		}
-	}
-	res += prmName + '=' + val;
-	window.history.pushState(null, null, base + '?' + res);
-	return false;
-}
-
-
-var disqus_developer = 1;
-var strlocat3 = window.location.toString();
-var pinframe=0;
-
-
-//var currhash=window.location.hash;
-//if (currhash =="" || currhash =="#" || currhash =="null" ) { currhash ="index"};
-
-
-if (window.parent.frames.length > 0) {pinframe=1;
-}
-
-var mytext="";
-var CallbackRegistry = {}; 
-function scriptRequest(url, onSuccess, onError) {
-	var scriptOk = false; 
-	var callbackName = 'cb' + String(Math.random()).slice(-6);
-	url += ~url.indexOf('?') ? '&' : '?';
-	url += 'callback=CallbackRegistry.' + callbackName;
-	CallbackRegistry[callbackName] = function(data) {
-		scriptOk = true; 
-		delete CallbackRegistry[callbackName]; 
-		onSuccess(data); 
-	};
-
-	function checkCallback() {
-		if (scriptOk) return; 
-		delete CallbackRegistry[callbackName];
-		onError(url); 
-	}
-
-	var script = document.createElement('script');
-	script.onreadystatechange = function() {
-		if (this.readyState == 'complete' || this.readyState == 'loaded') {
-			this.onreadystatechange = null;
-			setTimeout(checkCallback, 0); 
-		}
-	}
-	script.onload = script.onerror = checkCallback;
-	script.src = url;
-	document.head.appendChild(script);
-}
-
-
-function ok(data) { 
-    var spreadsheetsmail=data.feed.author[0].email.$t;
-    //if(SpreadsheetsUse!="hide"){ setAttr("mail", spreadsheetsmail); }
-    if (typeof banlist !== 'undefined') { 
-        for (var i=0; i<banlist.length; i++){
-            if(banlist[i]+"@gmail.com"==spreadsheetsmail) {
-                $tw.modal.display("$:/_alert/banlist"); 
-                return;
-            }; 
-        } 
-    }
-    var fields = Object.create(null);
-
-    fields.title="googlespreadsheetmail";
-    fields.text=spreadsheetsmail;
-    if($tw.browser) {
-        $tw.wiki.addTiddler(
-            new $tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))
-    };
-    fields.title="googlespreadsheet";
-    fields.text="https://docs.google.com/spreadsheets/d/"+getUrlVars()["id"]+"/";
-    if($tw.browser) {
-        $tw.wiki.addTiddler(
-            new $tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))
-    };
-    fields.title="googlespreadsheettime";
-    fields.text=data.feed.updated.$t;
-    if($tw.browser) {
-        $tw.wiki.addTiddler(
-            new $tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))
-    };
-
-    //console.log( "Загружен пользователь " + spreadsheetsmail);
-    //console.log(data.feed.entry[0].link[0].href);
-    //console.log(data.feed.updated.$t);
-    corsmax=data.feed.entry.length; 
-    for (var i1=0; i1<data.feed.entry.length; i1++) {
-        scriptRequest(data.feed.entry[i1].link[0].href+"?alt=json-in-script", ok2, fail);
-    }
-}
-
-
-function ok2(data2) {  
-    var currsheet=data2.feed.title.$t;
-
-    if(currsheet.indexOf("hide")==0 || data2.feed.entry==undefined){return;};
-    //console.log(currsheet);
-    var new_value="";
-
-    for (var i=0; i<data2.feed.entry.length; i++){ 
-        var fields = Object.create(null); 
-        for (var key in data2.feed.entry[i]) {
-            if(key.match(/^gsx\$+/ig)=="gsx$"){ 
-                new_value=data2.feed.entry[i][key].$t;
-                if(key=="gsx$id" && currsheet=="ostatki"){ 
-                    fields.title="ostatok_"+new_value;
-                }else if(key=="gsx$id"){ 
-                    if(currsheet=="GD-images"){
-                        fields.tags=new_value.split('_')[0]; } 
-                    fields.title=new_value} 
-                else if(key=="gsx$name"){
-                    fields.caption=new_value}
-                else if(key=="gsx$tags" && currsheet=="parts"){ 
-                    fields.tags=new_value+" $:/TOC"; }
-                else if(key=="gsx$tags" && currsheet=="goods"){ 
-                    fields.tags=new_value+" $:/Note"; }
-                else if(key=="gsx$url" && currsheet=="images"){ 
-                    fields._canonical_uri=new_value; }
-                else if(key=="gsx$url" && currsheet=="GD-images"){
-                    fields._canonical_uri="https://drive.google.com/uc?export=download&confirm=no_antivirus&id=" + new_value; }
-                else if(key.indexOf("gsx$hide")==0){
-                    //console.log(key)
-                } 
-                else { 
-                    var new_key=key.slice(4);
-                    if(new_value.length>0){fields[new_key]=new_value; }
-                };
-            } // if key match
-        } // for (var key...
-
-        if(currsheet=="images" || currsheet=="GD-images" ){ fields.type="image/jpeg"  } ;
-        fields.i=i+2;
-        if($tw.browser) {$tw.wiki.addTiddler(new $tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))}   
-
-        if(i==data2.feed.entry.length-1){
-            corscurrent=corscurrent+1;
-            if(corscurrent==corsmax-1){
-
-                //var       deferredChanges = Object.create(null);
-                //$tw.pageWidgetNode.refresh(deferredChanges);
-                //window.location.hash=currhash;
-
-// setTimeout(alert("Hello"),2000) ;
-
-/*
-                setTimeout(
-                    function(){
-                        HEEGreadyState="isload"; 
-                        stickmenu();
-
- 
-                        var elements = document.querySelectorAll('.tw-table-of-contents-top>ul');
-
-                        document.querySelector(".tw-table-of-contents-top>ul").onclick = function(event) {
-                            for (var i = 0; i < elements.length; i++) {
-                                elements[i].className="hover";
-                            }
-                        };
-
-                        document.querySelector(".tw-table-of-contents-top>ul").onmouseover = 
-                            function(event) {
-                                for (var i = 0; i < elements.length; i++) {
-                                    elements[i].className="hover";
-                                }
-                            } ;
-                        
-                    }
-                ,2000); // setTimeout()
-*/
-            } // if corscurrent=corsmax-1
-        } // if i==data2.feed.entry ....
-    } // for var=0 loop
-
-    if (typeof Swiper== 'function' && currsheet=="GD-images") {
-        setTimeout(function(){sliderInit(); },700);
-    };
-
-} // function ok2
-
-
-
-function fail(url) {
-	alert( 'Error on request ' + url );
-}
-
-
-function getUrlVars() {
-	var vars = {};
-	var parts = window.location.href.replace(/[?&|?#]+([^=&|^=#]+)=([^&|^#]*)/gi, function(m,key,value) {
-		vars[key] = value;
-	});
-	return vars;
-}
-
-var con_spreadsheetid=$tw.wiki.renderTiddler("text/plain","$:/constant/_spreadsheetid");
-var SpreadsheetsUse=$tw.wiki.renderTiddler("text/plain","SpreadsheetsUse");
-idfromURL=getUrlVars()["id"];
-
-if(idfromURL===undefined && con_spreadsheetid!="" && SpreadsheetsUse=="hide"){
-	getSheetsData(con_spreadsheetid);
-}else if(idfromURL!=undefined && SpreadsheetsUse=="yes"){
-	getSheetsData(idfromURL);
-	var fields = Object.create(null);
-	fields.title="$:/constant/_spreadsheetid";fields.text=idfromURL;
-	if($tw.browser) {$tw.wiki.addTiddler(new 
-		$tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))};
-	fields = Object.create(null);
-	fields.title="SpreadsheetsUse";fields.text="no";
-	if($tw.browser) {$tw.wiki.addTiddler(new 
-		$tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))};
-}else if(SpreadsheetsUse=="no"){
-	stickmenu();
-	HEEGreadyState="isload";}else if(SpreadsheetsUse=="ondemand" && idfromURL== con_spreadsheetid ){
-	getSheetsData(idfromURL);
-}else{
-	$tw.notifier.display("$:/_noidNotify");
-	stickmenu();
-	HEEGreadyState="isload";
-}
-
-
-function getSheetsData(worksheets_id) {
-	//var fields = Object.create(null);
-	//fields.title="$:/StoryList";fields.list="";
-	//       if($tw.browser) {$tw.wiki.addTiddler(new $tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))};
-	scriptRequest("https://spreadsheets.google.com/feeds/worksheets/"+worksheets_id+"/public/values?alt=json-in-script", ok, fail);
-}
-
-
-function addSpaces(nStr){
-	nStr += '';
-	x = nStr.split('.');
-	x1 = x[0];
-	x2 = x.length > 1 ? '.' + x[1] : '';
-	var rgx = /(\d+)(\d{3})/;
-	while (rgx.test(x1)) {
-		x1 = x1.replace(rgx, '$1' + ' ' + '$2');
-	}
-	return x1 + x2;
-}
-
-</script>
-</div></body>
+</body>
 </html>
