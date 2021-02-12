@@ -47,7 +47,7 @@ CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE." />
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
-<title>My ~TiddlyWiki — a non-linear personal web notebook</title>
+<title>My TiddlyWiki — a non-linear personal web notebook</title>
 <!--~~ This is a Tiddlywiki file. The points of interest in the file are marked with this pattern ~~-->
 
 <!--~~ Raw markup ~~-->
@@ -435,7 +435,79 @@ function addSpaces(nStr){
 
 <!--~~ Static styles ~~-->
 <div id="styleArea">
-<style type="text/css"></style>
+<style data-tiddler-title="$:/boot/boot.css" data-tiddler-type="text/css" type="text/css">/*
+Basic styles used before we boot up the parsing engine
+*/
+
+/*
+Error message and password prompt
+*/
+
+.tc-error-form {
+	font-family: sans-serif;
+	color: #fff;
+	z-index: 20000;
+	position: fixed;
+	background-color: rgb(255, 75, 75);
+	border: 8px solid rgb(255, 0, 0);
+	border-radius: 8px;
+	width: 50%;
+	margin-left: 25%;
+	margin-top: 4em;
+	padding: 0 2em 1em 2em;
+}
+
+.tc-error-form h1 {
+	text-align: center;
+}
+
+.tc-error-prompt {
+	text-align: center;
+	color: #000;
+}
+
+.tc-error-message {
+	overflow: auto;
+	max-height: 40em;
+	padding-right: 1em;
+	margin: 1em 0;
+	white-space: pre-line;
+}
+
+.tc-password-wrapper {
+    font-family: sans-serif;
+	z-index: 20000;
+	position: fixed;
+	text-align: center;
+	width: 200px;
+	top: 4em;
+	left: 50%;
+	margin-left: -144px; /* - width/2 - paddingHorz/2 - border */
+	padding: 16px 16px 16px 16px;
+	border-radius: 8px;
+}
+
+.tc-password-wrapper {
+	color: #000;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+	background-color: rgb(197, 235, 183);
+	border: 8px solid rgb(164, 197, 152);
+}
+
+.tc-password-wrapper form {
+	text-align: left;
+}
+
+.tc-password-wrapper h1 {
+	font-size: 16px;
+	line-height: 20px;
+	padding-bottom: 16px;
+}
+
+.tc-password-wrapper input {
+	width: 100%;
+}
+</style>
 </div>
 <!--~~ Static content for Google and browsers without JavaScript ~~-->
 <noscript>
@@ -444,23 +516,11 @@ function addSpaces(nStr){
 
 <p>This <a class="tc-tiddlylink-external" href="https://tiddlywiki.com" rel="noopener noreferrer" target="_blank">TiddlyWiki</a> contains the following tiddlers:</p><p><ul>
 
-<li>$:/_heeg.js</li>
-
-<li>$:/_TWaddle/ImageGallery</li>
-
-<li>$:/.tb/templates/delete-filter</li>
-
 <li>$:/boot/bootprefix1.js</li>
 
 <li>$:/boot/Yandex_Metrika_Counter.js</li>
 
 <li>$:/build</li>
-
-<li>$:/config/Plugins/Disabled/$:/plugins/bj/listhack</li>
-
-<li>$:/config/Plugins/Disabled/$:/plugins/bj/listsRefreshOFF</li>
-
-<li>$:/config/Plugins/Disabled/$:/plugins/heeg/Green</li>
 
 <li>$:/config/Plugins/Disabled/$:/plugins/TWaddle/SideEditor</li>
 
@@ -468,217 +528,21 @@ function addSpaces(nStr){
 
 <li>$:/config/Plugins/Disabled/$:/temp/info-plugin</li>
 
-<li>$:/config/plugins/tiddlywiki/xlsx-utils/default-import-spec</li>
-
-<li>$:/config/RelinkOnRename</li>
-
 <li>$:/config/Tiddlers/TitleLinks</li>
-
-<li>$:/config/ViewToolbarButtons/Visibility/$:/_aa/button/KrNavigator</li>
-
-<li>$:/config/ViewToolbarButtons/Visibility/$:/_aa/button/KrTovar</li>
-
-<li>$:/config/ViewToolbarButtons/Visibility/$:/_aa/button/KrYandex</li>
-
-<li>$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/add_theme</li>
-
-<li>$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/delete_ALL</li>
-
-<li>$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/edit</li>
-
-<li>$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/facebook</li>
-
-<li>$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/heegSave.html</li>
-
-<li>$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/home</li>
-
-<li>$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/home1</li>
-
-<li>$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/import</li>
-
-<li>$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/mysearch</li>
-
-<li>$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/odnoklassniki</li>
-
-<li>$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/save-wiki</li>
-
-<li>$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/ShopPublish</li>
-
-<li>$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/StaticCut</li>
-
-<li>$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/top_menu</li>
-
-<li>$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/twitter</li>
-
-<li>$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/vkontakte</li>
-
-<li>$:/config/ViewToolbarButtons/Visibility/$:/core/ui/TopBar/menu</li>
-
-<li>$:/config/WikiParserRules/Inline/wikilink</li>
-
-<li>$:/constant/_00</li>
-
-<li>$:/constant/_Cart_button_name</li>
-
-<li>$:/constant/_cartName</li>
-
-<li>$:/constant/_CartViz</li>
-
-<li>$:/constant/_chooseOrder</li>
-
-<li>$:/constant/_controls</li>
-
-<li>$:/constant/_deliveryFreeFrom</li>
-
-<li>$:/constant/_deliveryPrice</li>
-
-<li>$:/constant/_deliveryPrice2</li>
-
-<li>$:/constant/_fix_top_menu</li>
-
-<li>$:/constant/_gorodOtprav</li>
-
-<li>$:/constant/_header</li>
-
-<li>$:/constant/_leftmenu</li>
-
-<li>$:/constant/_mail_form</li>
-
-<li>$:/constant/_minzakaz</li>
 
 <li>$:/constant/_nomail</li>
 
-<li>$:/constant/_quantityName</li>
-
-<li>$:/constant/_readMore</li>
-
-<li>$:/constant/_saleFinish</li>
-
-<li>$:/constant/_saleStart</li>
-
-<li>$:/constant/_saleTimeEnable</li>
-
-<li>$:/constant/_saleval</li>
-
-<li>$:/constant/_showQ</li>
-
-<li>$:/constant/_SortBlock</li>
-
 <li>$:/constant/_spreadsheetid</li>
-
-<li>$:/constant/_tile_height_percent</li>
-
-<li>$:/constant/_tileWidth</li>
-
-<li>$:/constant/_tileWidth_padding</li>
-
-<li>$:/constant/_top_slider</li>
-
-<li>$:/constant/_topmenu</li>
-
-<li>$:/constant/_valuta</li>
-
-<li>$:/constant/_vkwidth</li>
-
-<li>$:/constant/LazyLoad</li>
 
 <li>$:/ControlPanel</li>
 
 <li>$:/core</li>
 
-<li>$:/core/modules/filters/split.js</li>
-
-<li>$:/core/modules/saver-handler.js</li>
-
-<li>$:/core/templates/heeg.template.css</li>
-
-<li>$:/core/templates/HEEG/static.tiddler.html</li>
-
-<li>$:/core/templates/HEEG2/static.tiddler.html</li>
-
-<li>$:/core/templates/heegStatic.tiddler.html</li>
-
-<li>$:/core/ui/Buttons/add_theme</li>
-
-<li>$:/core/ui/Buttons/delete_ALL</li>
-
-<li>$:/core/ui/Buttons/heegSave.html</li>
-
-<li>$:/core/ui/Buttons/home1</li>
-
-<li>$:/core/ui/Buttons/mysearch</li>
-
-<li>$:/core/ui/Buttons/top_menu</li>
-
-<li>$:/core/ui/EditTemplate/fieldinfo/caption</li>
-
-<li>$:/core/ui/EditTemplate/fieldinfo/description</li>
-
-<li>$:/core/ui/EditTemplate/fieldinfo/fontawesome</li>
-
-<li>$:/core/ui/EditTemplate/fieldinfo/old-price</li>
-
-<li>$:/core/ui/EditTemplate/fieldinfo/preview</li>
-
-<li>$:/core/ui/EditTemplate/fieldinfo/price</li>
-
-<li>$:/core/ui/EditTemplate/fieldinfo/text</li>
-
-<li>$:/core/ui/EditTemplate/fieldinfo/title</li>
-
 <li>$:/DefaultTiddlers</li>
-
-<li>$:/ExcelImporter/ImportSpecifiers/Field</li>
-
-<li>$:/ExcelImporter/ImportSpecifiers/Field 1</li>
-
-<li>$:/ExcelImporter/ImportSpecifiers/Field 10</li>
-
-<li>$:/ExcelImporter/ImportSpecifiers/Field 11</li>
-
-<li>$:/ExcelImporter/ImportSpecifiers/Field 12</li>
-
-<li>$:/ExcelImporter/ImportSpecifiers/Field 13</li>
-
-<li>$:/ExcelImporter/ImportSpecifiers/Field 14</li>
-
-<li>$:/ExcelImporter/ImportSpecifiers/Field 15</li>
-
-<li>$:/ExcelImporter/ImportSpecifiers/Field 16</li>
-
-<li>$:/ExcelImporter/ImportSpecifiers/Field 2</li>
-
-<li>$:/ExcelImporter/ImportSpecifiers/Field 3</li>
-
-<li>$:/ExcelImporter/ImportSpecifiers/Field 4</li>
-
-<li>$:/ExcelImporter/ImportSpecifiers/Field 7</li>
-
-<li>$:/ExcelImporter/ImportSpecifiers/Field 8</li>
-
-<li>$:/ExcelImporter/ImportSpecifiers/Field 9</li>
-
-<li>$:/ExcelImporter/ImportSpecifiers/Field_d</li>
-
-<li>$:/ExcelImporter/ImportSpecifiers/Field_pr</li>
-
-<li>$:/ExcelImporter/ImportSpecifiers/Row</li>
-
-<li>$:/ExcelImporter/ImportSpecifiers/Row 1</li>
-
-<li>$:/ExcelImporter/ImportSpecifiers/Row 2</li>
-
-<li>$:/ExcelImporter/ImportSpecifiers/Sheet</li>
-
-<li>$:/Import</li>
 
 <li>$:/isEncrypted</li>
 
 <li>$:/mas/sheethandler.js</li>
-
-<li>$:/palette</li>
-
-<li>$:/plugins/skeeve/newtiddler.js</li>
 
 <li>$:/plugins/TWaddle/SideEditor</li>
 
@@ -710,8 +574,6 @@ function addSpaces(nStr){
 
 <li>$:/status/RequireReloadDueToPluginChange</li>
 
-<li>$:/status/UserName</li>
-
 <li>$:/StoryList</li>
 
 <li>$:/theme</li>
@@ -725,8 +587,6 @@ function addSpaces(nStr){
 <li>$:/themes/tiddlywiki/vanilla/options/stickytitles</li>
 
 <li>$:/UploadName</li>
-
-<li>$:/view</li>
 
 <li>batchmanipulator</li>
 
@@ -756,100 +616,6 @@ function addSpaces(nStr){
 <!--~~ Ordinary tiddlers ~~-->
 
 <div id="storeArea" style="display:none;">
-<div created="20141130175523951" modified="20190104132924256" title="$:/_heeg.js" type="application/javascript">
-<pre>var a = document.querySelector('#aside1'), b = null;  
-function Ascroll() {
-  if (b == null) {  
-    var Sa = getComputedStyle(a, ''), s = '';
-    for (var i = 0; i &lt; Sa.length; i++) {  
-      if (Sa[i].indexOf('box-sizing') == 0 || Sa[i].indexOf('overflow') == 0 || Sa[i].indexOf('padding') == 0 || Sa[i].indexOf('border') == 0 || Sa[i].indexOf('outline') == 0 || Sa[i].indexOf('box-shadow') == 0 || Sa[i].indexOf('background') == 0) {
-        s += Sa[i] + ': ' +Sa.getPropertyValue(Sa[i]) + '; '
-      }
-    }
-     b = document.querySelector('#stick');
-    a.style.height = b.getBoundingClientRect().height + 'px';  
-    a.style.padding = '0';
-    a.style.border = '0';  
- 
-
- }
-  if (a.getBoundingClientRect().top &lt;= 0) { 
-    b.className = 'sticky';
-  } else {
-    b.className = 'sticky2';
-  }
-}
-
-
-
-if (document.getElementById('aside1')){
-(function(){  
-
-window.addEventListener('scroll', Ascroll, false);
-document.body.addEventListener('scroll', Ascroll, false); 
-})()
-
-}
-
-var ttt=&quot;&quot;+decodeURIComponent(document.location);
-var ssilko= &quot;heeg.html#&quot; + ttt.split('.html')[0].split('/')[ttt.match(/\//g).length];
-
-
-
-
-
-
-var object = document.createElement('div'); 
- object.innerHTML ='&lt;div class=&quot;modal-wrapper&quot;  &gt;&lt;/div&gt; &lt;div class=&quot;modal&quot; style=&quot;z-index: 99990; min-width:200px;&quot;&gt; &lt;img class=&quot;myimages&quot; style=&quot;width:100%; max-width: 173px;&quot; src=&quot;https://heeg.ru/images/products/shablon_internet_magazina_posudi_tmb.jpg&quot; alt=&quot;интернет магазин&quot; /&gt; &lt;a style=&quot;margin:15px; display:block;   &quot;&gt;  Добро пожаловать в наш интернет магазин.  Сегодня при сумме заказа от 5 тысяч рублей, мы доставим Ваш заказ в любой регион России бесплатно!  &lt;/a&gt; '+  '&lt;div class=&quot; modal-footer&quot;&gt; &lt;a class=&quot;simpleCart_checkout&quot;  style=&quot;font-size:16px;&quot; href=&quot;'+ ssilko +'&quot;&gt;перейти в магазин&lt;/a&gt;'   +'&lt;/div&gt; &lt;/div&gt; '; 
- 
- 
- 
-if (document.getElementById('nomodal')){} else{
-
- var body = document.getElementsByTagName('body')[0]; 
- body.insertBefore(object, body.firstChild); 
-}
-
-
-
-
-</pre>
-</div>
-<div created="20170112101142498" creator="twMat" modified="20190627100738985" modifier="Mat von TWaddle" tags="" title="$:/_TWaddle/ImageGallery">
-<pre>@@color:crimson; Hover for title, click to go to tiddler @@
-
-&lt;div class=&quot;iconlist&quot;&gt;
-&lt;$list filter=&quot;[all[tiddlers+shadows]tag[$:/tags/Image]prefix[$:/core]]&quot;&gt;
-&lt;$link tooltip=&quot;{{!!title}}&quot;&gt;&lt;$transclude/&gt;&lt;/$link&gt;
-&lt;/$list&gt;
-
-&lt;$list filter=&quot;[all[tiddlers+shadows]tag[$:/tags/Image]prefix[$:/image]]&quot;&gt;
-&lt;$link tooltip=&quot;{{!!title}}&quot;&gt;&lt;$transclude/&gt;&lt;/$link&gt;
-&lt;/$list&gt;
-&lt;/div&gt;
-
-&lt;style&gt;
-.iconlist svg {max-width:30px; }
-&lt;/style&gt;</pre>
-</div>
-<div created="20141209104005777" creator="Tobias Beer" modified="20151210174450093" modifier="Tobias Beer" tags="" title="$:/.tb/templates/delete-filter">
-<pre>&lt;$edit-text tiddler=&quot;$:/temp/delete-filter&quot; tag=&quot;input&quot; placeholder=&quot;enter a filter&quot; default=&quot;&quot; size=50/&gt;
-&lt;$reveal state=&quot;$:/temp/delete-filter&quot; type=&quot;nomatch&quot; text=&quot;&quot;&gt;
-&lt;$button class=&quot;tc-btn-invisible&quot;&gt;
-&lt;$action-setfield $tiddler=&quot;$:/temp/delete-filter&quot; $field=&quot;text&quot; $value=&quot;&quot;/&gt;
-{{$:/core/images/close-button}}
-&lt;/$button&gt;
-&lt;/$reveal&gt;
-
-&lt;$list filter={{$:/temp/delete-filter}}&gt;
-&lt;$button class=&quot;tc-btn-invisible&quot;&gt;
-&lt;$action-deletetiddler $tiddler={{!!title}}/&gt;
-{{$:/core/images/delete-button}}
-&lt;/$button&gt; &lt;$link to={{!!title}}&gt;&lt;$view field=title/&gt;&lt;/$link&gt;&lt;br&gt;
-
-
-&lt;/$list&gt;</pre>
-</div>
 <div created="20151208182031538" creator="Татьяна Воронина" modified="20210212020019542" modifier="HEEG.HTML free on-line store" tags="$:/tags/RawMarkup" title="$:/boot/bootprefix1.js" type="application/javascript">
 <pre>&lt;script&gt;
 //Yandex metric counter is located $:/boot/Yandex_Metrika_Counter.js  
@@ -1251,214 +1017,23 @@ document.body.appendChild(div);</pre>
 <pre>Built from branch 'tiddlywiki-com' at commit 40d21f607a88ad02ecc94dcdc7e63b93a53cd1b2 of https://github.com/Jermolene/TiddlyWiki5 at 2021-02-07 12:49:33 UTC
 </pre>
 </div>
-<div created="20171113171433664" modified="20171127081353752" title="$:/config/Plugins/Disabled/$:/plugins/bj/listhack">
-<pre>no</pre>
-</div>
-<div created="20171127084537959" creator="HEEG.HTML free on-line store" modified="20210210113547795" modifier="HEEG.HTML free on-line store" title="$:/config/Plugins/Disabled/$:/plugins/bj/listsRefreshOFF">
-<pre>yes</pre>
-</div>
-<div created="20170509183132907" modified="20170509201642535" title="$:/config/Plugins/Disabled/$:/plugins/heeg/Green">
-<pre>no</pre>
-</div>
 <div created="20210209142407478" modified="20210210145629593" title="$:/config/Plugins/Disabled/$:/plugins/TWaddle/SideEditor">
 <pre>yes</pre>
 </div>
-<div created="20210209142435897" modified="20210210145624684" title="$:/config/Plugins/Disabled/$:/plugins/TWaddle/TabLinks">
-<pre>yes</pre>
+<div created="20210209142435897" modified="20210212151242431" title="$:/config/Plugins/Disabled/$:/plugins/TWaddle/TabLinks">
+<pre>no</pre>
 </div>
 <div created="20170423102253293" modified="20170423102254473" title="$:/config/Plugins/Disabled/$:/temp/info-plugin">
 <pre>no</pre>
 </div>
-<div created="20170416104216251" modified="20170416132833509" title="$:/config/plugins/tiddlywiki/xlsx-utils/default-import-spec">
-<pre>myshop_xlsx</pre>
-</div>
-<div created="20170802184924364" modified="20170802184924364" title="$:/config/RelinkOnRename">
-<pre>yes</pre>
-</div>
 <div created="20210209121954778" modified="20210209121954778" title="$:/config/Tiddlers/TitleLinks">
 <pre>yes</pre>
-</div>
-<div created="20170416063946086" modified="20170416063946086" title="$:/config/ViewToolbarButtons/Visibility/$:/_aa/button/KrNavigator">
-<pre>hide</pre>
-</div>
-<div created="20170416063946973" modified="20170416063946973" title="$:/config/ViewToolbarButtons/Visibility/$:/_aa/button/KrTovar">
-<pre>hide</pre>
-</div>
-<div created="20170416063948005" modified="20170416063948005" title="$:/config/ViewToolbarButtons/Visibility/$:/_aa/button/KrYandex">
-<pre>hide</pre>
-</div>
-<div created="20170510202022389" modified="20170510202022389" title="$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/add_theme">
-<pre>hide</pre>
-</div>
-<div created="20170506215129481" modified="20170506215129481" title="$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/delete_ALL">
-<pre>hide</pre>
-</div>
-<div created="20180519155537563" modified="20200102113026325" title="$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/edit">
-<pre>show</pre>
-</div>
-<div created="20170416063948917" modified="20170416063948917" title="$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/facebook">
-<pre>hide</pre>
-</div>
-<div created="20200102105030447" modified="20200102105030447" title="$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/heegSave.html">
-<pre>hide</pre>
-</div>
-<div created="20170426025140876" modified="20170426025140876" title="$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/home">
-<pre>hide</pre>
-</div>
-<div created="20170426025058470" modified="20170426025139637" title="$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/home1">
-<pre>show</pre>
-</div>
-<div created="20170507042921675" modified="20170507042921675" title="$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/import">
-<pre>hide</pre>
-</div>
-<div created="20200102105021760" modified="20200102105021760" title="$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/mysearch">
-<pre>hide</pre>
-</div>
-<div created="20170416063951020" modified="20170416063951020" title="$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/odnoklassniki">
-<pre>hide</pre>
-</div>
-<div created="20170426032550213" modified="20200102105005552" title="$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/save-wiki">
-<pre>show</pre>
-</div>
-<div created="20170429061341260" modified="20170429061341260" title="$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/ShopPublish">
-<pre>hide</pre>
-</div>
-<div created="20200126111432128" creator="Татьяна Воронина" modified="20200126111432128" modifier="Татьяна Воронина" title="$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/StaticCut">
-<pre>hide</pre>
-</div>
-<div created="20170416063956013" modified="20180519155546082" title="$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/top_menu">
-<pre>hide</pre>
-</div>
-<div created="20170416063957949" modified="20170416063957949" title="$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/twitter">
-<pre>hide</pre>
-</div>
-<div created="20170416063958909" modified="20170416063958909" title="$:/config/ViewToolbarButtons/Visibility/$:/core/ui/Buttons/vkontakte">
-<pre>hide</pre>
-</div>
-<div created="20170429195849286" modified="20200102105008240" title="$:/config/ViewToolbarButtons/Visibility/$:/core/ui/TopBar/menu">
-<pre>show</pre>
-</div>
-<div created="20210209121945322" modified="20210209121945322" title="$:/config/WikiParserRules/Inline/wikilink">
-<pre>disable</pre>
-</div>
-<div created="20160117092831765" modified="20160714193958849" title="$:/constant/_00">
-<pre>0</pre>
-</div>
-<div caption="The inscription on the button &quot;add to cart&quot;" created="20200518194152849" creator="HEEG.HTML free on-line store" i="37" modified="20210209094227051" modifier="HEEG.HTML free on-line store" title="$:/constant/_Cart_button_name">
-<pre>в корзину</pre>
-</div>
-<div created="20200509132400687" creator="HEEG.HTML free on-line store" modified="20200509132448797" modifier="HEEG.HTML free on-line store" tags="" title="$:/constant/_cartName">
-<pre>Корзина</pre>
-</div>
-<div caption="Show cart none or block" created="20200518194152849" creator="HEEG.HTML free on-line store" i="36" modified="20210209094212624" modifier="HEEG.HTML free on-line store" title="$:/constant/_CartViz">
-<pre>block</pre>
-</div>
-<div caption="quick order" created="20200518194152849" creator="HEEG.HTML free on-line store" i="24" modified="20210209094201769" modifier="HEEG.HTML free on-line store" title="$:/constant/_chooseOrder">
-<pre>no</pre>
-</div>
-<div caption="Show edit buttons" created="20200518194152849" creator="HEEG.HTML free on-line store" i="27" modified="20210209094152153" modifier="HEEG.HTML free on-line store" title="$:/constant/_controls">
-<pre>inherit</pre>
-</div>
-<div caption="free shipping FROM" created="20200518194152849" creator="HEEG.HTML free on-line store" i="19" modified="20210209094140311" modifier="HEEG.HTML free on-line store" title="$:/constant/_deliveryFreeFrom">
-<pre>2000</pre>
-</div>
-<div caption="cost of delivery" created="20200518194152849" creator="HEEG.HTML free on-line store" i="18" modified="20210209094128479" modifier="HEEG.HTML free on-line store" title="$:/constant/_deliveryPrice">
-<pre>СОЗДАЙТЕ  ТОВАР С tag $:/dost на вкладке goods</pre>
-</div>
-<div caption="cost of delivery" created="20190309155455453" creator="HEEG.HTML free on-line store" i="11" modified="20210209094124508" modifier="HEEG.HTML free on-line store" tags="" title="$:/constant/_deliveryPrice2">
-<pre>&lt;$tiddler tiddler={{$:/state/_tip_dostavki}}&gt; &lt;$view field=&quot;price&quot;/&gt; &lt;/$tiddler&gt;</pre>
-</div>
-<div caption="Fix top menu" created="20200518194152849" creator="HEEG.HTML free on-line store" i="28" modified="20210209094111661" modifier="HEEG.HTML free on-line store" title="$:/constant/_fix_top_menu">
-<pre>absolute</pre>
-</div>
-<div created="20160117093001971" dl="7700000000000000000000000" modified="20160117093012871" pr="city--moskva" title="$:/constant/_gorodOtprav">
-<pre></pre>
-</div>
-<div created="20160117083852767" logo="{{logo}}" modified="20170112123928546" title="$:/constant/_header">
-<pre></pre>
-</div>
-<div caption="show left menu old_left" created="20200518194152849" creator="HEEG.HTML free on-line store" i="23" modified="20210209094054338" modifier="HEEG.HTML free on-line store" title="$:/constant/_leftmenu">
-<pre>no</pre>
-</div>
-<div caption="how to send orders" created="20200518194152848" creator="HEEG.HTML free on-line store" i="7" modified="20210209094045088" modifier="HEEG.HTML free on-line store" title="$:/constant/_mail_form">
-<pre>{{google_form}}</pre>
-</div>
-<div caption="minimum order" created="20200518194152849" creator="HEEG.HTML free on-line store" i="20" modified="20210209094034219" modifier="HEEG.HTML free on-line store" title="$:/constant/_minzakaz">
-<pre>200</pre>
 </div>
 <div caption="store mail" created="20200518194152848" creator="HEEG.HTML free on-line store" i="15" modified="20210209094024524" modifier="HEEG.HTML free on-line store" title="$:/constant/_nomail">
 <pre>info@heeg.ru</pre>
 </div>
-<div created="20160313140814885" modified="20170524060017344" tags="" title="$:/constant/_quantityName">
-<pre>шт.</pre>
-</div>
-<div created="20200509162701948" creator="HEEG.HTML free on-line store" modified="20200509162726185" modifier="HEEG.HTML free on-line store" tags="" title="$:/constant/_readMore">
-<pre>СМОТРЕТЬ ЕЩЁ</pre>
-</div>
-<div created="20161219184850174" modified="20161228191251300" tags="" title="$:/constant/_saleFinish">
-<pre>5</pre>
-</div>
-<div created="20161219184804462" modified="20161219184844577" tags="" title="$:/constant/_saleStart">
-<pre>1</pre>
-</div>
-<div created="20161220094215300" modified="20170416080246205" tags="" title="$:/constant/_saleTimeEnable">
-<pre>no</pre>
-</div>
-<div created="20161216130445168" modified="20161216130536483" tags="" title="$:/constant/_saleval">
-<pre>0.6</pre>
-</div>
-<div caption="Choice of quantity on a tile" created="20200518194152849" creator="HEEG.HTML free on-line store" i="25" modified="20210209094013417" modifier="HEEG.HTML free on-line store" title="$:/constant/_showQ">
-<pre>no</pre>
-</div>
-<div created="20200509161915928" creator="HEEG.HTML free on-line store" modified="20200517114848340" modifier="HEEG.HTML free on-line store" tags="" title="$:/constant/_SortBlock">
-<pre>\define sortOrderWi(filter text)
-&lt;$vars findthis=&quot;$filter$&quot;&gt;
-&lt;$list filter=&quot;[title[$:/state/_sortOrder]text&lt;findthis&gt;]&quot; emptyMessage='&lt;option value=&quot;$filter$&quot; &gt;$text$&lt;/option&gt;'&gt;
- &lt;option  selected=&quot;selected&quot; value=&quot;$filter$&quot; &gt;$text$&lt;/option&gt;
-&lt;/$list&gt;
-&lt;/$vars&gt;
-\end
-
-
-&lt;$list filter=&quot;[is[current]tagging[]tag[$:/Note]!tag[$:/hide]nth[2]]&quot; variable=variable&gt;
-&lt;$set name=&quot;cur&quot; value=&lt;&lt;currentTiddler&gt;&gt;&gt;
-&lt;$select tiddler='$:/state/_sortOrder' default=&quot;nsort[price]&quot;  class=&quot;ordersel&quot;&gt;
-&lt;&lt;sortOrderWi &quot;nsort[i]&quot; &quot;по умолчанию&quot; &gt;&gt; 
-&lt;&lt;sortOrderWi &quot;nsort[price]&quot; &quot;сначала дешевле&quot; &gt;&gt; 
-&lt;&lt;sortOrderWi &quot;!nsort[price]&quot; &quot;сначала дороже&quot; &gt;&gt;   
-&lt;&lt;sortOrderWi &quot;sort[title]&quot; &quot;по артикулу&quot; &gt;&gt;
-&lt;&lt;sortOrderWi &quot;sort[caption]&quot; &quot;по названию&quot; &gt;&gt;
-&lt;&lt;sortOrderWi &quot;!nsort[modified]&quot; &quot;по новизне&quot; &gt;&gt;       
-&lt;/$select&gt;
-&lt;/$set&gt;
-&lt;/$list&gt;</pre>
-</div>
 <div created="20200513094354585" creator="HEEG.HTML free on-line store" modified="20210209111203030" modifier="HEEG.HTML free on-line store" title="$:/constant/_spreadsheetid">
 <pre>1QUoZosiS3emBQNM_HugaptU5qY1Ze5lBQXVd8yZit6A</pre>
-</div>
-<div caption="tile height in percent 50-200%" created="20200518194152849" creator="HEEG.HTML free on-line store" i="29" modified="20210209094002199" modifier="HEEG.HTML free on-line store" title="$:/constant/_tile_height_percent">
-<pre>70%</pre>
-</div>
-<div caption="tile width in percent 19-100%" created="20200518194152849" creator="HEEG.HTML free on-line store" i="30" modified="20210209093951557" modifier="HEEG.HTML free on-line store" title="$:/constant/_tileWidth">
-<pre>24%</pre>
-</div>
-<div caption="indents between tiles in pixels" created="20200518194152849" creator="HEEG.HTML free on-line store" i="31" modified="20210209093939391" modifier="HEEG.HTML free on-line store" title="$:/constant/_tileWidth_padding">
-<pre>10</pre>
-</div>
-<div caption="Image slider at the top" created="20200518194152849" creator="HEEG.HTML free on-line store" i="21" modified="20210209093929560" modifier="HEEG.HTML free on-line store" title="$:/constant/_top_slider">
-<pre>yes</pre>
-</div>
-<div caption="top menu type" created="20200518194152849" creator="HEEG.HTML free on-line store" i="22" modified="20210209093919214" modifier="HEEG.HTML free on-line store" title="$:/constant/_topmenu">
-<pre>type1</pre>
-</div>
-<div caption="currency" created="20200518194152848" creator="HEEG.HTML free on-line store" i="16" modified="20210209093908683" modifier="HEEG.HTML free on-line store" title="$:/constant/_valuta">
-<pre>руб.</pre>
-</div>
-<div created="20160313170056717" modified="20160313170105134" title="$:/constant/_vkwidth">
-<pre>980</pre>
-</div>
-<div caption="Lazy product picture slider" created="20200518194152849" creator="HEEG.HTML free on-line store" i="35" modified="20210209093859453" modifier="HEEG.HTML free on-line store" title="$:/constant/LazyLoad">
-<pre>no</pre>
 </div>
 <div color="#bbb" created="20210210113349875" icon="$:/core/images/options-button" modified="20210210113349875" title="$:/ControlPanel">
 <pre>&lt;div class=&quot;tc-control-panel&quot;&gt;
@@ -11330,568 +10905,8 @@ document.body.appendChild(div);</pre>
     }
 }</pre>
 </div>
-<div created="20140211195846193" creator="Stephan Hradek" modified="20140725111713778" modifier="Danielo Rodriguez" module-type="filteroperator" tags="editableTable" title="$:/core/modules/filters/split.js" type="application/javascript">
-<pre>/*\
-title: $:/core/modules/filters/split.js
-type: application/javascript
-module-type: filteroperator
-
-Filter operator for splitting each current list element
-into several new elements.
-
-\*/
-(function(){
-
-/*jslint node: true, browser: true */
-/*global $tw: false */
-&quot;use strict&quot;;
-
-/*
-Export our filter function
-*/
-exports.split = function(source,operator,options) {
-//console.log(source,operator,options);
-	var results = [],
-		fieldname = (operator.suffix || operator.operator || &quot;title&quot;).toLowerCase();
-	source(function(tiddler,title) {
-		if(tiddler) {
-			var splitted,
-				text = tiddler.getFieldString(fieldname);
-			if(operator.regexp) {
-				splitted = text.split(operator.regexp);
-			} else {
-				splitted = text.split(operator.operand);
-			}
-			if(splitted) {
-				$tw.utils.pushTop(results,splitted);
-			}
-		}
-	});
-	return results;
-};
-
-})();</pre>
-</div>
-<div created="20170428172703045" creator="HEEG.HTML free on-line store" modified="20210211172929160" modifier="HEEG.HTML free on-line store" module-type="global" title="$:/core/modules/saver-handler.js" type="application/javascript">
-<pre>/*\
-title: $:/core/modules/saver-handler.js
-type: application/javascript
-module-type: global
-
-The saver handler tracks changes to the store and handles saving the entire wiki via saver modules.
-
-\*/
-(function(){
-
-/*jslint node: true, browser: true */
-/*global $tw: false */
-&quot;use strict&quot;;
-
-/*
-Instantiate the saver handler with the following options:
-wiki: wiki to be synced
-dirtyTracking: true if dirty tracking should be performed
-*/
-function SaverHandler(options) {
-	var self = this;
-	this.wiki = options.wiki;
-	this.dirtyTracking = options.dirtyTracking;
-	this.pendingAutoSave = false;
-	// Make a logger
-	this.logger = new $tw.utils.Logger(&quot;saver-handler&quot;);
-	// Initialise our savers
-	if($tw.browser) {
-		this.initSavers();
-	}
-	// Only do dirty tracking if required
-	if($tw.browser &amp;&amp; this.dirtyTracking) {
-		// Compile the dirty tiddler filter
-		this.filterFn = this.wiki.compileFilter(this.wiki.getTiddlerText(this.titleSyncFilter));
-		// Count of changes that have not yet been saved
-		this.numChanges = 0;
-		// Listen out for changes to tiddlers
-		this.wiki.addEventListener(&quot;change&quot;,function(changes) {
-			// Filter the changes so that we only count changes to tiddlers that we care about
-			var filteredChanges = self.filterFn.call(self.wiki,function(iterator) {
-				$tw.utils.each(changes,function(change,title) {
-					var tiddler = self.wiki.getTiddler(title);
-					iterator(tiddler,title);
-				});
-			});
-			// Adjust the number of changes
-			self.numChanges += filteredChanges.length;
-			self.updateDirtyStatus();
-			// Do any autosave if one is pending and there's no more change events
-			if(self.pendingAutoSave &amp;&amp; self.wiki.getSizeOfTiddlerEventQueue() === 0) {
-				// Check if we're dirty
-				if(self.numChanges &gt; 0) {
-					self.saveWiki({
-						method: &quot;autosave&quot;,
-						downloadType: &quot;text/plain&quot;
-					});
-				}
-				self.pendingAutoSave = false;
-			}
-		});
-		// Listen for the autosave event
-		$tw.rootWidget.addEventListener(&quot;tm-auto-save-wiki&quot;,function(event) {
-			// Do the autosave unless there are outstanding tiddler change events
-			if(self.wiki.getSizeOfTiddlerEventQueue() === 0) {
-				// Check if we're dirty
-				if(self.numChanges &gt; 0) {
-					self.saveWiki({
-						method: &quot;autosave&quot;,
-						downloadType: &quot;text/plain&quot;
-					});
-				}
-			} else {
-				// Otherwise put ourselves in the &quot;pending autosave&quot; state and wait for the change event before we do the autosave
-				self.pendingAutoSave = true;
-			}
-		});
-		// Set up our beforeunload handler
-		$tw.addUnloadTask(function(event) {
-			var confirmationMessage;
-			if(self.isDirty()) {
-				confirmationMessage = $tw.language.getString(&quot;UnsavedChangesWarning&quot;);
-				event.returnValue = confirmationMessage; // Gecko
-			}
-			return confirmationMessage;
-		});
-	}
-	// Install the save action handlers
-	if($tw.browser) {
-		$tw.rootWidget.addEventListener(&quot;tm-save-wiki&quot;,function(event) {
-			self.saveWiki({
-				template: event.param,
-				downloadType: &quot;text/plain&quot;,
-				variables: event.paramObject
-			});
-		});
-
-//$tw.rootWidget.addEventListener(&quot;tm-sheetgetdata&quot;,function(event) {getSheetsData($tw.wiki.renderTiddler(&quot;text/plain&quot;,&quot;$:/constant/_spreadsheetid&quot;))});
-$tw.rootWidget.addEventListener(&quot;tm-up&quot;, function(event) {up()});
-//$tw.rootWidget.addEventListener(&quot;tm-cart&quot;, function(event) {simpleCart.hide()});
-//$tw.rootWidget.addEventListener(&quot;tm-ContactFormSubmit&quot;, function(event) {ContactFormSubmit()});
-$tw.rootWidget.addEventListener(&quot;tm-history&quot;,function(event) {history2()});
-//$tw.rootWidget.addEventListener(&quot;tm-sendorder&quot;,function(event) {sendneworder()});
-
-
-		$tw.rootWidget.addEventListener(&quot;tm-download-file&quot;,function(event) {
-			
-
-
-/***
-if(document.getElementById('shoppass') ){
-
-document.querySelector('[aria-label^=&quot;name2&quot;]').value=document.querySelector('#shoppass').value;
-document.querySelector('[aria-label=&quot;full_shop_code&quot;]').value=$tw.wiki.renderTiddler(&quot;text/plain&quot;,&quot;$:/core/save/all&quot;);
-document.querySelector('[name=&quot;phppublic&quot;]').click();
-document.querySelector('[target=&quot;my_iframe2&quot;]').reset();
-};
-***/
-
-self.saveWiki({
-				method: &quot;download&quot;,
-				template: event.param,
-				downloadType: &quot;text/plain&quot;,
-				variables: event.paramObject
-			});
-		});
-	}
-}
-
-SaverHandler.prototype.titleSyncFilter = &quot;$:/config/SaverFilter&quot;;
-SaverHandler.prototype.titleAutoSave = &quot;$:/config/AutoSave&quot;;
-SaverHandler.prototype.titleSavedNotification = &quot;$:/language/Notifications/Save/Done&quot;;
-
-/*
-Select the appropriate saver modules and set them up
-*/
-SaverHandler.prototype.initSavers = function(moduleType) {
-	moduleType = moduleType || &quot;saver&quot;;
-	// Instantiate the available savers
-	this.savers = [];
-	var self = this;
-	$tw.modules.forEachModuleOfType(moduleType,function(title,module) {
-		if(module.canSave(self)) {
-			self.savers.push(module.create(self.wiki));
-		}
-	});
-	// Sort the savers into priority order
-	this.savers.sort(function(a,b) {
-		if(a.info.priority &lt; b.info.priority) {
-			return -1;
-		} else {
-			if(a.info.priority &gt; b.info.priority) {
-				return +1;
-			} else {
-				return 0;
-			}
-		}
-	});
-};
-
-/*
-Save the wiki contents. Options are:
-	method: &quot;save&quot;, &quot;autosave&quot; or &quot;download&quot;
-	template: the tiddler containing the template to save
-	downloadType: the content type for the saved file
-*/
-SaverHandler.prototype.saveWiki = function(options) {
-	options = options || {};
-	var self = this,
-		method = options.method || &quot;save&quot;,
-		variables = options.variables || {},
-		template = options.template || &quot;$:/core/save/all&quot;,
-		downloadType = options.downloadType || &quot;text/plain&quot;,
-		text = this.wiki.renderTiddler(downloadType,template,options),
-		callback = function(err) {
-			if(err) {
-				alert($tw.language.getString(&quot;Error/WhileSaving&quot;) + &quot;:\n\n&quot; + err);
-			} else {
-				// Clear the task queue if we're saving (rather than downloading)
-				if(method !== &quot;download&quot;) {
-					self.numChanges = 0;
-					self.updateDirtyStatus();
-				}
-				$tw.notifier.display(self.titleSavedNotification);
-				if(options.callback) {
-					options.callback();
-				}
-			}
-		};
-	// Ignore autosave if disabled
-	if(method === &quot;autosave&quot; &amp;&amp; this.wiki.getTiddlerText(this.titleAutoSave,&quot;yes&quot;) !== &quot;yes&quot;) {
-		return false;
-	}
-	// Call the highest priority saver that supports this method
-	for(var t=this.savers.length-1; t&gt;=0; t--) {
-		var saver = this.savers[t];
-		if(saver.info.capabilities.indexOf(method) !== -1 &amp;&amp; saver.save(text,method,callback,{variables: {filename: variables.filename}})) {
-			this.logger.log(&quot;Saving wiki with method&quot;,method,&quot;through saver&quot;,saver.info.name);
-			return true;
-		}
-	}
-	return false;
-};
-
-/*
-Checks whether the wiki is dirty (ie the window shouldn't be closed)
-*/
-SaverHandler.prototype.isDirty = function() {
-	return this.numChanges &gt; 0;
-};
-
-/*
-Update the document body with the class &quot;tc-dirty&quot; if the wiki has unsaved/unsynced changes
-*/
-
-SaverHandler.prototype.updateDirtyStatusNum = function() {this.numChanges = 0;};
-
-
-/*
-SaverHandler.prototype.updateDirtyStatus = function() {
-	if($tw.browser) {
-
-HEEGreadyState = typeof HEEGreadyState === 'undefined' ? &quot;xxx&quot;  :  HEEGreadyState ; 
-if(HEEGreadyState!==&quot;isload&quot;){this.numChanges = 0; document.body.className = 'tc-body';}else{
-		$tw.utils.toggleClass(document.body,&quot;tc-dirty&quot;,this.isDirty());};
-	}
-
-};
-*/
-
-SaverHandler.prototype.updateDirtyStatus = function() {
-	var self = this;
-	if($tw.browser) {
-		$tw.utils.toggleClass(document.body,&quot;tc-dirty&quot;,this.isDirty());
-		$tw.utils.each($tw.windows,function(win) {
-			$tw.utils.toggleClass(win.document.body,&quot;tc-dirty&quot;,self.isDirty());
-		});
-	}
-};
-
-
-exports.SaverHandler = SaverHandler;
-
-})();
-</pre>
-</div>
-<div created="20141130114655711" creator="HEEG.HTML free on-line store" modified="20200615152055285" modifier="HEEG.HTML free on-line store" tags="$:/tags/stylesheet2" title="$:/core/templates/heeg.template.css" type="text/vnd.tiddlywiki">
-<pre>{{$:/_aa.giff/StyleSheetTopic}}
-{{$:/themes/tiddlywiki/vanilla/base}}
-
-</pre>
-</div>
-<div created="20191014174251786" creator="HEEG.HTML free on-line store" modified="20200619085803503" modifier="HEEG.HTML free on-line store" tags="" title="$:/core/templates/HEEG/static.tiddler.html" type="text/vnd.tiddlywiki">
-<pre>\define tv-wikilink-template() $uri_doubleencoded$.html
-\define tv-config-toolbar-icons() no
-\define tv-config-toolbar-text() no
-\define tv-config-toolbar-class() tc-btn-invisible
-`&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-
-
-`&lt;$importvariables filter=&quot;[all[shadows+tiddlers]tag[$:/tags/Macro]!has[draft.of]]&quot;&gt;{{$:/core/templates/exporters/StaticRiver/Content||$:/core/templates/html-tiddler}}&lt;/$importvariables&gt;`
-&lt;script async  src=&quot;cart.html&quot; type=&quot;text/javascript&quot;&gt; &lt;/script&gt;
-
-&lt;/html&gt;
-`</pre>
-</div>
-<div created="20191014181908140" modified="20191014184940394" tags="" title="$:/core/templates/HEEG2/static.tiddler.html" type="text/vnd.tiddlywiki">
-<pre>{{$:/core/templates/exporters/StaticRiver/Content||$:/core/templates/single.tiddler.window}}</pre>
-</div>
-<div created="20200613200336532" creator="HEEG.HTML free on-line store" modified="20200614102803323" modifier="HEEG.HTML free on-line store" tags="" title="$:/core/templates/heegStatic.tiddler.html" type="text/vnd.tiddlywiki">
-<pre>\define tv-wikilink-template() $uri_doubleencoded$.html
-\define tv-config-toolbar-icons() no
-\define tv-config-toolbar-text() no
-\define tv-config-toolbar-class() tc-btn-invisible
-`&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width&quot;&gt;
-&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html;charset=utf-8&quot; /&gt;
-&lt;link id=&quot;faviconLink&quot; rel=&quot;shortcut icon&quot; href=&quot;favicon.ico&quot;&gt;
-&lt;link rel=&quot;stylesheet&quot; href=&quot;static.css&quot;&gt;
-&lt;title&gt;`{{!!caption}}`&lt;/title&gt;
-&lt;meta name=&quot;description&quot; content=&quot;В магазине строительных материалов Папа Дома в  г. Сортавала. Ул Бондарева вы можете приобрести `{{!!caption}}` по доступной цене&quot;/&gt;
-&lt;/head&gt;
-&lt;body class=&quot;tc-body&quot; &gt;
-&lt;div class=&quot;tc-dropzone&quot;&gt;`
-`
-&lt;span class=&quot;tc-topbar tc-topbar-left&quot;&gt;&lt;script   src=&quot;header.html&quot; type=&quot;text/javascript&quot;&gt; &lt;/script&gt;&lt;/span&gt; 
-&lt;section class=&quot;tc-story-river&quot;&gt;
-`&lt;$view tiddler=&quot;$:/core/ui/ViewTemplate&quot; format=&quot;htmlwikified&quot; mode=&quot;inline&quot;/&gt;`
-&lt;script   src=&quot;footer.html&quot; type=&quot;text/javascript&quot;&gt; &lt;/script&gt;
-&lt;/section&gt;
-&lt;/div&gt;
-&lt;/body&gt;
-&lt;script async  src=&quot;cart.html&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
-&lt;/html&gt;`
-</pre>
-</div>
-<div caption="{{$:/core/images/picture}}{{$:/language/Buttons/add_theme/Caption}}" created="20170510201505370" description="{{$:/language/Buttons/add_theme/Hint}}" modified="20170510201828079" tags="$:/tags/ViewToolbar" title="$:/core/ui/Buttons/add_theme">
-<pre>&lt;$button tooltip={{$:/language/Buttons/add_theme/Hint}} aria-label={{$:/language/Buttons/add_themeCaption}} class=&lt;&lt;tv-config-toolbar-class&gt;&gt;&gt;
-&lt;$action-navigate $to=&quot;$:/core/ui/ControlPanel/Modals/AddPlugins&quot;/&gt;
-&lt;$list filter=&quot;[&lt;tv-config-toolbar-icons&gt;prefix[yes]]&quot;&gt;
-{{$:/core/images/picture}}
-&lt;/$list&gt;
-&lt;$list filter=&quot;[&lt;tv-config-toolbar-text&gt;prefix[yes]]&quot;&gt;
-&lt;span class=&quot;tc-btn-text&quot;&gt;&lt;$text text={{$:/language/Buttons/add_theme/Caption}}/&gt;&lt;/span&gt;
-&lt;/$list&gt;
-&lt;/$button&gt;</pre>
-</div>
-<div caption="{{$:/core/images/erase}} {{$:/language/Buttons/delete_ALL/Caption}}" created="20170506214419911" creator="Татьяна Воронина" description="{{$:/language/Buttons/delete_ALL/Hint}}" modified="20200331162447109" modifier="HEEG.HTML free on-line store" tags="$:/tags/ViewToolbar" title="$:/core/ui/Buttons/delete_ALL">
-<pre>&lt;$button tooltip={{$:/language/Buttons/delete_ALL/Hint}} aria-label={{$:/language/Buttons/delete_ALL/Caption}} class=&lt;&lt;tv-config-toolbar-class&gt;&gt;&gt;
-&lt;$action-sendmessage message=&quot;tm-close-other-tiddlers&quot; param=&lt;&lt;currentTiddler&gt;&gt;/&gt;
-&lt;$action-deletetiddler $filter=&quot;[all[tiddlers+shadows]tag[$:/TOC]!tag[undelete]!tag[$(tags)$]]&quot;/&gt;
-&lt;$action-deletetiddler $filter=&quot;[all[tiddlers+shadows]tag[$:/Note]!tag[undelete]!tag[$(tags)$]!tag[$:/dost]!tag[$:/opl]]&quot;/&gt;
-&lt;$action-deletetiddler $filter=&quot;[all[tiddlers+shadows]type[image/jpeg]!tag[undelete]]&quot;/&gt;
-&lt;$action-deletetiddler $filter=&quot;[all[tiddlers+shadows]prefix[ostatok_]!tag[undelete]]&quot;/&gt;
-&lt;$list filter=&quot;[&lt;tv-config-toolbar-icons&gt;prefix[yes]]&quot;&gt;
-{{$:/core/images/erase}}
-&lt;/$list&gt;
-&lt;$list filter=&quot;[&lt;tv-config-toolbar-text&gt;prefix[yes]]&quot;&gt;
-&lt;span class=&quot;tc-btn-text&quot;&gt;&lt;$text text={{$:/language/Buttons/delete_ALL/Caption}}/&gt;&lt;/span&gt;
-&lt;/$list&gt;
-&lt;/$button&gt;</pre>
-</div>
-<div caption="{{$:/core/images/copy-clipboard}} {{$:/language/Buttons/heegSave/Caption}}" created="20191017163005238" creator="Татьяна Воронина" description="{{$:/language/Buttons/heegSave/Caption}}" modified="20200204150300152" modifier="Татьяна Воронина" tags="$:/tags/ViewToolbar" title="$:/core/ui/Buttons/heegSave.html">
-<pre>\define filename() $(currentTiddler)$.html
-\define toc-path2()
-
-   &lt;$macrocall $name=&quot;toc-path-body&quot; here=&lt;&lt;currentTiddler&gt;&gt;/&gt;
-
-\end
-
-\define toc-path-body(here,exclude)
-   &lt;$list filter=&quot;&quot;&quot;[title[$here$]!tag[top_menu]tags[]] $exclude$ -[[$here$]] -[[$:/TOC]] -[[$:/Note]] -[[top_menu]] -[[undelete]]  -[[$:/tags/SideBar]] -[[hot]] -[[sale]] -[[new]]  -[[znak]] +[limit[1]]&quot;&quot;&quot;&gt;
-      &lt;$macrocall $name=&quot;toc-path-body&quot; here=&lt;&lt;currentTiddler&gt;&gt; exclude=&quot;&quot;&quot;$exclude$ -[[$here$]]&quot;&quot;&quot;/&gt;
-&lt;$action-sendmessage
- $message=&quot;tm-download-file&quot; 
-$param=&quot;$:/core/templates/HEEG/static.tiddler.html&quot; 
-exportFilter=&lt;&lt;currentTiddler&gt;&gt;
-filename=&lt;&lt;filename&gt;&gt;/&gt;
-&lt;$fieldmangler&gt;&lt;$action-sendmessage $message=&quot;tm-alert&quot;  param1={{!!title}} param2={{!!modified}} /&gt;&lt;/$fieldmangler&gt;  
-   &lt;/$list&gt;
-\end
-
-&lt;$button  tooltip={{$:/language/Buttons/heegSave/Caption}} aria-label={{$:/language/Buttons/heegSave/Caption}} class=&lt;&lt;tv-config-toolbar-class&gt;&gt;&gt;
-&lt;$action-sendmessage
- $message=&quot;tm-download-file&quot; 
-$param=&quot;$:/core/templates/HEEG/static.tiddler.html&quot; 
-exportFilter=&lt;&lt;currentTiddler&gt;&gt;
-filename=&lt;&lt;filename&gt;&gt;/&gt;
-&lt;$fieldmangler&gt;&lt;$action-sendmessage $message=&quot;tm-alert&quot;  param1={{!!title}} param2={{!!modified}} /&gt;&lt;/$fieldmangler&gt;  
-
-   &lt;$list filter=&quot;[is[current]tag[$:/TOC]]&quot;&gt;
-&lt;$action-sendmessage
-$message=&quot;tm-download-file&quot; 
-$param=&quot;$:/core/templates/HEEG2/static.tiddler.html&quot; 
-exportFilter=&quot;[[header.html]]&quot;
-filename=&quot;header.html&quot;/&gt;
-&lt;/$list&gt;
-
-&lt;&lt;toc-path2&gt;&gt;
-&lt;$list filter=&quot;[&lt;tv-config-toolbar-icons&gt;prefix[yes]]&quot;&gt;
-{{$:/core/images/copy-clipboard}}
-&lt;/$list&gt;
-&lt;$list filter=&quot;[&lt;tv-config-toolbar-text&gt;prefix[yes]]&quot;&gt;
-&lt;span class=&quot;tc-btn-text&quot;&gt;&lt;$text text={{$:/language/Buttons/heegSave/Caption}}/&gt;&lt;/span&gt;
-&lt;/$list&gt;
-&lt;/$button&gt;
-
-
-
-
-
-</pre>
-</div>
-<div caption="{{$:/core/images/home-button}} {{$:/language/Buttons/Home/Caption}}" created="20150612191428794" description="{{$:/language/Buttons/Home/Hint}}" modified="20210209124320755" title="$:/core/ui/Buttons/home1">
-<pre>&lt;$button tooltip={{$:/language/Buttons/Home/Hint}} aria-label={{$:/language/Buttons/Home/Caption}} class=&lt;&lt;tv-config-toolbar-class&gt;&gt;&gt;
-&lt;$action-navigate $to=&quot;index&quot;/&gt;
-&lt;$list filter=&quot;[&lt;tv-config-toolbar-icons&gt;prefix[yes]]&quot;&gt;
-{{$:/core/images/home-button}}
-&lt;/$list&gt;
-&lt;$list filter=&quot;[&lt;tv-config-toolbar-text&gt;prefix[yes]]&quot;&gt;
-&lt;span class=&quot;tc-btn-text&quot;&gt;&lt;$text text={{$:/language/Buttons/Home/Caption}}/&gt;&lt;/span&gt;
-&lt;/$list&gt;
-&lt;/$button&gt;</pre>
-</div>
-<div caption="{{$:/core/images/advanced-search-button}} {{$:/language/Buttons/AdvancedSearch/Caption}}" created="20161126143333881" description="{{$:/language/Buttons/AdvancedSearch/Hint}}" modified="20161126143918819" tags="$:/tags/ViewToolbar" title="$:/core/ui/Buttons/mysearch">
-<pre>&lt;$button tooltip={{$:/language/Buttons/top_menu/Hint}} aria-label={{$:/language/Buttons/AdvancedSearch/Caption}} class=&lt;&lt;tv-config-toolbar-class&gt;&gt;&gt;
-&lt;$action-navigate $to=&quot;search&quot;/&gt;
-&lt;$list filter=&quot;[&lt;tv-config-toolbar-icons&gt;prefix[yes]]&quot;&gt;
-{{$:/core/images/advanced-search-button}}
-&lt;/$list&gt;
-&lt;$list filter=&quot;[&lt;tv-config-toolbar-text&gt;prefix[yes]]&quot;&gt;
-&lt;span class=&quot;tc-btn-text&quot;&gt;&lt;$text text={{$:/language/Buttons/AdvancedSearch/Caption}}/&gt;&lt;/span&gt;
-&lt;/$list&gt;
-&lt;/$button&gt;</pre>
-</div>
-<div caption="{{$:/core/images/storyview-pop}} {{$:/language/Buttons/top_menu/Caption}}" created="20160217085724312" description="{{$:/language/Buttons/top_menu/Hint}}" modified="20161126143125491" tags="$:/tags/ViewToolbar" title="$:/core/ui/Buttons/top_menu">
-<pre>&lt;$button tooltip={{$:/language/Buttons/top_menu/Hint}} aria-label={{$:/language/Buttons/top_menu/Caption}} class=&lt;&lt;tv-config-toolbar-class&gt;&gt;&gt;
-&lt;$action-navigate $to=&quot;top_menu&quot;/&gt;
-&lt;$list filter=&quot;[&lt;tv-config-toolbar-icons&gt;prefix[yes]]&quot;&gt;
-{{$:/core/images/storyview-pop}}
-&lt;/$list&gt;
-&lt;$list filter=&quot;[&lt;tv-config-toolbar-text&gt;prefix[yes]]&quot;&gt;
-&lt;span class=&quot;tc-btn-text&quot;&gt;&lt;$text text={{$:/language/Buttons/top_menu/Caption}}/&gt;&lt;/span&gt;
-&lt;/$list&gt;
-&lt;/$button&gt;</pre>
-</div>
-<div created="20170112111107931" info="в поле caption необходимо написать русское название товара или раздела.  Если поле caption отсутствует, то вместо него будет выведено title товара или раздела." modified="20170723085945020" tags="" title="$:/core/ui/EditTemplate/fieldinfo/caption">
-<pre>НАЗВАНИЕ &lt;div class=&quot;inform&quot; data-title={{$:/core/ui/EditTemplate/fieldinfo/caption!!info}}&gt;?&lt;/div&gt;
-
-</pre>
-</div>
-<div created="20171029150236420" info="краткое описание товара или раздела. Этот текст будет выводится в выдаче поисковых систем Google и Yandex" modified="20171029150408289" tags="" title="$:/core/ui/EditTemplate/fieldinfo/description">
-<pre>ОПИСАНИЕ &lt;div class=&quot;inform&quot; data-title={{$:/core/ui/EditTemplate/fieldinfo/description!!info}}&gt;?&lt;/div&gt;
-
-</pre>
-</div>
-<div created="20170830030033102" info="В мобильной версии названия разделов верхнего меню сворачиваются до иконки. Коды иконок можо посмотреть здесь http://fontawesome.io/cheatsheet/" modified="20180811100224555" tags="" title="$:/core/ui/EditTemplate/fieldinfo/fontawesome">
-<pre>Код иконки [[FontAwesome|https://fontawesome.com/v4.7.0/cheatsheet/]]  &lt;div class=&quot;inform&quot; data-title={{$:/core/ui/EditTemplate/fieldinfo/fontawesome!!info}}&gt;?&lt;/div&gt;
-
-</pre>
-</div>
-<div created="20170112113617197" info="Если в товаре есть поле old-price, то под основной ценой будет выведена старая зачеркнутая цена." modified="20170112113750370" tags="" title="$:/core/ui/EditTemplate/fieldinfo/old-price">
-<pre>ЗАЧЕКНУТАЯ ЦЕНА &lt;div class=&quot;inform&quot; data-title={{$:/core/ui/EditTemplate/fieldinfo/old-price!!info}}&gt;?&lt;/div&gt;
-
-</pre>
-</div>
-<div created="20170112112642704" info="В это поле необходимо написать путь к маленькому изображению товара. Если это поле отсутствует, то для превью на плитке будет использовано первое большое изображение товара. Желательный размер изображения 400х400 пикселей. ПУТЬ К ИЗОБРАЖЕНИЮ может быть абсолютным или относительным." modified="20170112131545710" tags="" title="$:/core/ui/EditTemplate/fieldinfo/preview">
-<pre>ПРЕВЬЮ &lt;div class=&quot;inform&quot; data-title={{$:/core/ui/EditTemplate/fieldinfo/preview!!info}}&gt;?&lt;/div&gt;
-
-</pre>
-</div>
-<div created="20170112120915805" info="В этом поле указывается цена товара без валюты. Валюту магазина нужно указать в настройках магазина на вкладке &quot;Цены&quot;." modified="20170112121053284" tags="" title="$:/core/ui/EditTemplate/fieldinfo/price">
-<pre>ЦЕНА &lt;div class=&quot;inform&quot; data-title={{$:/core/ui/EditTemplate/fieldinfo/price!!info}}&gt;?&lt;/div&gt;
-
-</pre>
-</div>
-<div created="20170723090045289" modified="20170723090149315" tags="" title="$:/core/ui/EditTemplate/fieldinfo/text">
-<pre>ОПИСАНИЕ
-
-</pre>
-</div>
-<div created="20170723090200661" modified="20170723090229042" tags="" title="$:/core/ui/EditTemplate/fieldinfo/title">
-<pre>КОД
-
-</pre>
-</div>
 <div created="20170416062907266" creator="HEEG.HTML free on-line store" modified="20210209073406516" modifier="HEEG.HTML free on-line store" title="$:/DefaultTiddlers">
 <pre>[list[$:/StoryList]]</pre>
-</div>
-<div created="20171101123737680" import-field-column="preview" import-field-name="preview" import-field-source="column" import-field-type="string" import-spec-role="field" modified="20171101123815600" title="$:/ExcelImporter/ImportSpecifiers/Field">
-<pre></pre>
-</div>
-<div created="20170430105552713" import-field-column="name" import-field-name="caption" import-field-skip-tiddler-if-blank="no" import-field-source="column" import-field-type="string" import-spec-role="field" modified="20170430111259403" title="$:/ExcelImporter/ImportSpecifiers/Field 1">
-<pre></pre>
-</div>
-<div created="20170416131912023" import-field-column="url" import-field-name="_canonical_uri" import-field-source="column" import-field-type="string" import-spec-role="field" modified="20170430105830592" title="$:/ExcelImporter/ImportSpecifiers/Field 10">
-<pre></pre>
-</div>
-<div created="20170416132001596" import-field-column="tags" import-field-name="tags" import-field-source="column" import-field-type="string" import-spec-role="field" modified="20170430105826697" title="$:/ExcelImporter/ImportSpecifiers/Field 11">
-<pre></pre>
-</div>
-<div created="20170416132018831" import-field-column="Column Name" import-field-name="type" import-field-source="constant" import-field-type="string" import-field-value="image/jpeg" import-spec-role="field" modified="20170430105822720" title="$:/ExcelImporter/ImportSpecifiers/Field 12">
-<pre></pre>
-</div>
-<div created="20170416133540764" import-field-column="id" import-field-name="title" import-field-source="column" import-field-type="string" import-spec-role="field" modified="20170430105801561" title="$:/ExcelImporter/ImportSpecifiers/Field 13">
-<pre></pre>
-</div>
-<div created="20170416133557358" import-field-column="name" import-field-name="caption" import-field-prefix="" import-field-source="column" import-field-type="string" import-spec-role="field" modified="20170430105756528" title="$:/ExcelImporter/ImportSpecifiers/Field 14">
-<pre></pre>
-</div>
-<div created="20170416133623381" import-field-column="tags" import-field-name="tags" import-field-prefix="$:/TOC " import-field-source="column" import-field-type="string" import-spec-role="field" modified="20170430105752817" title="$:/ExcelImporter/ImportSpecifiers/Field 15">
-<pre></pre>
-</div>
-<div created="20170416133921284" import-field-column="text" import-field-name="text" import-field-source="column" import-field-type="string" import-spec-role="field" modified="20170430105750097" title="$:/ExcelImporter/ImportSpecifiers/Field 16">
-<pre></pre>
-</div>
-<div created="20170416105517563" import-field-column="id" import-field-name="title" import-field-source="column" import-field-type="string" import-spec-role="field" modified="20170430105532258" title="$:/ExcelImporter/ImportSpecifiers/Field 2">
-<pre></pre>
-</div>
-<div created="20170416103725306" import-field-column="price" import-field-name="price" import-field-source="column" import-field-type="string" import-spec-role="field" modified="20170430105542986" title="$:/ExcelImporter/ImportSpecifiers/Field 3">
-<pre></pre>
-</div>
-<div created="20170416103803857" import-field-column="text" import-field-name="text" import-field-source="column" import-field-type="string" import-spec-role="field" modified="20170430105538594" title="$:/ExcelImporter/ImportSpecifiers/Field 4">
-<pre></pre>
-</div>
-<div created="20170416113457880" import-field-column="tags" import-field-name="tags" import-field-prefix="$:/Note " import-field-source="column" import-field-type="string" import-spec-role="field" modified="20170430105531130" title="$:/ExcelImporter/ImportSpecifiers/Field 7">
-<pre></pre>
-</div>
-<div created="20170416131811069" import-field-column="id" import-field-name="title" import-field-source="column" import-field-type="string" import-spec-role="field" modified="20170430105842232" title="$:/ExcelImporter/ImportSpecifiers/Field 8">
-<pre></pre>
-</div>
-<div created="20170416131842334" import-field-column="name" import-field-name="alt" import-field-source="column" import-field-type="string" import-spec-role="field" modified="20170430105837960" title="$:/ExcelImporter/ImportSpecifiers/Field 9">
-<pre></pre>
-</div>
-<div created="20171028153007552" import-field-column="description" import-field-name="description" import-field-source="column" import-field-type="string" import-spec-role="field" modified="20171101123732351" title="$:/ExcelImporter/ImportSpecifiers/Field_d">
-<pre></pre>
-</div>
-<div created="20171102022712323" import-field-column="preview" import-field-name="preview" import-field-source="column" import-field-type="string" import-spec-role="field" modified="20171102022813977" title="$:/ExcelImporter/ImportSpecifiers/Field_pr">
-<pre></pre>
-</div>
-<div created="20170416103356532" import-spec-role="row" list="$:/ExcelImporter/ImportSpecifiers/Field $:/ExcelImporter/ImportSpecifiers/Field_d [[$:/ExcelImporter/ImportSpecifiers/Field 7]] [[$:/ExcelImporter/ImportSpecifiers/Field 2]] [[$:/ExcelImporter/ImportSpecifiers/Field 1]] [[$:/ExcelImporter/ImportSpecifiers/Field 4]] [[$:/ExcelImporter/ImportSpecifiers/Field 3]]" modified="20171223181150294" tags="" title="$:/ExcelImporter/ImportSpecifiers/Row">
-<pre></pre>
-</div>
-<div created="20170416131804636" import-spec-role="row" list="[[$:/ExcelImporter/ImportSpecifiers/Field 12]] [[$:/ExcelImporter/ImportSpecifiers/Field 11]] [[$:/ExcelImporter/ImportSpecifiers/Field 10]] [[$:/ExcelImporter/ImportSpecifiers/Field 9]] [[$:/ExcelImporter/ImportSpecifiers/Field 8]]" modified="20170430105851040" tags="" title="$:/ExcelImporter/ImportSpecifiers/Row 1">
-<pre></pre>
-</div>
-<div created="20170416133535805" import-spec-role="row" list="$:/ExcelImporter/ImportSpecifiers/Field_pr [[$:/ExcelImporter/ImportSpecifiers/Field 16]] [[$:/ExcelImporter/ImportSpecifiers/Field 15]] [[$:/ExcelImporter/ImportSpecifiers/Field 14]] [[$:/ExcelImporter/ImportSpecifiers/Field 13]]" modified="20171102022802099" tags="" title="$:/ExcelImporter/ImportSpecifiers/Row 2">
-<pre></pre>
-</div>
-<div created="20170416133514799" import-sheet-name="parts" import-spec-role="sheet" list="[[$:/ExcelImporter/ImportSpecifiers/Row 2]]" modified="20170430105940173" tags="" title="$:/ExcelImporter/ImportSpecifiers/Sheet">
-<pre></pre>
-</div>
-<div status="complete" title="$:/Import">
-<pre>The following tiddlers were imported:
-
-# [[batchmanipulator]]
-# [[batchmanipulator/Stylesheet]]</pre>
 </div>
 <div title="$:/isEncrypted">
 <pre>no</pre>
@@ -11929,169 +10944,6 @@ $tw.rootWidget.addEventListener(&quot;tm-sheetgetdata&quot;,
 
 })();
 </pre>
-</div>
-<div created="20210210111832250" modified="20210210111832250" title="$:/palette">
-<pre>$:/palettes/Vanilla</pre>
-</div>
-<div created="20131218201042019" creator="Stephan Hradek" modified="20160818182959394" modifier="Danielo Rodriguez" module-type="widget" tags="editableTable" title="$:/plugins/skeeve/newtiddler.js" type="application/javascript">
-<pre>/*\
-title: $:/plugins/skeeve/newtiddler.js
-type: application/javascript
-module-type: widget
-
-newtiddler widget
-
-```
-&lt;$newtiddler title=&quot;name&quot; skeleton=&quot;name&quot;&gt;Buttontext&lt;/$newtiddler&gt;
-Modified by Danielo Rodríguez to add the hability of reseting temporary tiddlers.
-```
-
-The skeleton tiddler may contain variables which are replaced during creation
-
-\*/
-(function(){
-
-/*jslint node: true, browser: true */
-/*global $tw: false */
-&quot;use strict&quot;;
-
-var Widget = require(&quot;$:/core/modules/widgets/widget.js&quot;).widget;
-
-var NewtiddlerWidget = function(parseTreeNode,options) {
-	this.initialise(parseTreeNode,options);
-};
-
-/*
-Inherit from the base widget class
-*/
-NewtiddlerWidget.prototype = new Widget();
-
-/*
-Render this widget into the DOM
-*/
-NewtiddlerWidget.prototype.render = function(parent,nextSibling) {
-	var self = this;
-	// Remember parent
-	this.parentDomNode = parent;
-	// Compute attributes and execute state
-	this.computeAttributes();
-	this.execute();
-	// Create element
-	var domNode = this.document.createElement(&quot;button&quot;);
-	// Assign classes
-	domNode.className = this.newtiddlerClass;
-	// Assign styles
-	if(this.style) {
-		domNode.setAttribute(&quot;style&quot;,this.style);
-	}
-	// Add a click event handler
-	$tw.utils.addEventListeners(domNode,[
-		{name: &quot;click&quot;, handlerObject: this, handlerMethod: &quot;handleClickEvent&quot;}
-	]);
-	// Insert element
-	parent.insertBefore(domNode,nextSibling);
-	this.renderChildren(domNode,null);
-	this.domNodes.push(domNode);
-};
-
-NewtiddlerWidget.prototype.handleClickEvent = function(event) {
-	var skeleton = this.wiki.getTiddlerAsJson(this.newtiddlerSkeleton);
-	var skeletonClone = JSON.parse(this.substituteVariableReferences(skeleton));
-	var basetitle = this.newtiddlerTitle;
-	var title = basetitle;
-	for(var t=1; this.wiki.tiddlerExists(title); t++) {
-		title = basetitle + &quot; &quot; + t;
-	}
-	skeletonClone.title = title;
-	for(var modificationField in this.wiki.getModificationFields()) {
-		delete skeletonClone[modificationField];
-	}
-	var created = this.wiki.getCreationFields();
-	for(var creationField in created) {
-		skeletonClone[modificationField] = created[creationField];
-	}
-	
-	this.wiki.addTiddler(new $tw.Tiddler({&quot;tags&quot;:this.newTiddlerTags, &quot;type&quot;:this.newTiddlerType, &quot;edit&quot;:this.newTiddlerEdit},skeletonClone));
-	
-	
-	
-	/*-------DANIELO EDIT-----*/
-	this.clearNonStandardFields(this.clearTiddler);
-	/*-----END DANIELO EDIT---*/
-	switch(this.newtiddlerEdit) {
-	case &quot;show&quot;:
-	case &quot;yes&quot;:
-		var bounds = this.domNodes[0].getBoundingClientRect();
-		this.dispatchEvent({
-			type: &quot;tw-navigate&quot;,
-			navigateTo: title,
-			navigateFromTitle: this.getVariable(&quot;currentTiddler&quot;),
-			navigateFromNode: this,
-			navigateFromClientRect: { top: bounds.top, left: bounds.left, width: bounds.width, right: bounds.right, bottom: bounds.bottom, height: bounds.height
-			}
-		});
-		if(this.newtiddlerEdit === &quot;yes&quot;) {
-			this.dispatchEvent({type: &quot;tm-edit-tiddler&quot;, tiddlerTitle: title});
-		}
-		break;
-	case &quot;no&quot;:
-		break;
-	case &quot;inline&quot;:
-		// not implemented yet
-		break;
-	}
-};
-/*-------DANIELO EDIT-----*/
- NewtiddlerWidget.prototype.clearNonStandardFields =function(title) {
-	var standardFieldNames = &quot;title tags type modified modifier created creator&quot;.split(&quot; &quot;),
-		tiddler = this.wiki.getTiddler(title);
-	if(tiddler) {
-		var clearFields = {};
-		for(var fieldName in tiddler.fields) {
-			if(standardFieldNames.indexOf(fieldName) === -1) {
-				clearFields[fieldName] = &quot;&quot;;
-			}
-		}
-		this.wiki.addTiddler(new $tw.Tiddler(tiddler,clearFields));
-	}
-};
-/*-----END DANIELO EDIT---*/
-/*
-Compute the internal state of the widget
-*/
-NewtiddlerWidget.prototype.execute = function() {
-	// Get attributes
-	this.newtiddlerTitle = this.getAttribute(&quot;title&quot;);
-	this.newTiddlerTags=this.getAttribute(&quot;tags&quot;);
-	this.newTiddlerType=this.getAttribute(&quot;type&quot;);
-	this.newtiddlerSkeleton = this.getAttribute(&quot;skeleton&quot;);
-	this.newtiddlerEdit = this.getAttribute(&quot;edit&quot;, &quot;yes&quot;);
-	this.newtiddlerClass = this.getAttribute(&quot;class&quot;,&quot;&quot;);
-	this.newtiddlerStyle = this.getAttribute(&quot;style&quot;);
-	this.clearTiddler=this.getAttribute(&quot;clear&quot;);
-	if(this.newtiddlerClass != &quot;&quot;) {
-		this.newtiddlerClass = &quot; &quot; + this.newtiddlerClass;
-	}
-	this.newtiddlerClass = &quot;tw-newtiddler-button&quot; + this.newtiddlerClass;
-	// Make child widgets
-	this.makeChildWidgets();
-};
-
-/*
-Selectively refreshes the widget if needed. Returns true if the widget or any of its children needed re-rendering
-*/
-NewtiddlerWidget.prototype.refresh = function(changedTiddlers) {
-	var changedAttributes = this.computeAttributes();
-	if(changedAttributes.title || changedAttributes.skeleton || changedAttributes.class || changedAttributes.style) {
-		this.refreshSelf();
-		return true;
-	}
-	return this.refreshChildren(changedTiddlers);
-};
-
-exports.newtiddler = NewtiddlerWidget;
-
-})();</pre>
 </div>
 <div author="Mat von TWaddle" created="20200716000516863" description="A live editor floating by the river side..." list="readme" modified="20200803173340474" name="SideEditor" plugin-type="plugin" source="http://sideeditor.tiddlyspot.com/" title="$:/plugins/TWaddle/SideEditor" type="application/json" version="3.0.12">
 <pre>{
@@ -12270,8 +11122,8 @@ exports.newtiddler = NewtiddlerWidget;
     }
 }</pre>
 </div>
-<div created="20210210222657116" modified="20210212014347268" title="$:/state/advancedsearch/currentTab">
-<pre>$:/core/ui/AdvancedSearch/Shadows</pre>
+<div created="20210210222657116" modified="20210212153801504" title="$:/state/advancedsearch/currentTab">
+<pre>$:/core/ui/AdvancedSearch/System</pre>
 </div>
 <div created="20210210145628071" modified="20210210145631524" title="$:/state/plugin-info--896887961-$:/plugins/TWaddle/SideEditor">
 <pre>no</pre>
@@ -12282,8 +11134,8 @@ exports.newtiddler = NewtiddlerWidget;
 <div created="20210210183933135" modified="20210210184617593" title="$:/state/sidebar">
 <pre>yes</pre>
 </div>
-<div created="20210210120308151" modified="20210212014347269" title="$:/state/tab--1498284803">
-<pre>$:/core/ui/AdvancedSearch/Shadows</pre>
+<div created="20210210120308151" modified="20210212170325550" title="$:/state/tab--1498284803">
+<pre>$:/core/ui/AdvancedSearch/System</pre>
 </div>
 <div created="20210210145423789" modified="20210210145423789" title="$:/state/tab--1963855381">
 <pre>$:/themes/tiddlywiki/vanilla/themetweaks</pre>
@@ -12294,22 +11146,19 @@ exports.newtiddler = NewtiddlerWidget;
 <div created="20210210145615695" modified="20210210145617848" title="$:/state/tab--86143343">
 <pre>$:/core/ui/ControlPanel/Plugins/Installed/Plugins</pre>
 </div>
-<div created="20210210135049658" modified="20210212013725605" title="$:/state/tab-1749438307">
-<pre>$:/core/ui/ControlPanel/Info</pre>
+<div created="20210210135049658" modified="20210212165904966" title="$:/state/tab-1749438307">
+<pre>$:/core/ui/ControlPanel/Appearance</pre>
 </div>
-<div created="20210210141411719" modified="20210210144753018" title="$:/state/tab/moresidebar-1850697562">
-<pre>$:/core/ui/MoreSideBar/Tags</pre>
+<div created="20210210141411719" modified="20210212151246066" title="$:/state/tab/moresidebar-1850697562">
+<pre>$:/core/ui/MoreSideBar/System</pre>
 </div>
-<div created="20210210133823998" modified="20210212015239591" title="$:/state/tab/sidebar--595412856">
-<pre>$:/core/ui/SideBar/Open</pre>
+<div created="20210210133823998" modified="20210212171602327" title="$:/state/tab/sidebar--595412856">
+<pre>$:/core/ui/SideBar/Recent</pre>
 </div>
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div caption="Manager name" created="20200518194152849" creator="HEEG.HTML free on-line store" i="34" modified="20210209112905043" modifier="HEEG.HTML free on-line store" title="$:/status/UserName">
-<pre></pre>
-</div>
-<div list="$:/mas/sheethandler.js [[mas Notes]] $:/AdvancedSearch $:/core/templates/plain-text-tiddler $:/core/modules/saver-handler.js [[Import from public Google Sheets]] [[mg Notes]] $:/boot/bootprefix1.js" title="$:/StoryList">
+<div created="20210212171407572" list="$:/boot/Yandex_Metrika_Counter.js $:/mas/sheethandler.js [[mas Notes]] $:/AdvancedSearch $:/core/templates/plain-text-tiddler [[Import from public Google Sheets]] [[mg Notes]] $:/boot/bootprefix1.js" modified="20210212171537720" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20210209090055836" creator="HEEG.HTML free on-line store" modified="20210210111905983" modifier="HEEG.HTML free on-line store" title="$:/theme">
@@ -12424,17 +11273,14 @@ exports.newtiddler = NewtiddlerWidget;
     }
 }</pre>
 </div>
-<div created="20210210145426932" modified="20210210145426932" title="$:/themes/tiddlywiki/vanilla/options/sidebarlayout">
-<pre>fluid-fixed</pre>
+<div created="20210210145426932" modified="20210212165907801" title="$:/themes/tiddlywiki/vanilla/options/sidebarlayout">
+<pre>fixed-fluid</pre>
 </div>
 <div created="20200105193534321" creator="Татьяна Воронина" modified="20210209124801256" modifier="Татьяна Воронина" title="$:/themes/tiddlywiki/vanilla/options/stickytitles">
 <pre>yes</pre>
 </div>
 <div created="20200128180052806" creator="Татьяна Воронина" modified="20200128181445315" modifier="Татьяна Воронина" title="$:/UploadName">
 <pre></pre>
-</div>
-<div created="20170416061427962" creator="HEEG.HTML free on-line store" modified="20210209073502918" modifier="HEEG.HTML free on-line store" title="$:/view">
-<pre>classic</pre>
 </div>
 <div bm-display="singledata" bm-field="tag" bm-filter="[all[tiddlers]prefix[$:/Excel]]" bm-filter-previous="[all[tiddlers]prefix[$:/language]]" bm-filterlimit="+[limit[10]]" bm-tag="" bm-value="viewtemplate" connections="fullist nolist dotlist" connections-sortby="!sort[] sort[] !sort[modified] sort[modified]" created="20170723211815220" creator="" field-filter="-created -creator -modified -modifier -tags -text -title" modified="20210210144337598" tags="batchmanipulator" title="batchmanipulator">
 <pre>\define bm-addtofilter(tooltip, class)
