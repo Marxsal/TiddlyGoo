@@ -287,24 +287,12 @@ function ok2(data2) {
     for (var i=0; i<data2.feed.entry.length; i++){ 
         var fields = Object.create(null); 
         for (var key in data2.feed.entry[i]) {
-            if(key.match(/^gsx\$+/ig)=="gsx$"){ 
+            if(key.match(/^gsx\$+/i)){ 
                 new_value=data2.feed.entry[i][key].$t;
-                if(key=="gsx$id" && currsheet=="ostatki"){ 
-                    fields.title="ostatok_"+new_value;
-                }else if(key=="gsx$id"){ 
-                    if(currsheet=="GD-images"){
-                        fields.tags=new_value.split('_')[0]; } 
+                if(key=="gsx$id"){ 
                     fields.title=new_value} 
-                else if(key=="gsx$name"){
-                    fields.caption=new_value}
-                else if(key=="gsx$tags" && currsheet=="parts"){ 
-                    fields.tags=new_value+" $:/TOC"; }
-                else if(key=="gsx$tags" && currsheet=="goods"){ 
-                    fields.tags=new_value+" $:/Note"; }
                 else if(key=="gsx$url" && currsheet=="images"){ 
                     fields._canonical_uri=new_value; }
-                else if(key=="gsx$url" && currsheet=="GD-images"){
-                    fields._canonical_uri="https://drive.google.com/uc?export=download&confirm=no_antivirus&id=" + new_value; }
                 else if(key.indexOf("gsx$hide")==0){
                     //console.log(key)
                 } 
@@ -315,8 +303,14 @@ function ok2(data2) {
             } // if key match
         } // for (var key...
 
-        if(currsheet=="images" || currsheet=="GD-images" ){ fields.type="image/jpeg"  } ;
-        fields.i=i+2;
+        if(currsheet=="images" ){ 
+            fields.type="image/jpeg"  }
+        else {
+            var tags= typeof fields.tags !== "undefined" ? fields.tags : "" ; 
+            fields.tags = tags + " [[" + currsheet + "]] " ;
+        }
+        ;
+        //fields.i=i+2;
         if($tw.browser) {$tw.wiki.addTiddler(new $tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))}   
 
         if(i==data2.feed.entry.length-1){
@@ -616,7 +610,7 @@ Error message and password prompt
 <!--~~ Ordinary tiddlers ~~-->
 
 <div id="storeArea" style="display:none;">
-<div created="20151208182031538" creator="Татьяна Воронина" modified="20210212020019542" modifier="HEEG.HTML free on-line store" tags="$:/tags/RawMarkup" title="$:/boot/bootprefix1.js" type="application/javascript">
+<div created="20151208182031538" creator="Татьяна Воронина" modified="20210213000613857" modifier="HEEG.HTML free on-line store" tags="$:/tags/RawMarkup" title="$:/boot/bootprefix1.js" type="application/javascript">
 <pre>&lt;script&gt;
 //Yandex metric counter is located $:/boot/Yandex_Metrika_Counter.js  
 
@@ -852,24 +846,12 @@ function ok2(data2) {
     for (var i=0; i&lt;data2.feed.entry.length; i++){ 
         var fields = Object.create(null); 
         for (var key in data2.feed.entry[i]) {
-            if(key.match(/^gsx\$+/ig)==&quot;gsx$&quot;){ 
+            if(key.match(/^gsx\$+/i)){ 
                 new_value=data2.feed.entry[i][key].$t;
-                if(key==&quot;gsx$id&quot; &amp;&amp; currsheet==&quot;ostatki&quot;){ 
-                    fields.title=&quot;ostatok_&quot;+new_value;
-                }else if(key==&quot;gsx$id&quot;){ 
-                    if(currsheet==&quot;GD-images&quot;){
-                        fields.tags=new_value.split('_')[0]; } 
+                if(key==&quot;gsx$id&quot;){ 
                     fields.title=new_value} 
-                else if(key==&quot;gsx$name&quot;){
-                    fields.caption=new_value}
-                else if(key==&quot;gsx$tags&quot; &amp;&amp; currsheet==&quot;parts&quot;){ 
-                    fields.tags=new_value+&quot; $:/TOC&quot;; }
-                else if(key==&quot;gsx$tags&quot; &amp;&amp; currsheet==&quot;goods&quot;){ 
-                    fields.tags=new_value+&quot; $:/Note&quot;; }
                 else if(key==&quot;gsx$url&quot; &amp;&amp; currsheet==&quot;images&quot;){ 
                     fields._canonical_uri=new_value; }
-                else if(key==&quot;gsx$url&quot; &amp;&amp; currsheet==&quot;GD-images&quot;){
-                    fields._canonical_uri=&quot;https://drive.google.com/uc?export=download&amp;confirm=no_antivirus&amp;id=&quot; + new_value; }
                 else if(key.indexOf(&quot;gsx$hide&quot;)==0){
                     //console.log(key)
                 } 
@@ -880,8 +862,14 @@ function ok2(data2) {
             } // if key match
         } // for (var key...
 
-        if(currsheet==&quot;images&quot; || currsheet==&quot;GD-images&quot; ){ fields.type=&quot;image/jpeg&quot;  } ;
-        fields.i=i+2;
+        if(currsheet==&quot;images&quot; ){ 
+            fields.type=&quot;image/jpeg&quot;  }
+        else {
+            var tags= typeof fields.tags !== &quot;undefined&quot; ? fields.tags : &quot;&quot; ; 
+            fields.tags = tags + &quot; [[&quot; + currsheet + &quot;]] &quot; ;
+        }
+        ;
+        //fields.i=i+2;
         if($tw.browser) {$tw.wiki.addTiddler(new $tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))}   
 
         if(i==data2.feed.entry.length-1){
@@ -11131,7 +11119,7 @@ $tw.rootWidget.addEventListener(&quot;tm-sheetgetdata&quot;,
 <div created="20210210145622127" modified="20210210145626588" title="$:/state/plugin-info--896887961-$:/plugins/TWaddle/TabLinks">
 <pre>no</pre>
 </div>
-<div created="20210210183933135" modified="20210210184617593" title="$:/state/sidebar">
+<div created="20210210183933135" modified="20210212234152201" title="$:/state/sidebar">
 <pre>yes</pre>
 </div>
 <div created="20210210120308151" modified="20210212170325550" title="$:/state/tab--1498284803">
@@ -11152,13 +11140,13 @@ $tw.rootWidget.addEventListener(&quot;tm-sheetgetdata&quot;,
 <div created="20210210141411719" modified="20210212151246066" title="$:/state/tab/moresidebar-1850697562">
 <pre>$:/core/ui/MoreSideBar/System</pre>
 </div>
-<div created="20210210133823998" modified="20210212171602327" title="$:/state/tab/sidebar--595412856">
-<pre>$:/core/ui/SideBar/Recent</pre>
+<div created="20210210133823998" modified="20210212235025026" title="$:/state/tab/sidebar--595412856">
+<pre>$:/core/ui/SideBar/Open</pre>
 </div>
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div created="20210212171407572" list="$:/boot/Yandex_Metrika_Counter.js $:/mas/sheethandler.js [[mas Notes]] $:/AdvancedSearch $:/core/templates/plain-text-tiddler [[Import from public Google Sheets]] [[mg Notes]] $:/boot/bootprefix1.js" modified="20210212171537720" title="$:/StoryList">
+<div list="$:/mas/sheethandler.js [[mas Notes]] $:/AdvancedSearch $:/core/templates/plain-text-tiddler [[Import from public Google Sheets]] [[mg Notes]] $:/boot/bootprefix1.js" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20210209090055836" creator="HEEG.HTML free on-line store" modified="20210210111905983" modifier="HEEG.HTML free on-line store" title="$:/theme">

@@ -233,24 +233,12 @@ function ok2(data2) {
     for (var i=0; i<data2.feed.entry.length; i++){ 
         var fields = Object.create(null); 
         for (var key in data2.feed.entry[i]) {
-            if(key.match(/^gsx\$+/ig)=="gsx$"){ 
+            if(key.match(/^gsx\$+/i)){ 
                 new_value=data2.feed.entry[i][key].$t;
-                if(key=="gsx$id" && currsheet=="ostatki"){ 
-                    fields.title="ostatok_"+new_value;
-                }else if(key=="gsx$id"){ 
-                    if(currsheet=="GD-images"){
-                        fields.tags=new_value.split('_')[0]; } 
+                if(key=="gsx$id"){ 
                     fields.title=new_value} 
-                else if(key=="gsx$name"){
-                    fields.caption=new_value}
-                else if(key=="gsx$tags" && currsheet=="parts"){ 
-                    fields.tags=new_value+" $:/TOC"; }
-                else if(key=="gsx$tags" && currsheet=="goods"){ 
-                    fields.tags=new_value+" $:/Note"; }
                 else if(key=="gsx$url" && currsheet=="images"){ 
                     fields._canonical_uri=new_value; }
-                else if(key=="gsx$url" && currsheet=="GD-images"){
-                    fields._canonical_uri="https://drive.google.com/uc?export=download&confirm=no_antivirus&id=" + new_value; }
                 else if(key.indexOf("gsx$hide")==0){
                     //console.log(key)
                 } 
@@ -261,8 +249,14 @@ function ok2(data2) {
             } // if key match
         } // for (var key...
 
-        if(currsheet=="images" || currsheet=="GD-images" ){ fields.type="image/jpeg"  } ;
-        fields.i=i+2;
+        if(currsheet=="images" ){ 
+            fields.type="image/jpeg"  }
+        else {
+            var tags= typeof fields.tags !== "undefined" ? fields.tags : "" ; 
+            fields.tags = tags + " [[" + currsheet + "]] " ;
+        }
+        ;
+        //fields.i=i+2;
         if($tw.browser) {$tw.wiki.addTiddler(new $tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))}   
 
         if(i==data2.feed.entry.length-1){
