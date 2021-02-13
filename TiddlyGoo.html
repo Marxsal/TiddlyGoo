@@ -53,8 +53,6 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE." />
 <!--~~ Raw markup ~~-->
 
 <script>
-//Yandex metric counter is located $:/boot/Yandex_Metrika_Counter.js  
-
 var HEEGreadyState="onload";
 var corsmax=0;
 var corscurrent=0;
@@ -510,10 +508,6 @@ Error message and password prompt
 
 <p>This <a class="tc-tiddlylink-external" href="https://tiddlywiki.com" rel="noopener noreferrer" target="_blank">TiddlyWiki</a> contains the following tiddlers:</p><p><ul>
 
-<li>$:/boot/bootprefix1.js</li>
-
-<li>$:/boot/Yandex_Metrika_Counter.js</li>
-
 <li>$:/build</li>
 
 <li>$:/config/Plugins/Disabled/$:/plugins/TWaddle/SideEditor</li>
@@ -524,8 +518,6 @@ Error message and password prompt
 
 <li>$:/config/Tiddlers/TitleLinks</li>
 
-<li>$:/constant/_nomail</li>
-
 <li>$:/constant/_spreadsheetid</li>
 
 <li>$:/ControlPanel</li>
@@ -533,6 +525,8 @@ Error message and password prompt
 <li>$:/core</li>
 
 <li>$:/DefaultTiddlers</li>
+
+<li>$:/googlesheets.js</li>
 
 <li>$:/isEncrypted</li>
 
@@ -590,8 +584,6 @@ Error message and password prompt
 
 <li>Initialize bootprefix1</li>
 
-<li>macro/iframe</li>
-
 <li>mas Notes</li>
 
 <li>mg Notes</li>
@@ -610,397 +602,6 @@ Error message and password prompt
 <!--~~ Ordinary tiddlers ~~-->
 
 <div id="storeArea" style="display:none;">
-<div created="20151208182031538" creator="Татьяна Воронина" modified="20210213000613857" modifier="HEEG.HTML free on-line store" tags="$:/tags/RawMarkup" title="$:/boot/bootprefix1.js" type="application/javascript">
-<pre>&lt;script&gt;
-//Yandex metric counter is located $:/boot/Yandex_Metrika_Counter.js  
-
-var HEEGreadyState=&quot;onload&quot;;
-var corsmax=0;
-var corscurrent=0;
-
-function ContactFormSubmit(){
-	var re = /^[\w-\.]+@[\w-]+\.[a-z]{2,14}$/i;
-	var myMail = document.querySelector('.userOO_form').value;
-	var valid = re.test(myMail);
-
-	document.querySelector('[aria-label^=&quot;name&quot;]').value=document.querySelector('.userFF_form').value;
-	document.querySelector('[aria-label^=&quot;telephone&quot;]').value=document.querySelector('.userII_form').value;
-	document.querySelector('[aria-label^=&quot;email&quot;]').value=document.querySelector('.userOO_form').value;
-	document.querySelector('[aria-label^=&quot;client_comments&quot;]').value=document.querySelector('.userCC_form').value;
-	document.querySelector('[aria-label^=&quot;order_number&quot;]').value=&quot;Z_Запрос из контактной формы&quot;;
-	document.querySelector('[aria-label^=&quot;link_for_your_order&quot;]').value=&quot;https:\\\\heeg.ru&quot;;
-
-	if (document.querySelector('.userFF_form').value === &quot;&quot;){ $tw.modal.display(&quot;$:/_alert/noname&quot;); return;}
-	if (document.querySelector('.userII_form').value === &quot;&quot;){$tw.modal.display(&quot;$:/_alert/notelephone&quot;); return;}
-	if (document.querySelector('.userOO_form').value==&quot;&quot;) {document.querySelector('[aria-label^=&quot;email&quot;]').value=$tw.wiki.renderTiddler(&quot;text/plain&quot;,&quot;$:/constant/_nomail&quot;);}
-	if (valid || document.querySelector('.userOO_form').value==&quot;&quot;) {} else{ $tw.modal.display(&quot;$:/_alert/noemail&quot;); return;}
-
-	document.querySelector('[name=&quot;rsubmit&quot;]').click();
-	$tw.modal.display(&quot;$:/_alert/form_send&quot;);
-	document.querySelector('[target=&quot;my_iframe&quot;]').reset();
-};
-
-
-function isLocalStorageAvailable() {
-	var test2 = 'test2';
-	try {
-		localStorage.setItem(test2, test2);
-		return true;
-	} catch(e) {
-		return false;
-	}
-};
-
-
-function StaticCut(){
-	if (isLocalStorageAvailable()) { 
-		var dataSt= localStorage.getItem(&quot;userStaticCutLS&quot;+getUrlVars()[&quot;id&quot;]); 
-		if(dataSt!=null){
-			var fields = Object.create(null);
-			fields.title=&quot;$:/temp/userStaticCutLS&quot;;
-			fields.text=dataSt.replace (/\+\+/g, '\n').replace (/\|\|/g, ':');
-			fields.type=&quot;application/x-tiddler-dictionary&quot;
-			if($tw.browser) {$tw.wiki.addTiddler(new $tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))};
-		}}
-};
-
-StaticCut();
-
-function download(file,className) {
-	for(var a=0;a&lt;file.length;a++) {
-		const link = document.createElement(&quot;a&quot;);
-		const objectURL = URL.createObjectURL(file[a]);
-		var fields = Object.create(null);
-		if(typeof className == &quot;string&quot;){ 
-			link.download =className+&quot;_&quot;+ file[a].name.replace (/\~/g, '_'); fields.tags=className;
-		}else{link.download =file[a].name};
-		link.href = objectURL;
-		document.body.appendChild(link);
-
-		fields.title=link.download;fields._canonical_uri=link.download;fields.type=&quot;image/jpeg&quot;;
-		if($tw.browser) {$tw.wiki.addTiddler(new $tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))};
-
-		//	requestAnimationFrame(() =&gt; {
-		link.click();
-		link.remove();
-		URL.revokeObjectURL(objectURL);
-		//	});
-	}
-	alert(&quot;Check pictures&quot;);
-}
-
-function a(i){
-	var text=&quot;&quot;;
-	for (var k = 0; k &lt; i; k++){
-		text=text+&quot; &quot;;
-
-	}
-	return text;
-}
-
-
-function stickmenu() {
-	if (document.getElementById('aside1')){
-		var a = document.querySelector('#aside1'), b = null;  
-		window.addEventListener('scroll', Ascroll, false);
-		document.body.addEventListener('scroll', Ascroll, false); 
-		function Ascroll() {
-			if (b == null) {  
-				var Sa = getComputedStyle(a, ''), s = '';
-				for (var i = 0; i &lt; Sa.length; i++) {  
-					if (Sa[i].indexOf('box-sizing') == 0 || Sa[i].indexOf('overflow') == 0 || Sa[i].indexOf('padding') == 0 || Sa[i].indexOf('border') == 0 || Sa[i].indexOf('outline') == 0 || Sa[i].indexOf('box-shadow') == 0 || Sa[i].indexOf('background') == 0) {
-						s += Sa[i] + ': ' +Sa.getPropertyValue(Sa[i]) + '; '
-					}
-				}
-				//  document.querySelector('#stick').outerHTML = '&lt;div id=&quot;stick&quot;  style=&quot;'+s+'&quot;&gt;'+document.querySelector('#stick').innerHTML+'&lt;/div&gt;';
-				b = document.querySelector('#stick');
-				//  a.style.height = b.getBoundingClientRect().height +6+ 'px';  
-				a.style.padding = '0';
-				a.style.border = '0';  
-
-				// simpleCart.initialize();
-			}
-			if (a.getBoundingClientRect().top &lt;= 0) { 
-				b.className = 'sticky';
-			} else {
-				b.className = 'sticky2';
-			}
-		}
-	}
-}
-
-
-function setAttr(prmName,val) {
-	var res = '';
-	var d = location.href.split(&quot;#&quot;)[0].split(&quot;?&quot;);
-	var base = d[0];
-	var query = d[1];
-	if(query) {
-		var params = query.split(&quot;&amp;&quot;);
-		for(var i = 0; i &lt; params.length; i++) {
-			var keyval = params[i].split(&quot;=&quot;);
-			if(keyval[0] != prmName) {
-				res += params[i] + '&amp;';
-			}
-		}
-	}
-	res += prmName + '=' + val;
-	window.history.pushState(null, null, base + '?' + res);
-	return false;
-}
-
-
-var disqus_developer = 1;
-var strlocat3 = window.location.toString();
-var pinframe=0;
-
-
-//var currhash=window.location.hash;
-//if (currhash ==&quot;&quot; || currhash ==&quot;#&quot; || currhash ==&quot;null&quot; ) { currhash =&quot;index&quot;};
-
-
-if (window.parent.frames.length &gt; 0) {pinframe=1;
-}
-
-var mytext=&quot;&quot;;
-var CallbackRegistry = {}; 
-function scriptRequest(url, onSuccess, onError) {
-	var scriptOk = false; 
-	var callbackName = 'cb' + String(Math.random()).slice(-6);
-	url += ~url.indexOf('?') ? '&amp;' : '?';
-	url += 'callback=CallbackRegistry.' + callbackName;
-	CallbackRegistry[callbackName] = function(data) {
-		scriptOk = true; 
-		delete CallbackRegistry[callbackName]; 
-		onSuccess(data); 
-	};
-
-	function checkCallback() {
-		if (scriptOk) return; 
-		delete CallbackRegistry[callbackName];
-		onError(url); 
-	}
-
-	var script = document.createElement('script');
-	script.onreadystatechange = function() {
-		if (this.readyState == 'complete' || this.readyState == 'loaded') {
-			this.onreadystatechange = null;
-			setTimeout(checkCallback, 0); 
-		}
-	}
-	script.onload = script.onerror = checkCallback;
-	script.src = url;
-	document.head.appendChild(script);
-}
-
-
-function ok(data) { 
-    var spreadsheetsmail=data.feed.author[0].email.$t;
-    //if(SpreadsheetsUse!=&quot;hide&quot;){ setAttr(&quot;mail&quot;, spreadsheetsmail); }
-    if (typeof banlist !== 'undefined') { 
-        for (var i=0; i&lt;banlist.length; i++){
-            if(banlist[i]+&quot;@gmail.com&quot;==spreadsheetsmail) {
-                $tw.modal.display(&quot;$:/_alert/banlist&quot;); 
-                return;
-            }; 
-        } 
-    }
-    var fields = Object.create(null);
-
-    fields.title=&quot;googlespreadsheetmail&quot;;
-    fields.text=spreadsheetsmail;
-    if($tw.browser) {
-        $tw.wiki.addTiddler(
-            new $tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))
-    };
-    fields.title=&quot;googlespreadsheet&quot;;
-    fields.text=&quot;https://docs.google.com/spreadsheets/d/&quot;+getUrlVars()[&quot;id&quot;]+&quot;/&quot;;
-    if($tw.browser) {
-        $tw.wiki.addTiddler(
-            new $tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))
-    };
-    fields.title=&quot;googlespreadsheettime&quot;;
-    fields.text=data.feed.updated.$t;
-    if($tw.browser) {
-        $tw.wiki.addTiddler(
-            new $tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))
-    };
-
-    //console.log( &quot;Загружен пользователь &quot; + spreadsheetsmail);
-    //console.log(data.feed.entry[0].link[0].href);
-    //console.log(data.feed.updated.$t);
-    corsmax=data.feed.entry.length; 
-    for (var i1=0; i1&lt;data.feed.entry.length; i1++) {
-        scriptRequest(data.feed.entry[i1].link[0].href+&quot;?alt=json-in-script&quot;, ok2, fail);
-    }
-}
-
-
-function ok2(data2) {  
-    var currsheet=data2.feed.title.$t;
-
-    if(currsheet.indexOf(&quot;hide&quot;)==0 || data2.feed.entry==undefined){return;};
-    //console.log(currsheet);
-    var new_value=&quot;&quot;;
-
-    for (var i=0; i&lt;data2.feed.entry.length; i++){ 
-        var fields = Object.create(null); 
-        for (var key in data2.feed.entry[i]) {
-            if(key.match(/^gsx\$+/i)){ 
-                new_value=data2.feed.entry[i][key].$t;
-                if(key==&quot;gsx$id&quot;){ 
-                    fields.title=new_value} 
-                else if(key==&quot;gsx$url&quot; &amp;&amp; currsheet==&quot;images&quot;){ 
-                    fields._canonical_uri=new_value; }
-                else if(key.indexOf(&quot;gsx$hide&quot;)==0){
-                    //console.log(key)
-                } 
-                else { 
-                    var new_key=key.slice(4);
-                    if(new_value.length&gt;0){fields[new_key]=new_value; }
-                };
-            } // if key match
-        } // for (var key...
-
-        if(currsheet==&quot;images&quot; ){ 
-            fields.type=&quot;image/jpeg&quot;  }
-        else {
-            var tags= typeof fields.tags !== &quot;undefined&quot; ? fields.tags : &quot;&quot; ; 
-            fields.tags = tags + &quot; [[&quot; + currsheet + &quot;]] &quot; ;
-        }
-        ;
-        //fields.i=i+2;
-        if($tw.browser) {$tw.wiki.addTiddler(new $tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))}   
-
-        if(i==data2.feed.entry.length-1){
-            corscurrent=corscurrent+1;
-            if(corscurrent==corsmax-1){
-
-                //var       deferredChanges = Object.create(null);
-                //$tw.pageWidgetNode.refresh(deferredChanges);
-                //window.location.hash=currhash;
-
-// setTimeout(alert(&quot;Hello&quot;),2000) ;
-
-/*
-                setTimeout(
-                    function(){
-                        HEEGreadyState=&quot;isload&quot;; 
-                        stickmenu();
-
- 
-                        var elements = document.querySelectorAll('.tw-table-of-contents-top&gt;ul');
-
-                        document.querySelector(&quot;.tw-table-of-contents-top&gt;ul&quot;).onclick = function(event) {
-                            for (var i = 0; i &lt; elements.length; i++) {
-                                elements[i].className=&quot;hover&quot;;
-                            }
-                        };
-
-                        document.querySelector(&quot;.tw-table-of-contents-top&gt;ul&quot;).onmouseover = 
-                            function(event) {
-                                for (var i = 0; i &lt; elements.length; i++) {
-                                    elements[i].className=&quot;hover&quot;;
-                                }
-                            } ;
-                        
-                    }
-                ,2000); // setTimeout()
-*/
-            } // if corscurrent=corsmax-1
-        } // if i==data2.feed.entry ....
-    } // for var=0 loop
-
-    if (typeof Swiper== 'function' &amp;&amp; currsheet==&quot;GD-images&quot;) {
-        setTimeout(function(){sliderInit(); },700);
-    };
-
-} // function ok2
-
-
-
-function fail(url) {
-	alert( 'Error on request ' + url );
-}
-
-
-function getUrlVars() {
-	var vars = {};
-	var parts = window.location.href.replace(/[?&amp;|?#]+([^=&amp;|^=#]+)=([^&amp;|^#]*)/gi, function(m,key,value) {
-		vars[key] = value;
-	});
-	return vars;
-}
-
-var con_spreadsheetid=$tw.wiki.renderTiddler(&quot;text/plain&quot;,&quot;$:/constant/_spreadsheetid&quot;);
-var SpreadsheetsUse=$tw.wiki.renderTiddler(&quot;text/plain&quot;,&quot;SpreadsheetsUse&quot;);
-idfromURL=getUrlVars()[&quot;id&quot;];
-
-if(idfromURL===undefined &amp;&amp; con_spreadsheetid!=&quot;&quot; &amp;&amp; SpreadsheetsUse==&quot;hide&quot;){
-	getSheetsData(con_spreadsheetid);
-}else if(idfromURL!=undefined &amp;&amp; SpreadsheetsUse==&quot;yes&quot;){
-	getSheetsData(idfromURL);
-	var fields = Object.create(null);
-	fields.title=&quot;$:/constant/_spreadsheetid&quot;;fields.text=idfromURL;
-	if($tw.browser) {$tw.wiki.addTiddler(new 
-		$tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))};
-	fields = Object.create(null);
-	fields.title=&quot;SpreadsheetsUse&quot;;fields.text=&quot;no&quot;;
-	if($tw.browser) {$tw.wiki.addTiddler(new 
-		$tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))};
-}else if(SpreadsheetsUse==&quot;no&quot;){
-	stickmenu();
-	HEEGreadyState=&quot;isload&quot;;}else if(SpreadsheetsUse==&quot;ondemand&quot; &amp;&amp; idfromURL== con_spreadsheetid ){
-	getSheetsData(idfromURL);
-}else{
-	$tw.notifier.display(&quot;$:/_noidNotify&quot;);
-	stickmenu();
-	HEEGreadyState=&quot;isload&quot;;
-}
-
-
-function getSheetsData(worksheets_id) {
-	//var fields = Object.create(null);
-	//fields.title=&quot;$:/StoryList&quot;;fields.list=&quot;&quot;;
-	//       if($tw.browser) {$tw.wiki.addTiddler(new $tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))};
-	scriptRequest(&quot;https://spreadsheets.google.com/feeds/worksheets/&quot;+worksheets_id+&quot;/public/values?alt=json-in-script&quot;, ok, fail);
-}
-
-
-function addSpaces(nStr){
-	nStr += '';
-	x = nStr.split('.');
-	x1 = x[0];
-	x2 = x.length &gt; 1 ? '.' + x[1] : '';
-	var rgx = /(\d+)(\d{3})/;
-	while (rgx.test(x1)) {
-		x1 = x1.replace(rgx, '$1' + ' ' + '$2');
-	}
-	return x1 + x2;
-}
-
-&lt;/script&gt;
-</pre>
-</div>
-<div created="20151215071837897" creator="Татьяна Воронина" modified="20200506041423416" modifier="HEEG.HTML free on-line store" tags="" title="$:/boot/Yandex_Metrika_Counter.js" type="application/javascript">
-<pre>/*Измените номер счетчика 27443453 на свой */
-
-   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-   m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-   (window, document, &quot;script&quot;, &quot;https://mc.yandex.ru/metrika/tag.js&quot;, &quot;ym&quot;);
-
-   ym(27443453, &quot;init&quot;, {
-        clickmap:true,
-        trackLinks:true,
-        accurateTrackBounce:true,
-        trackHash:true
-   });
-
-
-var div = document.createElement('div');
-div.innerHTML = '&lt;img src=&quot;https://mc.yandex.ru/watch/27443453&quot; style=&quot;position:absolute; left:-9999px;&quot; alt=&quot;&quot; /&gt;';
-document.body.appendChild(div);</pre>
-</div>
 <div commit="40d21f607a88ad02ecc94dcdc7e63b93a53cd1b2" title="$:/build">
 <pre>Built from branch 'tiddlywiki-com' at commit 40d21f607a88ad02ecc94dcdc7e63b93a53cd1b2 of https://github.com/Jermolene/TiddlyWiki5 at 2021-02-07 12:49:33 UTC
 </pre>
@@ -1016,9 +617,6 @@ document.body.appendChild(div);</pre>
 </div>
 <div created="20210209121954778" modified="20210209121954778" title="$:/config/Tiddlers/TitleLinks">
 <pre>yes</pre>
-</div>
-<div caption="store mail" created="20200518194152848" creator="HEEG.HTML free on-line store" i="15" modified="20210209094024524" modifier="HEEG.HTML free on-line store" title="$:/constant/_nomail">
-<pre>info@heeg.ru</pre>
 </div>
 <div created="20200513094354585" creator="HEEG.HTML free on-line store" modified="20210209111203030" modifier="HEEG.HTML free on-line store" title="$:/constant/_spreadsheetid">
 <pre>1QUoZosiS3emBQNM_HugaptU5qY1Ze5lBQXVd8yZit6A</pre>
@@ -10896,6 +10494,376 @@ document.body.appendChild(div);</pre>
 <div created="20170416062907266" creator="HEEG.HTML free on-line store" modified="20210209073406516" modifier="HEEG.HTML free on-line store" title="$:/DefaultTiddlers">
 <pre>[list[$:/StoryList]]</pre>
 </div>
+<div created="20210213070543285" modified="20210213071047682" tags="$:/tags/RawMarkup" title="$:/googlesheets.js" type="application/javascript">
+<pre>&lt;script&gt;
+var HEEGreadyState=&quot;onload&quot;;
+var corsmax=0;
+var corscurrent=0;
+
+function ContactFormSubmit(){
+	var re = /^[\w-\.]+@[\w-]+\.[a-z]{2,14}$/i;
+	var myMail = document.querySelector('.userOO_form').value;
+	var valid = re.test(myMail);
+
+	document.querySelector('[aria-label^=&quot;name&quot;]').value=document.querySelector('.userFF_form').value;
+	document.querySelector('[aria-label^=&quot;telephone&quot;]').value=document.querySelector('.userII_form').value;
+	document.querySelector('[aria-label^=&quot;email&quot;]').value=document.querySelector('.userOO_form').value;
+	document.querySelector('[aria-label^=&quot;client_comments&quot;]').value=document.querySelector('.userCC_form').value;
+	document.querySelector('[aria-label^=&quot;order_number&quot;]').value=&quot;Z_Запрос из контактной формы&quot;;
+	document.querySelector('[aria-label^=&quot;link_for_your_order&quot;]').value=&quot;https:\\\\heeg.ru&quot;;
+
+	if (document.querySelector('.userFF_form').value === &quot;&quot;){ $tw.modal.display(&quot;$:/_alert/noname&quot;); return;}
+	if (document.querySelector('.userII_form').value === &quot;&quot;){$tw.modal.display(&quot;$:/_alert/notelephone&quot;); return;}
+	if (document.querySelector('.userOO_form').value==&quot;&quot;) {document.querySelector('[aria-label^=&quot;email&quot;]').value=$tw.wiki.renderTiddler(&quot;text/plain&quot;,&quot;$:/constant/_nomail&quot;);}
+	if (valid || document.querySelector('.userOO_form').value==&quot;&quot;) {} else{ $tw.modal.display(&quot;$:/_alert/noemail&quot;); return;}
+
+	document.querySelector('[name=&quot;rsubmit&quot;]').click();
+	$tw.modal.display(&quot;$:/_alert/form_send&quot;);
+	document.querySelector('[target=&quot;my_iframe&quot;]').reset();
+};
+
+
+function isLocalStorageAvailable() {
+	var test2 = 'test2';
+	try {
+		localStorage.setItem(test2, test2);
+		return true;
+	} catch(e) {
+		return false;
+	}
+};
+
+
+function StaticCut(){
+	if (isLocalStorageAvailable()) { 
+		var dataSt= localStorage.getItem(&quot;userStaticCutLS&quot;+getUrlVars()[&quot;id&quot;]); 
+		if(dataSt!=null){
+			var fields = Object.create(null);
+			fields.title=&quot;$:/temp/userStaticCutLS&quot;;
+			fields.text=dataSt.replace (/\+\+/g, '\n').replace (/\|\|/g, ':');
+			fields.type=&quot;application/x-tiddler-dictionary&quot;
+			if($tw.browser) {$tw.wiki.addTiddler(new $tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))};
+		}}
+};
+
+StaticCut();
+
+function download(file,className) {
+	for(var a=0;a&lt;file.length;a++) {
+		const link = document.createElement(&quot;a&quot;);
+		const objectURL = URL.createObjectURL(file[a]);
+		var fields = Object.create(null);
+		if(typeof className == &quot;string&quot;){ 
+			link.download =className+&quot;_&quot;+ file[a].name.replace (/\~/g, '_'); fields.tags=className;
+		}else{link.download =file[a].name};
+		link.href = objectURL;
+		document.body.appendChild(link);
+
+		fields.title=link.download;fields._canonical_uri=link.download;fields.type=&quot;image/jpeg&quot;;
+		if($tw.browser) {$tw.wiki.addTiddler(new $tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))};
+
+		//	requestAnimationFrame(() =&gt; {
+		link.click();
+		link.remove();
+		URL.revokeObjectURL(objectURL);
+		//	});
+	}
+	alert(&quot;Check pictures&quot;);
+}
+
+function a(i){
+	var text=&quot;&quot;;
+	for (var k = 0; k &lt; i; k++){
+		text=text+&quot; &quot;;
+
+	}
+	return text;
+}
+
+
+function stickmenu() {
+	if (document.getElementById('aside1')){
+		var a = document.querySelector('#aside1'), b = null;  
+		window.addEventListener('scroll', Ascroll, false);
+		document.body.addEventListener('scroll', Ascroll, false); 
+		function Ascroll() {
+			if (b == null) {  
+				var Sa = getComputedStyle(a, ''), s = '';
+				for (var i = 0; i &lt; Sa.length; i++) {  
+					if (Sa[i].indexOf('box-sizing') == 0 || Sa[i].indexOf('overflow') == 0 || Sa[i].indexOf('padding') == 0 || Sa[i].indexOf('border') == 0 || Sa[i].indexOf('outline') == 0 || Sa[i].indexOf('box-shadow') == 0 || Sa[i].indexOf('background') == 0) {
+						s += Sa[i] + ': ' +Sa.getPropertyValue(Sa[i]) + '; '
+					}
+				}
+				//  document.querySelector('#stick').outerHTML = '&lt;div id=&quot;stick&quot;  style=&quot;'+s+'&quot;&gt;'+document.querySelector('#stick').innerHTML+'&lt;/div&gt;';
+				b = document.querySelector('#stick');
+				//  a.style.height = b.getBoundingClientRect().height +6+ 'px';  
+				a.style.padding = '0';
+				a.style.border = '0';  
+
+				// simpleCart.initialize();
+			}
+			if (a.getBoundingClientRect().top &lt;= 0) { 
+				b.className = 'sticky';
+			} else {
+				b.className = 'sticky2';
+			}
+		}
+	}
+}
+
+
+function setAttr(prmName,val) {
+	var res = '';
+	var d = location.href.split(&quot;#&quot;)[0].split(&quot;?&quot;);
+	var base = d[0];
+	var query = d[1];
+	if(query) {
+		var params = query.split(&quot;&amp;&quot;);
+		for(var i = 0; i &lt; params.length; i++) {
+			var keyval = params[i].split(&quot;=&quot;);
+			if(keyval[0] != prmName) {
+				res += params[i] + '&amp;';
+			}
+		}
+	}
+	res += prmName + '=' + val;
+	window.history.pushState(null, null, base + '?' + res);
+	return false;
+}
+
+
+var disqus_developer = 1;
+var strlocat3 = window.location.toString();
+var pinframe=0;
+
+
+//var currhash=window.location.hash;
+//if (currhash ==&quot;&quot; || currhash ==&quot;#&quot; || currhash ==&quot;null&quot; ) { currhash =&quot;index&quot;};
+
+
+if (window.parent.frames.length &gt; 0) {pinframe=1;
+}
+
+var mytext=&quot;&quot;;
+var CallbackRegistry = {}; 
+function scriptRequest(url, onSuccess, onError) {
+	var scriptOk = false; 
+	var callbackName = 'cb' + String(Math.random()).slice(-6);
+	url += ~url.indexOf('?') ? '&amp;' : '?';
+	url += 'callback=CallbackRegistry.' + callbackName;
+	CallbackRegistry[callbackName] = function(data) {
+		scriptOk = true; 
+		delete CallbackRegistry[callbackName]; 
+		onSuccess(data); 
+	};
+
+	function checkCallback() {
+		if (scriptOk) return; 
+		delete CallbackRegistry[callbackName];
+		onError(url); 
+	}
+
+	var script = document.createElement('script');
+	script.onreadystatechange = function() {
+		if (this.readyState == 'complete' || this.readyState == 'loaded') {
+			this.onreadystatechange = null;
+			setTimeout(checkCallback, 0); 
+		}
+	}
+	script.onload = script.onerror = checkCallback;
+	script.src = url;
+	document.head.appendChild(script);
+}
+
+
+function ok(data) { 
+    var spreadsheetsmail=data.feed.author[0].email.$t;
+    //if(SpreadsheetsUse!=&quot;hide&quot;){ setAttr(&quot;mail&quot;, spreadsheetsmail); }
+    if (typeof banlist !== 'undefined') { 
+        for (var i=0; i&lt;banlist.length; i++){
+            if(banlist[i]+&quot;@gmail.com&quot;==spreadsheetsmail) {
+                $tw.modal.display(&quot;$:/_alert/banlist&quot;); 
+                return;
+            }; 
+        } 
+    }
+    var fields = Object.create(null);
+
+    fields.title=&quot;googlespreadsheetmail&quot;;
+    fields.text=spreadsheetsmail;
+    if($tw.browser) {
+        $tw.wiki.addTiddler(
+            new $tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))
+    };
+    fields.title=&quot;googlespreadsheet&quot;;
+    fields.text=&quot;https://docs.google.com/spreadsheets/d/&quot;+getUrlVars()[&quot;id&quot;]+&quot;/&quot;;
+    if($tw.browser) {
+        $tw.wiki.addTiddler(
+            new $tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))
+    };
+    fields.title=&quot;googlespreadsheettime&quot;;
+    fields.text=data.feed.updated.$t;
+    if($tw.browser) {
+        $tw.wiki.addTiddler(
+            new $tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))
+    };
+
+    //console.log( &quot;Загружен пользователь &quot; + spreadsheetsmail);
+    //console.log(data.feed.entry[0].link[0].href);
+    //console.log(data.feed.updated.$t);
+    corsmax=data.feed.entry.length; 
+    for (var i1=0; i1&lt;data.feed.entry.length; i1++) {
+        scriptRequest(data.feed.entry[i1].link[0].href+&quot;?alt=json-in-script&quot;, ok2, fail);
+    }
+}
+
+
+function ok2(data2) {  
+    var currsheet=data2.feed.title.$t;
+
+    if(currsheet.indexOf(&quot;hide&quot;)==0 || data2.feed.entry==undefined){return;};
+    //console.log(currsheet);
+    var new_value=&quot;&quot;;
+
+    for (var i=0; i&lt;data2.feed.entry.length; i++){ 
+        var fields = Object.create(null); 
+        for (var key in data2.feed.entry[i]) {
+            if(key.match(/^gsx\$+/i)){ 
+                new_value=data2.feed.entry[i][key].$t;
+                if(key==&quot;gsx$id&quot;){ 
+                    fields.title=new_value} 
+                else if(key==&quot;gsx$url&quot; &amp;&amp; currsheet==&quot;images&quot;){ 
+                    fields._canonical_uri=new_value; }
+                else if(key.indexOf(&quot;gsx$hide&quot;)==0){
+                    //console.log(key)
+                } 
+                else { 
+                    var new_key=key.slice(4);
+                    if(new_value.length&gt;0){fields[new_key]=new_value; }
+                };
+            } // if key match
+        } // for (var key...
+
+        if(currsheet==&quot;images&quot; ){ 
+            fields.type=&quot;image/jpeg&quot;  }
+        else {
+            var tags= typeof fields.tags !== &quot;undefined&quot; ? fields.tags : &quot;&quot; ; 
+            fields.tags = tags + &quot; [[&quot; + currsheet + &quot;]] &quot; ;
+        }
+        ;
+        //fields.i=i+2;
+        if($tw.browser) {$tw.wiki.addTiddler(new $tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))}   
+
+        if(i==data2.feed.entry.length-1){
+            corscurrent=corscurrent+1;
+            if(corscurrent==corsmax-1){
+
+                //var       deferredChanges = Object.create(null);
+                //$tw.pageWidgetNode.refresh(deferredChanges);
+                //window.location.hash=currhash;
+
+// setTimeout(alert(&quot;Hello&quot;),2000) ;
+
+/*
+                setTimeout(
+                    function(){
+                        HEEGreadyState=&quot;isload&quot;; 
+                        stickmenu();
+
+ 
+                        var elements = document.querySelectorAll('.tw-table-of-contents-top&gt;ul');
+
+                        document.querySelector(&quot;.tw-table-of-contents-top&gt;ul&quot;).onclick = function(event) {
+                            for (var i = 0; i &lt; elements.length; i++) {
+                                elements[i].className=&quot;hover&quot;;
+                            }
+                        };
+
+                        document.querySelector(&quot;.tw-table-of-contents-top&gt;ul&quot;).onmouseover = 
+                            function(event) {
+                                for (var i = 0; i &lt; elements.length; i++) {
+                                    elements[i].className=&quot;hover&quot;;
+                                }
+                            } ;
+                        
+                    }
+                ,2000); // setTimeout()
+*/
+            } // if corscurrent=corsmax-1
+        } // if i==data2.feed.entry ....
+    } // for var=0 loop
+
+    if (typeof Swiper== 'function' &amp;&amp; currsheet==&quot;GD-images&quot;) {
+        setTimeout(function(){sliderInit(); },700);
+    };
+
+} // function ok2
+
+
+
+function fail(url) {
+	alert( 'Error on request ' + url );
+}
+
+
+function getUrlVars() {
+	var vars = {};
+	var parts = window.location.href.replace(/[?&amp;|?#]+([^=&amp;|^=#]+)=([^&amp;|^#]*)/gi, function(m,key,value) {
+		vars[key] = value;
+	});
+	return vars;
+}
+
+var con_spreadsheetid=$tw.wiki.renderTiddler(&quot;text/plain&quot;,&quot;$:/constant/_spreadsheetid&quot;);
+var SpreadsheetsUse=$tw.wiki.renderTiddler(&quot;text/plain&quot;,&quot;SpreadsheetsUse&quot;);
+idfromURL=getUrlVars()[&quot;id&quot;];
+
+if(idfromURL===undefined &amp;&amp; con_spreadsheetid!=&quot;&quot; &amp;&amp; SpreadsheetsUse==&quot;hide&quot;){
+	getSheetsData(con_spreadsheetid);
+}else if(idfromURL!=undefined &amp;&amp; SpreadsheetsUse==&quot;yes&quot;){
+	getSheetsData(idfromURL);
+	var fields = Object.create(null);
+	fields.title=&quot;$:/constant/_spreadsheetid&quot;;fields.text=idfromURL;
+	if($tw.browser) {$tw.wiki.addTiddler(new 
+		$tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))};
+	fields = Object.create(null);
+	fields.title=&quot;SpreadsheetsUse&quot;;fields.text=&quot;no&quot;;
+	if($tw.browser) {$tw.wiki.addTiddler(new 
+		$tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))};
+}else if(SpreadsheetsUse==&quot;no&quot;){
+	stickmenu();
+	HEEGreadyState=&quot;isload&quot;;}else if(SpreadsheetsUse==&quot;ondemand&quot; &amp;&amp; idfromURL== con_spreadsheetid ){
+	getSheetsData(idfromURL);
+}else{
+	$tw.notifier.display(&quot;$:/_noidNotify&quot;);
+	stickmenu();
+	HEEGreadyState=&quot;isload&quot;;
+}
+
+
+function getSheetsData(worksheets_id) {
+	//var fields = Object.create(null);
+	//fields.title=&quot;$:/StoryList&quot;;fields.list=&quot;&quot;;
+	//       if($tw.browser) {$tw.wiki.addTiddler(new $tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))};
+	scriptRequest(&quot;https://spreadsheets.google.com/feeds/worksheets/&quot;+worksheets_id+&quot;/public/values?alt=json-in-script&quot;, ok, fail);
+}
+
+
+function addSpaces(nStr){
+	nStr += '';
+	x = nStr.split('.');
+	x1 = x[0];
+	x2 = x.length &gt; 1 ? '.' + x[1] : '';
+	var rgx = /(\d+)(\d{3})/;
+	while (rgx.test(x1)) {
+		x1 = x1.replace(rgx, '$1' + ' ' + '$2');
+	}
+	return x1 + x2;
+}
+
+&lt;/script&gt;
+</pre>
+</div>
 <div title="$:/isEncrypted">
 <pre>no</pre>
 </div>
@@ -11140,13 +11108,13 @@ $tw.rootWidget.addEventListener(&quot;tm-sheetgetdata&quot;,
 <div created="20210210141411719" modified="20210212151246066" title="$:/state/tab/moresidebar-1850697562">
 <pre>$:/core/ui/MoreSideBar/System</pre>
 </div>
-<div created="20210210133823998" modified="20210212235025026" title="$:/state/tab/sidebar--595412856">
-<pre>$:/core/ui/SideBar/Open</pre>
+<div created="20210210133823998" modified="20210213070936408" title="$:/state/tab/sidebar--595412856">
+<pre>$:/core/ui/SideBar/Recent</pre>
 </div>
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div list="$:/mas/sheethandler.js [[mas Notes]] $:/AdvancedSearch $:/core/templates/plain-text-tiddler [[Import from public Google Sheets]] [[mg Notes]] $:/boot/bootprefix1.js" title="$:/StoryList">
+<div created="20210213070915433" list="$:/googlesheets.js $:/mas/sheethandler.js [[mas Notes]] $:/AdvancedSearch $:/core/templates/plain-text-tiddler" modified="20210213070915433" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20210209090055836" creator="HEEG.HTML free on-line store" modified="20210210111905983" modifier="HEEG.HTML free on-line store" title="$:/theme">
@@ -11987,73 +11955,6 @@ This would open up for a LOT of uses because Googles have a lot of services that
 <pre>&lt;div id=&quot;bootKernelPrefix1&quot; style=&quot;display:none;&quot;&gt;
 {{ $:/boot/bootprefix1.js ||$:/core/templates/javascript-tiddler}}
 &lt;/div&gt;</pre>
-</div>
-<div created="20190828115535148" description="For showing drive files and folders, and local folders&lt;br&gt;iframe(url, param) - param is currently only used for start-time in youtube vids." modified="20210206081934271" tags="$:/matias $:/tags/Macro" title="macro/iframe">
-<pre>\define iframe-youtube(time:&quot;0&quot;)
-&lt;iframe width=&quot;100%&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/$(id)$?rel=0;autoplay=1;modestbranding=1&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen&gt;&lt;/iframe&gt;
-\end
-
-\define iframe-docs()
-&lt;iframe src=&quot;$(src)$/preview&quot; width=&quot;100%&quot; height=&quot;480&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
-\end
-
-\define iframe-presentation()
-&lt;iframe src=&quot;$(src)$#slide=id.p1&quot; width=&quot;100%&quot; height=&quot;500&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
-\end
-
-\define iframe-folder()
-&lt;iframe src=&quot;https://drive.google.com/embeddedfolderview?id=$(id)$#list&quot; width=&quot;100%&quot; height=&quot;500&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
-\end
-
-\define iframe-form()
-&lt;iframe src=&quot;$(src)$embedded=true&quot; width=&quot;100%&quot; height=&quot;500&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
-\end
-
-\define iframe-local()
-&lt;iframe src=&quot;$(src)$&quot; width=&quot;100%&quot; height=&quot;500&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
-\end
-
-\define iframe(url, param)
-&lt;$list variable=src
-   filter=&quot;[[$url$]prefix[C:\]]&quot; &gt;
-      &lt;&lt;iframe-local&gt;&gt;
-&lt;/$list&gt;
-&lt;$list variable=src
-   filter=&quot;[[$url$]regexp[/spreadsheets/]splitbefore[/edit]removesuffix[/edit]]&quot; &gt;
-      &lt;&lt;iframe-docs&gt;&gt;
-&lt;/$list&gt;
-&lt;$list variable=src
-   filter=&quot;[[$url$]regexp[/document/]splitbefore[/edit]removesuffix[/edit]]&quot; &gt;
-      &lt;&lt;iframe-docs&gt;&gt;
-&lt;/$list&gt;
-&lt;$list variable=src filter=&quot;&quot;&quot;[[$url$]regexp[/file/]splitbefore[/view]removesuffix[/view]]&quot;&quot;&quot;&gt;
-      &lt;&lt;iframe-docs&gt;&gt;
-&lt;/$list&gt;
-&lt;$list variable=src
-   filter=&quot;[[$url$]regexp[/presentation/]splitbefore[/edit]]&quot; &gt;
-      &lt;&lt;iframe-presentation&gt;&gt;
-&lt;/$list&gt;
-&lt;$list variable=src
-   filter=&quot;[[$url$]regexp[/forms/]splitbefore[/viewform?]]&quot; &gt;
-      &lt;&lt;iframe-form&gt;&gt;
-&lt;/$list&gt;
-&lt;$list  variable=pfx
-    filter=&quot;[[$url$]regexp[/folders/]splitbefore[/folders/]]&quot;&gt;
-   &lt;$list filter=&quot;[[$url$]removeprefix&lt;pfx&gt;]&quot; variable=id&gt;
-      &lt;&lt;iframe-folder&gt;&gt;
-   &lt;/$list&gt;
-&lt;/$list&gt;
-&lt;$list variable=pfx
-    filter=&quot;&quot;&quot;[[$url$]regexp[youtube]splitbefore[/watch?v=]]&quot;&quot;&quot;&gt;
-   &lt;$list variable=id filter=&quot;&quot;&quot;$url$ +[removeprefix&lt;pfx&gt;]&quot;&quot;&quot;&gt;
-      &lt;&lt;iframe-youtube&gt;&gt;
-   &lt;/$list&gt;
-&lt;/$list&gt;
-&lt;$list variable=id
-    filter=&quot;&quot;&quot;[[$url$]regexp[youtu.be]removeprefix[https://youtu.be/]]&quot;&quot;&quot;&gt;
-      &lt;&lt;iframe-youtube &quot;$param$&quot;&gt;&gt;
-&lt;/$list&gt;
-\end</pre>
 </div>
 <div created="20210210220133213" modified="20210210230603494" tags="" title="mas Notes">
 <pre>!! [[$:/core/modules/saver-handler.js]]
