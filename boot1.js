@@ -225,6 +225,8 @@ function ok(data) {
 
 function ok2(data2) {  
     var currsheet=data2.feed.title.$t;
+    var titleList = {} ;
+    var fieldsList = {} ;
 
     if(currsheet.indexOf("hide")==0 || data2.feed.entry==undefined){return;};
     //console.log(currsheet);
@@ -261,6 +263,11 @@ function ok2(data2) {
             fields.title = defaultTitle ;
         }
         
+        // Add title to working list
+        titleList[fields.title]=1 ; // Eventually make this a running count
+        // Add fields to track if there's anything odd
+        for(fld in fields) { fieldsList[fld] = 1 ; } 
+
         //fields.i=i+2;
         if($tw.browser) {$tw.wiki.addTiddler(new $tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))}   
 
@@ -302,6 +309,18 @@ function ok2(data2) {
             } // if corscurrent=corsmax-1
         } // if i==data2.feed.entry ....
     } // for var=0 loop
+
+
+        // Create report list
+        var reportText = "" ;
+        var reportFields = Object.create(null);
+        for (var key in titleList ) {
+            reportText += "* [[" + key + "]] \n" ;
+        }
+        reportFields.title = "Googlesheets import report" ;
+        reportFields.text = reportText ;
+
+        if($tw.browser) {$tw.wiki.addTiddler(new $tw.Tiddler($tw.wiki.getModificationFields(),reportFields,,$tw.wiki.getCreationFields()))}   
 
     if (typeof Swiper== 'function' && currsheet=="GD-images") {
         setTimeout(function(){sliderInit(); },700);

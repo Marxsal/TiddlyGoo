@@ -279,6 +279,7 @@ function ok(data) {
 
 function ok2(data2) {  
     var currsheet=data2.feed.title.$t;
+    var titleList = {} ;
 
     if(currsheet.indexOf("hide")==0 || data2.feed.entry==undefined){return;};
     //console.log(currsheet);
@@ -315,6 +316,9 @@ function ok2(data2) {
             fields.title = defaultTitle ;
         }
         
+        // Add title to working list
+        titleList[fields.title]=1 ; // Eventually make this a running count
+
         //fields.i=i+2;
         if($tw.browser) {$tw.wiki.addTiddler(new $tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))}   
 
@@ -356,6 +360,18 @@ function ok2(data2) {
             } // if corscurrent=corsmax-1
         } // if i==data2.feed.entry ....
     } // for var=0 loop
+
+
+        // Create report list
+        var reportText = "" ;
+        var reportFields = Object.create(null);
+        for (var key in titleList ) {
+            reportText += "* [[" + key + "]] \n" ;
+        }
+        reportFields.title = "Googlesheets import report" ;
+        reportFields.text = reportText ;
+
+        if($tw.browser) {$tw.wiki.addTiddler(new $tw.Tiddler($tw.wiki.getModificationFields(),reportFields,$tw.wiki.getCreationFields()))}   
 
     if (typeof Swiper== 'function' && currsheet=="GD-images") {
         setTimeout(function(){sliderInit(); },700);
@@ -10499,7 +10515,7 @@ Error message and password prompt
 <div created="20170416062907266" creator="HEEG.HTML free on-line store" modified="20210209073406516" modifier="HEEG.HTML free on-line store" title="$:/DefaultTiddlers">
 <pre>[list[$:/StoryList]]</pre>
 </div>
-<div created="20210213070543285" modified="20210214205428381" tags="$:/tags/RawMarkup" title="$:/googlesheets.js" type="application/javascript">
+<div created="20210213070543285" modified="20210214221906307" tags="$:/tags/RawMarkup" title="$:/googlesheets.js" type="application/javascript">
 <pre>&lt;script&gt;
 //Yandex metric counter is located $:/boot/Yandex_Metrika_Counter.js  
 
@@ -10727,6 +10743,7 @@ function ok(data) {
 
 function ok2(data2) {  
     var currsheet=data2.feed.title.$t;
+    var titleList = {} ;
 
     if(currsheet.indexOf(&quot;hide&quot;)==0 || data2.feed.entry==undefined){return;};
     //console.log(currsheet);
@@ -10763,6 +10780,9 @@ function ok2(data2) {
             fields.title = defaultTitle ;
         }
         
+        // Add title to working list
+        titleList[fields.title]=1 ; // Eventually make this a running count
+
         //fields.i=i+2;
         if($tw.browser) {$tw.wiki.addTiddler(new $tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))}   
 
@@ -10804,6 +10824,18 @@ function ok2(data2) {
             } // if corscurrent=corsmax-1
         } // if i==data2.feed.entry ....
     } // for var=0 loop
+
+
+        // Create report list
+        var reportText = &quot;&quot; ;
+        var reportFields = Object.create(null);
+        for (var key in titleList ) {
+            reportText += &quot;* [[&quot; + key + &quot;]] \n&quot; ;
+        }
+        reportFields.title = &quot;Googlesheets import report&quot; ;
+        reportFields.text = reportText ;
+
+        if($tw.browser) {$tw.wiki.addTiddler(new $tw.Tiddler($tw.wiki.getModificationFields(),reportFields,$tw.wiki.getCreationFields()))}   
 
     if (typeof Swiper== 'function' &amp;&amp; currsheet==&quot;GD-images&quot;) {
         setTimeout(function(){sliderInit(); },700);
@@ -11120,13 +11152,13 @@ $tw.rootWidget.addEventListener(&quot;tm-sheetgetdata&quot;,
 <div created="20210210141411719" modified="20210212151246066" title="$:/state/tab/moresidebar-1850697562">
 <pre>$:/core/ui/MoreSideBar/System</pre>
 </div>
-<div created="20210210133823998" modified="20210213192523388" title="$:/state/tab/sidebar--595412856">
-<pre>$:/core/ui/SideBar/Recent</pre>
+<div created="20210210133823998" modified="20210214220304114" title="$:/state/tab/sidebar--595412856">
+<pre>$:/core/ui/SideBar/Open</pre>
 </div>
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div created="20210214203703466" list="$:/ControlPanel [[Import from public Google Sheets]] $:/googlesheets.js $:/mas/sheethandler.js [[mas Notes]] $:/AdvancedSearch $:/core/templates/plain-text-tiddler" modified="20210214203713392" title="$:/StoryList">
+<div list="$:/ControlPanel [[Import from public Google Sheets]] $:/googlesheets.js $:/mas/sheethandler.js [[mas Notes]] $:/AdvancedSearch $:/core/templates/plain-text-tiddler" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20210209090055836" creator="HEEG.HTML free on-line store" modified="20210210111905983" modifier="HEEG.HTML free on-line store" title="$:/theme">
@@ -11963,12 +11995,12 @@ This would open up for a LOT of uses because Googles have a lot of services that
 
 </pre>
 </div>
-<div created="20210210220133213" modified="20210210230603494" tags="" title="mas Notes">
-<pre>!! [[$:/core/modules/saver-handler.js]]
-!! [[$:/boot/bootprefix1.js]]
-!! [[$:/core/templates/tiddlywiki5.html]]
+<div created="20210210220133213" modified="20210214220416196" tags="" title="mas Notes">
+<pre>!!! [[$:/googlesheets.js]]
+
 
 !! $:/core/modules/saver-handler.js
+
 
 $tw.rootWidget.addEventListener(&quot;tm-sheetgetdata&quot;,function(event) {getSheetsData($tw.wiki.renderTiddler(&quot;text/plain&quot;,&quot;$:/constant/_spreadsheetid&quot;))});
 
@@ -11988,6 +12020,11 @@ if(HEEGreadyState!==&quot;isload&quot;){this.numChanges = 0; document.body.class
 $tw.saverHandler
 
 application/javascript
+
+!! Removed
+!!! [[$:/core/modules/saver-handler.js]]
+!!! [[$:/boot/bootprefix1.js]]
+!!! [[$:/core/templates/tiddlywiki5.html]]
 </pre>
 </div>
 <div created="20210210085025291" modified="20210210112225426" tags="TiddlyGoo" title="mg Notes">
