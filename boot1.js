@@ -255,7 +255,12 @@ function ok2(data2) {
             var tags= typeof fields.tags !== "undefined" ? fields.tags : "" ; 
             fields.tags = tags + " [[" + currsheet + "]] " ;
         }
-        ;
+        
+        if( typeof fields.title === "undefined" || ! fields.title )  {
+            var defaultTitle = 'Default-' + String(Math.random()).slice(-6);
+            fields.title = defaultTitle ;
+        }
+        
         //fields.i=i+2;
         if($tw.browser) {$tw.wiki.addTiddler(new $tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))}   
 

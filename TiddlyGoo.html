@@ -53,6 +53,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE." />
 <!--~~ Raw markup ~~-->
 
 <script>
+//Yandex metric counter is located $:/boot/Yandex_Metrika_Counter.js  
+
 var HEEGreadyState="onload";
 var corsmax=0;
 var corscurrent=0;
@@ -307,7 +309,12 @@ function ok2(data2) {
             var tags= typeof fields.tags !== "undefined" ? fields.tags : "" ; 
             fields.tags = tags + " [[" + currsheet + "]] " ;
         }
-        ;
+        
+        if( typeof fields.title === "undefined" || ! fields.title )  {
+            var defaultTitle = 'Default-' + String(Math.random()).slice(-6);
+            fields.title = defaultTitle ;
+        }
+        
         //fields.i=i+2;
         if($tw.browser) {$tw.wiki.addTiddler(new $tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))}   
 
@@ -581,8 +588,6 @@ Error message and password prompt
 <li>batchmanipulator/Stylesheet</li>
 
 <li>Import from public Google Sheets</li>
-
-<li>Initialize bootprefix1</li>
 
 <li>mas Notes</li>
 
@@ -10494,8 +10499,10 @@ Error message and password prompt
 <div created="20170416062907266" creator="HEEG.HTML free on-line store" modified="20210209073406516" modifier="HEEG.HTML free on-line store" title="$:/DefaultTiddlers">
 <pre>[list[$:/StoryList]]</pre>
 </div>
-<div created="20210213070543285" modified="20210213071047682" tags="$:/tags/RawMarkup" title="$:/googlesheets.js" type="application/javascript">
+<div created="20210213070543285" modified="20210214205428381" tags="$:/tags/RawMarkup" title="$:/googlesheets.js" type="application/javascript">
 <pre>&lt;script&gt;
+//Yandex metric counter is located $:/boot/Yandex_Metrika_Counter.js  
+
 var HEEGreadyState=&quot;onload&quot;;
 var corsmax=0;
 var corscurrent=0;
@@ -10750,7 +10757,12 @@ function ok2(data2) {
             var tags= typeof fields.tags !== &quot;undefined&quot; ? fields.tags : &quot;&quot; ; 
             fields.tags = tags + &quot; [[&quot; + currsheet + &quot;]] &quot; ;
         }
-        ;
+        
+        if( typeof fields.title === &quot;undefined&quot; || ! fields.title )  {
+            var defaultTitle = 'Default-' + String(Math.random()).slice(-6);
+            fields.title = defaultTitle ;
+        }
+        
         //fields.i=i+2;
         if($tw.browser) {$tw.wiki.addTiddler(new $tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))}   
 
@@ -11087,7 +11099,7 @@ $tw.rootWidget.addEventListener(&quot;tm-sheetgetdata&quot;,
 <div created="20210210145622127" modified="20210210145626588" title="$:/state/plugin-info--896887961-$:/plugins/TWaddle/TabLinks">
 <pre>no</pre>
 </div>
-<div created="20210210183933135" modified="20210212234152201" title="$:/state/sidebar">
+<div created="20210210183933135" modified="20210213192521788" title="$:/state/sidebar">
 <pre>yes</pre>
 </div>
 <div created="20210210120308151" modified="20210212170325550" title="$:/state/tab--1498284803">
@@ -11102,19 +11114,19 @@ $tw.rootWidget.addEventListener(&quot;tm-sheetgetdata&quot;,
 <div created="20210210145615695" modified="20210210145617848" title="$:/state/tab--86143343">
 <pre>$:/core/ui/ControlPanel/Plugins/Installed/Plugins</pre>
 </div>
-<div created="20210210135049658" modified="20210212165904966" title="$:/state/tab-1749438307">
-<pre>$:/core/ui/ControlPanel/Appearance</pre>
+<div created="20210210135049658" modified="20210214203715980" title="$:/state/tab-1749438307">
+<pre>$:/core/ui/ControlPanel/Plugins</pre>
 </div>
 <div created="20210210141411719" modified="20210212151246066" title="$:/state/tab/moresidebar-1850697562">
 <pre>$:/core/ui/MoreSideBar/System</pre>
 </div>
-<div created="20210210133823998" modified="20210213070936408" title="$:/state/tab/sidebar--595412856">
+<div created="20210210133823998" modified="20210213192523388" title="$:/state/tab/sidebar--595412856">
 <pre>$:/core/ui/SideBar/Recent</pre>
 </div>
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div created="20210213070915433" list="$:/googlesheets.js $:/mas/sheethandler.js [[mas Notes]] $:/AdvancedSearch $:/core/templates/plain-text-tiddler" modified="20210213070915433" title="$:/StoryList">
+<div created="20210214203703466" list="$:/ControlPanel [[Import from public Google Sheets]] $:/googlesheets.js $:/mas/sheethandler.js [[mas Notes]] $:/AdvancedSearch $:/core/templates/plain-text-tiddler" modified="20210214203713392" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20210209090055836" creator="HEEG.HTML free on-line store" modified="20210210111905983" modifier="HEEG.HTML free on-line store" title="$:/theme">
@@ -11950,11 +11962,6 @@ This is all [[Siniy-Kits Tiddly based webshop|https://groups.google.com/u/1/g/ti
 This would open up for a LOT of uses because Googles have a lot of services that integrate with, specifically, Google Sheets. So we can piggyback on this and just take the ready data!
 
 </pre>
-</div>
-<div created="20210212013716846" modified="20210212015913971" tags="" title="Initialize bootprefix1">
-<pre>&lt;div id=&quot;bootKernelPrefix1&quot; style=&quot;display:none;&quot;&gt;
-{{ $:/boot/bootprefix1.js ||$:/core/templates/javascript-tiddler}}
-&lt;/div&gt;</pre>
 </div>
 <div created="20210210220133213" modified="20210210230603494" tags="" title="mas Notes">
 <pre>!! [[$:/core/modules/saver-handler.js]]
