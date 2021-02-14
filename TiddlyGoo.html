@@ -280,6 +280,7 @@ function ok(data) {
 function ok2(data2) {  
     var currsheet=data2.feed.title.$t;
     var titleList = {} ;
+    var fieldsList = {} ;
 
     if(currsheet.indexOf("hide")==0 || data2.feed.entry==undefined){return;};
     //console.log(currsheet);
@@ -318,6 +319,8 @@ function ok2(data2) {
         
         // Add title to working list
         titleList[fields.title]=1 ; // Eventually make this a running count
+        // Add fields to track if there's anything odd
+        for(fld in fields) { fieldsList[fld] = 1 ; } 
 
         //fields.i=i+2;
         if($tw.browser) {$tw.wiki.addTiddler(new $tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))}   
@@ -363,10 +366,15 @@ function ok2(data2) {
 
 
         // Create report list
-        var reportText = "" ;
+        var reportText = "!! Tiddlers imported from ~GoogleSheets: \n\n" ;
         var reportFields = Object.create(null);
         for (var key in titleList ) {
             reportText += "* [[" + key + "]] \n" ;
+        }
+        reportText += "\n\n----\n\n" ;
+        reportText += "!! Fields used:\n\n" ;
+        for (var key in fieldsList ) {
+            reportText += "* " + key + "\n" ;
         }
         reportFields.title = "Googlesheets import report" ;
         reportFields.text = reportText ;
@@ -10515,7 +10523,7 @@ Error message and password prompt
 <div created="20170416062907266" creator="HEEG.HTML free on-line store" modified="20210209073406516" modifier="HEEG.HTML free on-line store" title="$:/DefaultTiddlers">
 <pre>[list[$:/StoryList]]</pre>
 </div>
-<div created="20210213070543285" modified="20210214221906307" tags="$:/tags/RawMarkup" title="$:/googlesheets.js" type="application/javascript">
+<div created="20210213070543285" modified="20210214223443259" tags="$:/tags/RawMarkup" title="$:/googlesheets.js" type="application/javascript">
 <pre>&lt;script&gt;
 //Yandex metric counter is located $:/boot/Yandex_Metrika_Counter.js  
 
@@ -10744,6 +10752,7 @@ function ok(data) {
 function ok2(data2) {  
     var currsheet=data2.feed.title.$t;
     var titleList = {} ;
+    var fieldsList = {} ;
 
     if(currsheet.indexOf(&quot;hide&quot;)==0 || data2.feed.entry==undefined){return;};
     //console.log(currsheet);
@@ -10782,6 +10791,8 @@ function ok2(data2) {
         
         // Add title to working list
         titleList[fields.title]=1 ; // Eventually make this a running count
+        // Add fields to track if there's anything odd
+        for(fld in fields) { fieldsList[fld] = 1 ; } 
 
         //fields.i=i+2;
         if($tw.browser) {$tw.wiki.addTiddler(new $tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))}   
@@ -10827,10 +10838,15 @@ function ok2(data2) {
 
 
         // Create report list
-        var reportText = &quot;&quot; ;
+        var reportText = &quot;!! Tiddlers imported from ~GoogleSheets: \n\n&quot; ;
         var reportFields = Object.create(null);
         for (var key in titleList ) {
             reportText += &quot;* [[&quot; + key + &quot;]] \n&quot; ;
+        }
+        reportText += &quot;\n\n----\n\n&quot; ;
+        reportText += &quot;!! Fields used:\n\n&quot; ;
+        for (var key in fieldsList ) {
+            reportText += &quot;* &quot; + key + &quot;\n&quot; ;
         }
         reportFields.title = &quot;Googlesheets import report&quot; ;
         reportFields.text = reportText ;
@@ -11152,7 +11168,7 @@ $tw.rootWidget.addEventListener(&quot;tm-sheetgetdata&quot;,
 <div created="20210210141411719" modified="20210212151246066" title="$:/state/tab/moresidebar-1850697562">
 <pre>$:/core/ui/MoreSideBar/System</pre>
 </div>
-<div created="20210210133823998" modified="20210214220304114" title="$:/state/tab/sidebar--595412856">
+<div created="20210210133823998" modified="20210214222427842" title="$:/state/tab/sidebar--595412856">
 <pre>$:/core/ui/SideBar/Open</pre>
 </div>
 <div title="$:/status/RequireReloadDueToPluginChange">

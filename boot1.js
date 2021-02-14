@@ -312,15 +312,20 @@ function ok2(data2) {
 
 
         // Create report list
-        var reportText = "" ;
+        var reportText = "!! Tiddlers imported from ~GoogleSheets: \n\n" ;
         var reportFields = Object.create(null);
         for (var key in titleList ) {
             reportText += "* [[" + key + "]] \n" ;
         }
+        reportText += "\n\n----\n\n" ;
+        reportText += "!! Fields used:\n\n" ;
+        for (var key in fieldsList ) {
+            reportText += "* " + key + "\n" ;
+        }
         reportFields.title = "Googlesheets import report" ;
         reportFields.text = reportText ;
 
-        if($tw.browser) {$tw.wiki.addTiddler(new $tw.Tiddler($tw.wiki.getModificationFields(),reportFields,,$tw.wiki.getCreationFields()))}   
+        if($tw.browser) {$tw.wiki.addTiddler(new $tw.Tiddler($tw.wiki.getModificationFields(),reportFields,$tw.wiki.getCreationFields()))}   
 
     if (typeof Swiper== 'function' && currsheet=="GD-images") {
         setTimeout(function(){sliderInit(); },700);
