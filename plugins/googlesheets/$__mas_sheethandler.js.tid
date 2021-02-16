@@ -1,0 +1,39 @@
+created: 20210211012842921
+modified: 20210215181530304
+module-type: startup
+tags: 
+title: $:/plugins/twmat/googlesheets/sheethandler.js
+type: application/javascript
+
+/*\
+title: $:/sheethandler.js
+type: application/javascript
+module-type: startup
+
+Add event handler for fetching google sheets
+
+\*/
+(function(){
+
+/*jslint node: true, browser: true */
+/*global $tw: false */
+"use strict";
+
+// Export name and synchronous status
+exports.name = "sheethandler";
+exports.after = ["startup"];
+exports.before = ["story"];
+//exports.synchronous = true;
+
+//var TITLE_INFO_PLUGIN = "$:/temp/info-plugin";
+
+exports.startup = function() {
+
+$tw.rootWidget.addEventListener("tm-sheetgetdata",
+    function(event) {
+        getSheetsData($tw.wiki.renderTiddler("text/plain","$:/constant/_spreadsheetid"))
+    });
+
+};
+
+})();
