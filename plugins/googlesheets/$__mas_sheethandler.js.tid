@@ -31,7 +31,11 @@ exports.startup = function() {
 
 $tw.rootWidget.addEventListener("tm-sheetgetdata",
     function(event) {
+       if(typeof(getSheetsData) !== "function") {
+            alert("Can't call import -- you may\nneed to save and reload your \nTiddlyWiki file.") ;
+       } else {
         getSheetsData($tw.wiki.renderTiddler("text/plain","$:/constant/_spreadsheetid"))
+       }
     });
 
 };
