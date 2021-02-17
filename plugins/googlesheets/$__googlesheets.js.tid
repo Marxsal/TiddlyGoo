@@ -165,7 +165,7 @@ if (window.parent.frames.length > 0) {pinframe=1;
 
 var mytext="";
 var CallbackRegistry = {}; 
-function scriptRequest(url, onSuccess, onError) {
+function scriptRequest(url, onSuccess, onError,regstr) {
 	var scriptOk = false; 
 	var callbackName = 'cb' + String(Math.random()).slice(-6);
 	url += ~url.indexOf('?') ? '&' : '?';
@@ -173,7 +173,7 @@ function scriptRequest(url, onSuccess, onError) {
 	CallbackRegistry[callbackName] = function(data) {
 		scriptOk = true; 
 		delete CallbackRegistry[callbackName]; 
-		onSuccess(data); 
+		onSuccess(data,regstr); 
 	};
 
 	function checkCallback() {
@@ -195,7 +195,8 @@ function scriptRequest(url, onSuccess, onError) {
 }
 
 
-function ok(data) { 
+function ok(data,regstr) { 
+    //alert("ok sees pattern: " + regstr ) ;
     //var spreadsheetsmail=data.feed.author[0].email.$t;
     //if(SpreadsheetsUse!="hide"){ setAttr("mail", spreadsheetsmail); }
     /* Do we need a banlist ?
@@ -235,13 +236,18 @@ function ok(data) {
     //console.log(data.feed.entry[0].link[0].href);
     //console.log(data.feed.updated.$t);
     corsmax=data.feed.entry.length; 
+    var patt = new RegExp(regstr.trim()) ; // Why do c/r come with regstr??
     for (var i1=0; i1<data.feed.entry.length; i1++) {
-        scriptRequest(data.feed.entry[i1].link[0].href+"?alt=json-in-script", ok2, fail);
+        //alert("sheet?: "+data.feed.entry[i1].title.$t) ;
+        //alert("True or false for "+ data.feed.entry[i1].title.$t + " matched \nwith /" + regstr + "/ is: " +patt.test(data.feed.entry[i1].title.$t));
+        if(patt.test(data.feed.entry[i1].title.$t)) {
+            scriptRequest(data.feed.entry[i1].link[0].href+"?alt=json-in-script", ok2, fail,regstr);
+        }
     }
 }
 
 
-function ok2(data2) {  
+function ok2(data2,regstr) {  
     var currsheet=data2.feed.title.$t;
     var titleList = {} ;
     var fieldsList = {} ;
@@ -399,11 +405,12 @@ if(idfromURL===undefined && con_spreadsheetid!="" && SpreadsheetsUse=="hide"){
 }
 */
 
-function getSheetsData(worksheets_id) {
+function getSheetsData(worksheets_id,regstr) {
+    //alert("I see "+worksheets_id+" with pattern "+regstr) ;
 	//var fields = Object.create(null);
 	//fields.title="$:/StoryList";fields.list="";
 	//       if($tw.browser) {$tw.wiki.addTiddler(new $tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))};
-	scriptRequest("https://spreadsheets.google.com/feeds/worksheets/"+worksheets_id+"/public/values?alt=json-in-script", ok, fail);
+	scriptRequest("https://spreadsheets.google.com/feeds/worksheets/"+worksheets_id+"/public/values?alt=json-in-script", ok, fail,regstr);
 }
 
 /*
