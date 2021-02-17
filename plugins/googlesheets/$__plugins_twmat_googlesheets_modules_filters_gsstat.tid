@@ -1,0 +1,36 @@
+created: 20210217213223919
+modified: 20210217214820546
+module-type: filteroperator
+tags: 
+title: $:/plugins/twmat/googlesheets/modules/filters/gsstat
+type: application/javascript
+
+/*\
+title: $:/core/modules/filters/title.js
+type: application/javascript
+module-type: filteroperator
+
+Filter operator  returns true if googlesheets code seems to have been loaded
+
+\*/
+(function(){
+
+/*jslint node: true, browser: true */
+/*global $tw: false */
+"use strict";
+
+/*
+Export our filter function
+*/
+exports.gsstat = function(source,operator,options) {
+	var results = [];
+	  if(typeof(getSheetsData) === "function") {
+           results.push("true") ;
+       } else {
+           results.push("false") ;
+      } 
+
+	return results;
+};
+
+})();
