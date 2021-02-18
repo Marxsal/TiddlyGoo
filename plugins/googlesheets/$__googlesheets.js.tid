@@ -211,7 +211,8 @@ function ok(data,regstr) {
     */
     var fields = Object.create(null);
     
-    /*
+    //#region 
+	/*
     fields.title="googlespreadsheetmail";
     fields.text=spreadsheetsmail;
     if($tw.browser) {
@@ -235,7 +236,8 @@ function ok(data,regstr) {
     //console.log( "Загружен пользователь " + spreadsheetsmail);
     //console.log(data.feed.entry[0].link[0].href);
     //console.log(data.feed.updated.$t);
-    corsmax=data.feed.entry.length; 
+    //#endregion
+	corsmax=data.feed.entry.length; 
     var patt = new RegExp(regstr.trim()) ; // Why do c/r come with regstr??
     for (var i1=0; i1<data.feed.entry.length; i1++) {
         //alert("sheet?: "+data.feed.entry[i1].title.$t) ;
@@ -293,13 +295,14 @@ function ok2(data2,regstr) {
         for(fld in fields) { fieldsList[fld] = 1 ; } 
 
         //fields.i=i+2;
-        if($tw.browser) {$tw.wiki.addTiddler(new $tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))}   
+        if($tw.browser) {$tw.wiki.addTiddler(new $tw.Tiddler($tw.wiki.getModificationFields(5000),fields,$tw.wiki.getCreationFields()))}   
 
         if(i==data2.feed.entry.length-1){
             corscurrent=corscurrent+1;
             if(corscurrent==corsmax-1){
 
-                //var       deferredChanges = Object.create(null);
+ //#region 
+				//var       deferredChanges = Object.create(null);
                 //$tw.pageWidgetNode.refresh(deferredChanges);
                 //window.location.hash=currhash;
 
@@ -330,7 +333,8 @@ function ok2(data2,regstr) {
                     }
                 ,2000); // setTimeout()
 */
-            } // if corscurrent=corsmax-1
+//#endregion
+			} // if corscurrent=corsmax-1
         } // if i==data2.feed.entry ....
     } // for var=0 loop
 
@@ -338,7 +342,7 @@ function ok2(data2,regstr) {
         // Create report list
         var reportText = "!! Tiddlers imported from ~GoogleSheets: \n\n" ;
         var reportFields = Object.create(null);
-        var stamp = fields.text=data2.feed.updated.$t;    
+        var stamp = data2.feed.updated.$t;    
         reportText += "\n\nData as of "+stamp+"\n\n" ;
         for (var key in titleList ) {
             reportText += "* [[" + key + "]] \n" ;
@@ -348,10 +352,11 @@ function ok2(data2,regstr) {
         for (var key in fieldsList ) {
             reportText += "* " + key + "\n" ;
         }
-        reportFields.title = "Googlesheets import report for " + currsheet ;
+        reportFields.title = "Googlesheets Import Report for " + currsheet ;
         reportFields.text = reportText ;
+		reportFields.tags = "_GSReports" ;
 
-        if($tw.browser) {$tw.wiki.addTiddler(new $tw.Tiddler($tw.wiki.getModificationFields(),reportFields,$tw.wiki.getCreationFields()))}   
+        if($tw.browser) {$tw.wiki.addTiddler(new $tw.Tiddler(getModificationFields(5000),reportFields,$tw.wiki.getCreationFields()))}   
 
 /*
     if (typeof Swiper== 'function' && currsheet=="GD-images") {
@@ -412,6 +417,21 @@ function getSheetsData(worksheets_id,regstr) {
 	//       if($tw.browser) {$tw.wiki.addTiddler(new $tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))};
 	scriptRequest("https://spreadsheets.google.com/feeds/worksheets/"+worksheets_id+"/public/values?alt=json-in-script", ok, fail,regstr);
 }
+
+/*
+Return a hashmap of the fields that should be set when a tiddler is modified
+*/
+function getModificationFields(offset = 0) {
+	//offset = (typeof offset !== 'undefined') ?  offset : 0 ;
+	var fields = Object.create(null),
+	    modifier = $tw.wiki.getTiddlerText("$:/status/UserName");
+	fields.modified = new Date((new Date()).getTime()+offset);
+	if(modifier) {
+		fields.modifier = modifier;
+	}
+	return fields;
+};
+  
 
 /*
 function addSpaces(nStr){
