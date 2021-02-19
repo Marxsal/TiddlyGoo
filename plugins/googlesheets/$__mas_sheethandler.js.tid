@@ -35,8 +35,8 @@ $tw.rootWidget.addEventListener("tm-sheetgetdata",
             alert("Can't call import -- you may\nneed to save and reload your \nTiddlyWiki file.") ;
        } else {
         getSheetsData(
-          $tw.wiki.renderTiddler("text/plain","$:/plugins/twmat/googlesheets/_spreadsheetid"),
-          $tw.wiki.renderTiddler("text/plain","$:/plugins/twmat/googlesheets/_regexp") 
+          $tw.wiki.getTiddlerText("$:/plugins/twmat/googlesheets/_spreadsheetid","HI!"),
+          $tw.wiki.getTiddlerText("$:/plugins/twmat/googlesheets/_regexp",".*") 
           )
        }
     });

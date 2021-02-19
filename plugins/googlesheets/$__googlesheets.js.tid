@@ -210,7 +210,18 @@ function ok(data,regstr) {
     }
     */
     var fields = Object.create(null);
-    
+	//alert(regstr) ;
+    // CURRENT
+	if(regstr.trim() == "__LIST_ONLY__") {
+		var reportText = "";
+		for (var i1=0; i1<data.feed.entry.length; i1++) {
+			reportText += "[[" + data.feed.entry[i1].title.$t + "]] " ; 
+		}
+		fields.list=reportText ;
+		fields.title = "GoogleSheets List" ;
+		if($tw.browser) {$tw.wiki.addTiddler(new $tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))}   
+		return ;
+	}
     //#region 
 	/*
     fields.title="googlespreadsheetmail";
