@@ -1,0 +1,97 @@
+created: 20181001125122669
+creator: Mat von TWaddle
+description: Editor and dropdown to set filters for importing Google sheets
+modified: 20210222211230430
+modifier: Mat von TWaddle
+tags: TW2Sheet $:/tags/Macro
+title: /googlesheets/SheetSelector
+
+\define select-sheet()
+<div class="twed-import-toolbar">
+<table class="twed-table-pretty twed-table-import-toolbar">
+<tr>
+<td>
+<div class="twed-filterselector" style="white-space:nowrap;">
+    <$edit-text tag="input"  size=86
+         tiddler="$:/plugins/twmat/googlesheets/_spreadsheetid"
+         default="" placeholder="Select sheet or type ID"
+         focusPopup=<<qualify "$:/state/popup/import-filter">>
+         class="twed-edit-text"
+    />
+   <$reveal type="nomatch" text="show"
+         state=<<qualify "$:/state/popup/subscription-filter-dropdown">> >
+      <$button
+        class="tc-btn-invisible tc-btn-dropdown twed-edit-text-select-btn" 
+        set=<<qualify "$:/state/popup/subscription-filter-dropdown">>
+        setTo="show">{{$:/core/images/down-arrow}}</$button>
+   </$reveal>
+   <$reveal type="match" text="show"
+        state=<<qualify "$:/state/popup/subscription-filter-dropdown">> >
+      <$button
+        class="tc-btn-invisible tc-btn-dropdown twed-edit-text-select-btn"
+        set=<<qualify "$:/state/popup/subscription-filter-dropdown">>
+        setTo="hide">{{$:/core/images/down-arrow}}</$button>
+   </$reveal>
+</div>
+</td>
+
+<td>
+<$vars str={{$:/plugins/twmat/googlesheets/_spreadsheetid}}>
+   <$button tooltip="Import previews" 
+          set="$:/plugins/twmat/googlesheets/_spreadsheetid" setTo="">
+      <$action-sendmessage $message="tm-sheetgetdata" 
+id={{{ [[$:/plugins/twmat/googlesheets/_spreadsheetid]get[text]get[spreadsheet-id]]}}}
+sheet={{{ [[$:/plugins/twmat/googlesheets/_spreadsheetid]get[sheet-id]]}}}
+/>
+      <$list filter="""[all[tiddlers]spreadsheet-id<str>] [<str>is[tiddler]]
+                            +[else[newspreadsheettiddler]]""">
+         <$list filter="[<currentTiddler>prefix[newspreadsheettiddler]]">
+            <$action-createtiddler 
+               $basetitle="spreadsheettiddler"
+               spreadsheet-id=<<str>>
+               tags=SheetTiddler
+               description="This is a sheettiddler for importing from a google spreadsheet. You can change the tiddler title and the description freely. See [[$:/plugins/twmat/googlesheets/readme]] for more info."
+                text="{{!!description}}<br><br>Source https:....{{!!spreadsheet-id}}"
+            />
+         </$list>
+      </$list>
+      IMPORT
+   </$button>
+</$vars>
+</td>
+</tr>
+</table>
+
+<$reveal type="match" text="show" default=""
+       state=<<qualify "$:/state/popup/subscription-filter-dropdown">> >
+   <div class="tc-block-dropdown twed-subscription-filter-dropdown">
+      <$list filter="[tag[SheetTiddler]]">
+         <div class="gs-link">
+            <$link to=<<currentTiddler>>>link</$link>
+         </div>
+         <$button  set="$:/plugins/twmat/googlesheets/_spreadsheetid"
+                          setTo={{!!title}} tooltip={{!!description}}
+                          class="twed-import-dropdown-btn tc-btn-invisible">
+            <$action-setfield text="hide"
+               $tiddler=<<qualify "$:/state/popup/subscription-filter-dropdown">>/>
+            <$transclude field=caption-title><$view field=title/></$transclude>
+         </$button>
+         <$vars spreadsheet={{!!title}}>
+            <$list filter="[enlist{!!sheet-tabs}]">
+               <$button  set="$:/plugins/twmat/googlesheets/_spreadsheetid!!sheet-id"
+                             setTo={{!!title}} tooltip="Import from this sheet only"
+                             class="twed-import-dropdown-btn tc-btn-invisible">
+                  <$action-setfield text=<<spreadsheet>>
+                     $tiddler="$:/plugins/twmat/googlesheets/_spreadsheetid"/>
+                  <$action-setfield text="hide"
+                     $tiddler=<<qualify "$:/state/popup/subscription-filter-dropdown">>/>
+                  - <$view field=title/>
+               </$button>
+            </$list>
+         </$vars>
+      </$list>
+      <div style="text-align:center;color:silver;" title=" no, don't hover here ;-) ">[hover for description]</div>
+   </div>
+</$reveal>
+</div>
+\end

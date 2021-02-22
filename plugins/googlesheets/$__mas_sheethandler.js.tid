@@ -34,10 +34,21 @@ $tw.rootWidget.addEventListener("tm-sheetgetdata",
        if(typeof(getSheetsData) !== "function") {
             alert("Can't call import -- you may\nneed to save and reload your \nTiddlyWiki file.") ;
        } else {
-        getSheetsData(
-          $tw.wiki.getTiddlerText("$:/plugins/twmat/googlesheets/_spreadsheetid","HI!"),
-          $tw.wiki.getTiddlerText("$:/plugins/twmat/googlesheets/_regexp",".*") 
-          )
+          var myFields  ;
+          if(typeof event.paramObject === "object") {
+            myFields = event.paramObject;
+         }
+         if(typeof event.param === "object") { // Backwards compatibility with 5.1.3
+            myFields = event.param;
+         }
+         var sheetId = myFields.id ? myFields.id : "" ;
+         var sheetName = myFields.sheet ? myFields.sheet : "" ;
+         
+          //alert("I see id="+ sheetId+"\nsheet="+sheetName ) ;
+          //$tw.wiki.getTiddlerText("$:/plugins/twmat/googlesheets/_spreadsheetid","HI!"),
+          //$tw.wiki.getTiddlerText("$:/plugins/twmat/googlesheets/_regexp",".*") 
+         
+          getSheetsData(myFields  ) ;
        }
     });
 

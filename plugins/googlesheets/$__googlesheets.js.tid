@@ -165,7 +165,7 @@ if (window.parent.frames.length > 0) {pinframe=1;
 
 var mytext="";
 var CallbackRegistry = {}; 
-function scriptRequest(url, onSuccess, onError,regstr) {
+function scriptRequest(url, onSuccess, onError,specs) {
 	var scriptOk = false; 
 	var callbackName = 'cb' + String(Math.random()).slice(-6);
 	url += ~url.indexOf('?') ? '&' : '?';
@@ -173,7 +173,7 @@ function scriptRequest(url, onSuccess, onError,regstr) {
 	CallbackRegistry[callbackName] = function(data) {
 		scriptOk = true; 
 		delete CallbackRegistry[callbackName]; 
-		onSuccess(data,regstr); 
+		onSuccess(data,specs); 
 	};
 
 	function checkCallback() {
@@ -195,7 +195,7 @@ function scriptRequest(url, onSuccess, onError,regstr) {
 }
 
 
-function ok(data,regstr) { 
+function ok(data,specs) { 
     //alert("ok sees pattern: " + regstr ) ;
     //var spreadsheetsmail=data.feed.author[0].email.$t;
     //if(SpreadsheetsUse!="hide"){ setAttr("mail", spreadsheetsmail); }
@@ -212,7 +212,7 @@ function ok(data,regstr) {
     var fields = Object.create(null);
 	//alert(regstr) ;
     // CURRENT
-	if(regstr.trim() == "__LIST_ONLY__") {
+	if(specs.sheet == "__LIST_ONLY__") {
 		var reportText = "";
 		for (var i1=0; i1<data.feed.entry.length; i1++) {
 			reportText += "[[" + data.feed.entry[i1].title.$t + "]] " ; 
@@ -249,18 +249,18 @@ function ok(data,regstr) {
     //console.log(data.feed.updated.$t);
     //#endregion
 	corsmax=data.feed.entry.length; 
-    var patt = new RegExp(regstr.trim()) ; // Why do c/r come with regstr??
+    var patt = new RegExp(specs.sheet) ; // Why do c/r come with regstr??
     for (var i1=0; i1<data.feed.entry.length; i1++) {
         //alert("sheet?: "+data.feed.entry[i1].title.$t) ;
         //alert("True or false for "+ data.feed.entry[i1].title.$t + " matched \nwith /" + regstr + "/ is: " +patt.test(data.feed.entry[i1].title.$t));
         if(patt.test(data.feed.entry[i1].title.$t)) {
-            scriptRequest(data.feed.entry[i1].link[0].href+"?alt=json-in-script", ok2, fail,regstr);
+            scriptRequest(data.feed.entry[i1].link[0].href+"?alt=json-in-script", ok2, fail,specs);
         }
     }
 }
 
 
-function ok2(data2,regstr) {  
+function ok2(data2,specs) {  
     var currsheet=data2.feed.title.$t;
     var titleList = {} ;
     var fieldsList = {} ;
@@ -421,12 +421,12 @@ if(idfromURL===undefined && con_spreadsheetid!="" && SpreadsheetsUse=="hide"){
 }
 */
 
-function getSheetsData(worksheets_id,regstr) {
+function getSheetsData(specs) {
     //alert("I see "+worksheets_id+" with pattern "+regstr) ;
 	//var fields = Object.create(null);
 	//fields.title="$:/StoryList";fields.list="";
 	//       if($tw.browser) {$tw.wiki.addTiddler(new $tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))};
-	scriptRequest("https://spreadsheets.google.com/feeds/worksheets/"+worksheets_id+"/public/values?alt=json-in-script", ok, fail,regstr);
+	scriptRequest("https://spreadsheets.google.com/feeds/worksheets/"+specs.id+"/public/values?alt=json-in-script", ok, fail,specs);
 }
 
 /*

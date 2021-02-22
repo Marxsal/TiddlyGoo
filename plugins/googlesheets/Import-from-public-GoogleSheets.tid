@@ -1,6 +1,6 @@
 created: 20210209112925504
 creator: TwMat
-modified: 20210217224953534
+modified: 20210222170714606
 modifier: 
 tags: TW2Sheet
 title: $:/plugins/twmat/googlesheets/readme
@@ -9,70 +9,68 @@ title: $:/plugins/twmat/googlesheets/readme
 
 !!!Please reload your wiki one more time!
 
-
-To use the GoogleSheets plugin you must first reload the wiki once more. You will then find further instructions here.
-
----------------------
+To use the GoogleSheets plugin you must first reload the wiki once more for complete initialization. You will then find further instructions here.
 
 </$list>
+<$list filter="[gsstat[]compare:string:ne[false]]+[limit[1]]" >
 
-The GoogleSheets plugin lets you import from [[Google Sheets|https://www.google.com/sheets/about/]] into TiddlyWiki.
+The GoogleSheets plugin lets you import [[Google Sheets|https://www.google.com/sheets/about/]] into TiddlyWiki.
 
 *Each Google sheet row becomes a tiddler.
-*The first row - the "column heads" - define the tiddler fields.
-
-;Note
-*Imported tiddlers appear in the //Recent// sidebar and are listed in the Import list.
-*@@color:red; Importing overwrites@@ existing tiddlers having the same title.
-
-
-!!How to set up your Google Sheet for this plugin
-#The Google sheet must be //shared// ''AND'' //published// ([[instructions|https://www.freecodecamp.org/news/cjn-google-sheets-as-json-endpoint/]]).<br>(If you want people freely edit your //sheet// then you need to share it with "anyone can edit" rights.)
-#The first row (row 1) defines the tiddler fields:<br>There must be a column titled ''id'' for the //tiddler titles//.<br>You'll probably also want a //text// column and a //tags// column but you can add any arbitrary columns/fields (respecting tiddler field naming conventions).
-#The ''Google sheet ID'' is added into the box below, i.e this part:<br>~https://docs.google.com/spreadsheets/d/ @@color:red;1GzZFzmgF-vBrRYOyz5VqjJC8QAQcOHnFBa1PEW9NhcU@@/edit#gid=1627697525
-
-><$edit-text tiddler="$:/plugins/twmat/googlesheets/_spreadsheetid" tag="input"  type="text" size=56 placeholder="enter ID of your sheet*" /> <$button>
-<$action-sendmessage $message="tm-sheetgetdata" />
-Import NOW
-</$button>
-
+*The first row - the column "heads" - defines the tiddler fields.
+*Imported tiddlers appear in the //Recent// sidebar and are listed in the Import lists.
+*Importing @@color:red; overwrites@@ existing tiddlers having the same title.
+*Each Spreadsheet gets a designated "spreadsheet tiddler" for easy sharing and tiddly manipulation.
 
 !!Demo
-<$reveal type="nomatch" state="$:/state/plugins/googlesheetsdemo" text="show">
 
-<$button set="$:/state/plugins/googlesheetsdemo" setTo="show">Show demo {{$:/core/images/chevron-down}}</$button>
+Use `<<select-sheet>>` to get the following selectwidget to select a spreadsheet tiddler:
 
+<<select-sheet>>
+
+''Select'' "DEMO spreadsheet" or one of its subsheets. Then look in the sidebar //Recent// tab as you click IMPORT. The "DEMO spreadsheet" is a //~SpreadsheetTiddler// (see its link in the selectwidget) with data for a specific Google spreadsheet.
+
+''If you type'' some string, instead of select, then the import also creates a new ~SpreadsheetTiddler and adds that string to its `spreadsheet-id` field. This makes it simple to add new Google spreadsheet ID:s  - see "How to set up your Google Sheets for this plugin" below.
+
+Here you can look at the <$reveal type="nomatch" state="$:/state/plugins/googlesheetsdemo" text="show">
+<$button set="$:/state/plugins/googlesheetsdemo" setTo="show">DEMO source spreadsheet {{$:/core/images/chevron-down}}</$button>
 </$reveal>
 <$reveal type="match" state="$:/state/plugins/googlesheetsdemo" text="show">
+<$button set="$:/state/plugins/googlesheetsdemo" setTo="hide">DEMO source spreadsheet {{$:/core/images/chevron-up}}</$button>
 
-<$button set="$:/state/plugins/googlesheetsdemo" setTo="hide">Hide demo  {{$:/core/images/chevron-up}}</$button>
+<div style="background:aliceblue; padding-left:5px; padding-top:1px;">
 
-This shows a [[Google form|https://www.google.com/forms/about/]] and a Google sheet. The //form// is an interface to create a row in the sheet but you can directly add data into the sheet cells as well. (A main puropose with Google forms is to send out a form to multiple people; when they submit the filled out form, all data is automatically collected into a single sheet.)
+(Yes, the page "jumps to top" when you open this because of the iframes below.)
 
-<table style="width:100%; border:0; xdisplay:none">
+The "DEMO spreadsheet" in the selectwidget here above links to the google spreadsheet you see below. You can add new rows that become tiddlers via the [[Google form|https://www.google.com/forms/about/]] - or  you can directly add data into the sheet. The ''id'' column has the tiddler titles.
+
+<table style="width:100%; border:0; Xdisplay:none">
 <tr>
-<td colspan=2>
-<$button>
-<$action-sendmessage $message="tm-sheetgetdata" />
-Import the tiddlers from the google table NOW
-</$button><br><br>
-</td>
-</tr>
-<tr>
-<td style="vertical-align:top;"> 
-<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf6o-XVmgpgZvHIbE_sebfnx7HDsyJOVeGcG9qAHA5DEjJtMA/viewform?embedded=true" width="100%" height="558" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-</td>
-<td style="vertical-align:top">
+<td style="vertical-align:top; padding:0;">
 <iframe src="https://docs.google.com/spreadsheets/d/1QUoZosiS3emBQNM_HugaptU5qY1Ze5lBQXVd8yZit6A/edit?single=true&gid=0&widget=false&rm=minimal&chrome=false&headers=false" width="100%" height="558"></iframe>
 
 </td>
+<td style="vertical-align:top; padding:0;"> 
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf6o-XVmgpgZvHIbE_sebfnx7HDsyJOVeGcG9qAHA5DEjJtMA/viewform?embedded=true" width="100%" height="558" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+</td>
 </tr>
 </table>
-
+</div>
 
 </$reveal>
 
 
+!!How to set up your Google Sheets for this plugin
+#The Google sheet must be //shared// ''AND'' //published// ([[instructions|https://www.freecodecamp.org/news/cjn-google-sheets-as-json-endpoint/]]).<br>(If you want people to freely edit your //sheet// then you need to share it with "anyone can edit" rights.)
+#The first row (row 1) defines the tiddler fields:<br>One column must be titled ''id'' for the //tiddler titles//.<br>You'll probably also want a //text// column and a //tags// column but you can add any arbitrary columns/fields (respecting tiddler field naming conventions).
+#The ''Google sheet ID'' is added into the "select sheet" widget, i.e this part:<br>~https://docs.google.com/spreadsheets/d/ @@color:red;1GzZFzmgF-vBrRYOyz5VqjJC8QAQcOHnFBa1PEW9NhcU@@/edit#gid=1627697525<br>
+#Edit the resulting ~SpreadsheetTiddler to give it a good name and a description, etc.
 
 !!Cred
 Fellow tiddlywikian ''Siniy-Kit'' generously [[provides|https://groups.google.com/u/1/g/tiddlywiki/c/xQJ_J0AVyfM]] the framework for a webshop based on TiddlyWiki and Google services. The plugin solution for importing from Google sheets into TiddlyWiki is from Siniy-Kits solution.
+
+Fellow ''Mark'' is the JS expert and has made adjustments to make this work as a plugin. Without Mark, there would be no plugin.
+
+Also thanks to ''~CodaCodr'' for encouragement, testing and good pointers.
+
+</$list>
