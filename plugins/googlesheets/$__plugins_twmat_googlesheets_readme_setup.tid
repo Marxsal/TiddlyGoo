@@ -1,0 +1,20 @@
+caption: Setup
+created: 20210222214815164
+creator: TwMat
+modified: 20210223082107659
+modifier: 
+tags: TW2Sheet
+title: $:/plugins/twmat/googlesheets/readme_setup
+
+!!How to set up your Google Sheets for this plugin
+In your Google spreadsheet:
+
+#//Share// ''AND'' //publish// your google spreadsheet ([[instructions|https://www.freecodecamp.org/news/cjn-google-sheets-as-json-endpoint/]]).
+#The first row (row 1) defines the tiddler fields:<br>One column must be titled ''id'' for the //tiddler titles//.<br>You'll probably also want a //text// column and a //tags// column but you can add any arbitrary columns/fields (respecting tiddler field [[naming conventions|https://tiddlywiki.com/#TiddlerFields]]).
+
+In your ~TiddlyWiki:
+
+#Get the "importing field" in your TW by typing `<<select sheet>>`
+#In the field, enter the ''Google spreadsheet ID'', i.e this red part:<br>^^~https://docs.google.com/spreadsheets/d/ @@color:red;1GzZFzmgF-vBrRYOyz5VqjJC8QAQcOHnFBa1PEW9NhcU@@ /edit#gid=1627697525^^<br>
+#Click [IMPORT] to import and which also creates a ~SpreadsheetTiddler for the entered spreadsheet-id and titled "//spreadsheettiddler n//"
+#Edit the new ~SpreadsheetTiddler to give it a better title and a description, etc.

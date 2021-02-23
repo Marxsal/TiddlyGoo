@@ -1,0 +1,65 @@
+created: 20180903112812969
+creator: Mat von TWaddle
+description: General styling for the TWederation UI
+has-notifications-label: 
+modified: 20210220230657428
+modifier: Mat von TWaddle
+no-notifications-label: 
+tags: $:/tags/Stylesheet TW2Sheet
+title: /googlesheets/Stylesheet
+type: text/vnd.tiddlywiki
+
+<pre>
+.tc-block-dropdown .gs-link a {
+  float:right;
+  padding:0;
+  padding-right:3px;
+}
+.twed-btn svg {
+  vertical-align:top;
+  padding:0;
+}
+.twed-edit-text {
+  border:1px solid silver; 
+  padding:0 28px 3px 3px;  
+  max-width:440px;
+  width:100%;
+}
+.twed-edit-text-select-btn {
+  margin-left:-30px;
+  margin-top:-4px;
+  padding:6px; 
+}
+.twed-table-pretty, .twed-table-pretty td {
+  border:0;
+}
+.twed-full-width { width:100%;
+}
+
+
+.twed-import-dropdown-btn {
+  display:block; width:calc(100% - 30px); text-align:left; padding:2px;
+}
+.twed-import-dropdown-btn .twed-import-dropdown-svg {
+  display:inline;
+  float:right;
+}
+.twed-import-dropdown-svg {
+  fill:silver;
+}
+
+.twed-import-toolbar {
+  display:block;
+  margin-bottom:.4em
+}
+.twed-table-import-toolbar {
+  margin:0;
+}
+.twed-table-import-toolbar td {
+  padding:0; padding-right:10px;
+}
+.twed-subscription-filter-dropdown {
+  left:4em;
+}
+
+</pre>

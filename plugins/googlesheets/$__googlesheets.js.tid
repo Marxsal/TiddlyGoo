@@ -363,7 +363,7 @@ function ok2(data2,specs) {
         for (var key in fieldsList ) {
             reportText += "* " + key + "\n" ;
         }
-        reportFields.title = "Googlesheets Import Report for " + currsheet ;
+        reportFields.title = "Googlesheets Import Report for \"" + currsheet + "\"";
         reportFields.text = reportText ;
 		reportFields.tags = "_GSReports" ;
 
