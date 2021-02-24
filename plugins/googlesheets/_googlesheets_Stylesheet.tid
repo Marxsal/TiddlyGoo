@@ -1,65 +1,58 @@
 created: 20180903112812969
 creator: Mat von TWaddle
-description: General styling for the TWederation UI
-has-notifications-label: 
-modified: 20210220230657428
+modified: 20210223221946021
 modifier: Mat von TWaddle
-no-notifications-label: 
 tags: $:/tags/Stylesheet TW2Sheet
 title: /googlesheets/Stylesheet
-type: text/vnd.tiddlywiki
+type: text/css
 
-<pre>
-.tc-block-dropdown .gs-link a {
-  float:right;
-  padding:0;
-  padding-right:3px;
+.gs-toolbar {
+  display:block;
+  margin-bottom:.4em;
 }
-.twed-btn svg {
-  vertical-align:top;
-  padding:0;
-}
-.twed-edit-text {
-  border:1px solid silver; 
-  padding:0 28px 3px 3px;  
-  max-width:440px;
-  width:100%;
-}
-.twed-edit-text-select-btn {
-  margin-left:-30px;
-  margin-top:-4px;
-  padding:6px; 
-}
-.twed-table-pretty, .twed-table-pretty td {
+.gs-toolbar td {
   border:0;
 }
-.twed-full-width { width:100%;
+.gs-editor-td {
+   width:100%;
 }
-
-
-.twed-import-dropdown-btn {
-  display:block; width:calc(100% - 30px); text-align:left; padding:2px;
+.gs-editor {
+  border:0; outline:1px solid;
+  outline:0;
+  width:100%
 }
-.twed-import-dropdown-btn .twed-import-dropdown-svg {
-  display:inline;
-  float:right;
+.gs-sheetid-td {
+  padding:0 10px; 
+  white-space:nowrap;
+  border-left:1px solid silver !important;
 }
-.twed-import-dropdown-svg {
-  fill:silver;
+.gs-toolbar-btn-td {
+  width:3em;
+  min-width:3em;
 }
-
-.twed-import-toolbar {
+.gs-toolbar-btn {
+  padding:2px 6px; 
+}
+.gs-import-btn-td {
+  padding:0;
+}
+.gs-import-btn {
+}
+.gs-dropdown {
+  left:6em;
+  margin-top:-.5em;
+  padding:10px;
+ width:40%;
+  min-width:20em;
+}
+.gs-dropdown-item {
   display:block;
-  margin-bottom:.4em
+  width:calc(100% - 30px);
+  text-align:left;
+  padding:2px;
 }
-.twed-table-import-toolbar {
-  margin:0;
+.gs-dropdown .gs-link {
+  float:right;
+  padding:0;
+  background:white;
 }
-.twed-table-import-toolbar td {
-  padding:0; padding-right:10px;
-}
-.twed-subscription-filter-dropdown {
-  left:4em;
-}
-
-</pre>

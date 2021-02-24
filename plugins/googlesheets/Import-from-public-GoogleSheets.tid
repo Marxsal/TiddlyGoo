@@ -1,11 +1,9 @@
 created: 20210209112925504
 creator: TwMat
-modified: 20210223173950779
+modified: 20210224025533743
 modifier: 
-revision: 0
 tags: TW2Sheet
 title: $:/plugins/twmat/googlesheets/readme
-type: text/vnd.tiddlywiki
 
 <$list filter="[gsstat[]compare:string:ne[true]]+[limit[1]]" >
 
@@ -16,6 +14,6 @@ To activate the GoogleSheets plugin you must first reload the wiki once more. Yo
 </$list>
 <$list filter="[gsstat[]compare:string:ne[false]]+[limit[1]]" >
 
-<<tabs "[all[tiddllers+shadows]prefix[$:/plugins/twmat/googlesheets/readme_]]" "$:/plugins/twmat/googlesheets/readme_about" "$:/state/googlesheets/readme">>
+<<tabs "[all[tiddlers+shadows]prefix[$:/plugins/twmat/googlesheets/readme_]]" "$:/plugins/twmat/googlesheets/readme_about" "$:/state/googlesheets/readme">>
 
 </$list>
