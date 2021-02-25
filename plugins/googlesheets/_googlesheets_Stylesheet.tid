@@ -1,6 +1,6 @@
 created: 20180903112812969
 creator: Mat von TWaddle
-modified: 20210223221946021
+modified: 20210224091634010
 modifier: Mat von TWaddle
 tags: $:/tags/Stylesheet TW2Sheet
 title: /googlesheets/Stylesheet
@@ -17,7 +17,7 @@ type: text/css
    width:100%;
 }
 .gs-editor {
-  border:0; outline:1px solid;
+  border:0;
   outline:0;
   width:100%
 }

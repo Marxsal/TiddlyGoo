@@ -1,7 +1,7 @@
 created: 20181001125122669
 creator: Mat von TWaddle
 description: Editor and dropdown to set filters for importing Google sheets
-modified: 20210223220916062
+modified: 20210224134555493
 modifier: Mat von TWaddle
 tags: TW2Sheet $:/tags/Macro
 title: /googlesheets/SheetSelector
@@ -15,7 +15,7 @@ title: /googlesheets/SheetSelector
          default="" placeholder="Select sheet or type ID"
          focusPopup=<<qualify "$:/state/popup/import-filter">>
          class="gs-editor"
-         inputActions="""<$action-setfield $tiddler="$:/plugins/twmat/googlesheets/_spreadsheetid" sheet-id="__LIST_ONLY__"/>"""
+         inputActions="""<$action-setfield $tiddler="$:/plugins/twmat/googlesheets/_spreadsheetid" sheet-id="__SHEET_NAMES_ONLY__"/>"""
       />
 </td>
 
@@ -44,21 +44,22 @@ title: /googlesheets/SheetSelector
 
 <td class="gs-import-btn-td">
 <$vars str={{$:/plugins/twmat/googlesheets/_spreadsheetid}}
-id={{{ [[$:/plugins/twmat/googlesheets/_spreadsheetid]get[text]get[spreadsheet-id]]}}}
-sheet={{$:/plugins/twmat/googlesheets/_spreadsheetid!!sheet-id}}
->
+            id={{{ [[$:/plugins/twmat/googlesheets/_spreadsheetid]get[text]get[spreadsheet-id]]}}}
+           sheet={{$:/plugins/twmat/googlesheets/_spreadsheetid!!sheet-id}}>
    <$button tooltip="Import previews" class="gs-import-btn"
           set="$:/plugins/twmat/googlesheets/_spreadsheetid" setTo="">
-      
-<$list filter="""[tag[SheetTiddler]get[spreadsheet-id]compare:string:eq<str>] [<str>is[tiddler]] [<str>is[shadow]]
+      <$list filter="""[tag[SheetTiddler]get[spreadsheet-id]compare:string:eq<str>] [<str>is[tiddler]] [<str>is[shadow]]
                             +[else[newspreadsheettiddler]]""">
-    <$action-setfield $tiddler="$:/plugins/twmat/googlesheets/_spreadsheetid" sheet-id=""/>
-         <$list filter="[<currentTiddler>prefix[newspreadsheettiddler]]" emptyMessage="""<$action-sendmessage  $message="tm-sheetgetdata"  id=<<id>> sheet=<<sheet>> />""">
-                  <$action-createtiddler 
+         <$action-setfield $tiddler="$:/plugins/twmat/googlesheets/_spreadsheetid" sheet-id=""/>
+         <$list filter="[<currentTiddler>prefix[newspreadsheettiddler]]"
+                  emptyMessage="""<$action-sendmessage  $message="tm-sheetgetdata"  id=<<id>> sheet=<<sheet>> />""">
+            <$action-createtiddler 
                $basetitle="spreadsheettiddler"
                spreadsheet-id=<<str>>
                tags=SheetTiddler
-               description="This is a spreadsheet tiddler for importing from a google spreadsheet. You can edit the tiddler title and the description freely. See [[$:/plugins/twmat/googlesheets/readme]] for more info."
+               description="This is a spreadsheet tiddler for importing from a google spreadsheet. 
+                                     You can edit the tiddler title and the description freely. 
+                                     See [[$:/plugins/twmat/googlesheets/readme]] for more info."
                 text="{{!!description}}<br><br>Source https:.../{{!!spreadsheet-id}}/..."
             />
          </$list>
@@ -85,7 +86,7 @@ sheet={{$:/plugins/twmat/googlesheets/_spreadsheetid!!sheet-id}}
             <$transclude field=caption-title><$view field=title/></$transclude>
          </$button>
          <$vars spreadsheet={{!!title}}>
-            <$list filter="""__LIST_ONLY__ [enlist{!!sheet-tabs}]""">
+            <$list filter="""__SHEET_NAMES_ONLY__ [enlist{!!sheet-tabs}]""">
                <$button  set="$:/plugins/twmat/googlesheets/_spreadsheetid!!sheet-id"
                              setTo={{!!title}} tooltip="Import from this sheet only"
                              class="gs-dropdown-item tc-btn-invisible">

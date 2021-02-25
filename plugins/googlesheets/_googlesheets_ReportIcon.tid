@@ -1,0 +1,19 @@
+created: 20210223231637733
+modified: 20210224111150986
+tags: $:/tags/Stylesheet
+title: /googlesheets/ReportIcon
+
+\define linkstyle()
+<$vars
+    uri=<<makedatauri '$(tid)$' "text/plain">>
+    urititle="""{{{ [<uri>removeprefix[data:text/plain,]] }}}"""
+>
+<style>
+.tc-sidebar-lists a[href="#<<urititle>>"]:before { content:"▤ "; color:green;  }
+</style>
+</$vars>
+\end
+
+<$list filter="""[tag[_GSReports]]""" variable=tid>
+<<linkstyle>>
+</$list>

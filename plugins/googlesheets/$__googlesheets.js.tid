@@ -179,7 +179,8 @@ function scriptRequest(url, onSuccess, onError,specs) {
 	function checkCallback() {
 		if (scriptOk) return; 
 		delete CallbackRegistry[callbackName];
-		onError(url); 
+		onError("\n-- The selected googlesheet tiddler probably has a missing or faulty spreadsheet-id.\n"+url
+			 ); 
 	}
 
 	var script = document.createElement('script');
@@ -212,12 +213,14 @@ function ok(data,specs) {
     var fields = Object.create(null);
 	//alert(regstr) ;
     // CURRENT
-	if(specs.sheet == "__LIST_ONLY__") {
-		var reportText = "";
+	if(specs.sheet == "__SHEET_NAMES_ONLY__") {
+		var reportText = "", reportList="" ;
 		for (var i1=0; i1<data.feed.entry.length; i1++) {
-			reportText += "[[" + data.feed.entry[i1].title.$t + "]] " ; 
+			reportText += "* " + data.feed.entry[i1].title.$t + "\n" ; 
+			reportList += "[[" + data.feed.entry[i1].title.$t + "]] " ; 
 		}
-		fields.list=reportText ;
+		fields.list=reportList ;
+		fields.text=reportText ;
 		fields.title = "GoogleSheets List" ;
 		if($tw.browser) {$tw.wiki.addTiddler(new $tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))}   
 		return ;
@@ -363,7 +366,7 @@ function ok2(data2,specs) {
         for (var key in fieldsList ) {
             reportText += "* " + key + "\n" ;
         }
-        reportFields.title = "Googlesheets Import Report for \"" + currsheet + "\"";
+        reportFields.title = "Report for \"" + currsheet + "\"";
         reportFields.text = reportText ;
 		reportFields.tags = "_GSReports" ;
 
