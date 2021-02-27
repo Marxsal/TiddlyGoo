@@ -1,7 +1,7 @@
 caption: Setup
 created: 20210222214815164
 creator: TwMat
-modified: 20210223082107659
+modified: 20210225140404982
 modifier: 
 tags: TW2Sheet
 title: $:/plugins/twmat/googlesheets/readme_setup
@@ -15,6 +15,6 @@ In your Google spreadsheet:
 In your ~TiddlyWiki:
 
 #Get the "importing field" in your TW by typing `<<select sheet>>`
-#In the field, enter the ''Google spreadsheet ID'', i.e this red part:<br>^^~https://docs.google.com/spreadsheets/d/ @@color:red;1GzZFzmgF-vBrRYOyz5VqjJC8QAQcOHnFBa1PEW9NhcU@@ /edit#gid=1627697525^^<br>
+#In the field, enter the ''Google spreadsheet ID'', i.e this red part:<br>^^~https://docs.google.com/spreadsheets/d/ @@color:crimson;1GzZFzmgF-vBrRYOyz5VqjJC8QAQcOHnFBa1PEW9NhcU@@ /edit#gid=1627697525^^<br>
 #Click [IMPORT] to import and which also creates a ~SpreadsheetTiddler for the entered spreadsheet-id and titled "//spreadsheettiddler n//"
 #Edit the new ~SpreadsheetTiddler to give it a better title and a description, etc.

@@ -1,7 +1,7 @@
 created: 20181001125122669
 creator: Mat von TWaddle
 description: Editor and dropdown to set filters for importing Google sheets
-modified: 20210224134555493
+modified: 20210225141652062
 modifier: Mat von TWaddle
 tags: TW2Sheet $:/tags/Macro
 title: /googlesheets/SheetSelector
@@ -83,9 +83,10 @@ title: /googlesheets/SheetSelector
                $tiddler=<<qualify "$:/state/popup/subscription-filter-dropdown">>/>
             <$action-setfield sheet-id=""
                $tiddler="$:/plugins/twmat/googlesheets/_spreadsheetid"/>
-            <$transclude field=caption-title><$view field=title/></$transclude>
+            <$transclude field=caption-title>''<$view field=title/>''</$transclude>
          </$button>
          <$vars spreadsheet={{!!title}}>
+            <div class="gs-dropdown-itemgroup">
             <$list filter="""__SHEET_NAMES_ONLY__ [enlist{!!sheet-tabs}]""">
                <$button  set="$:/plugins/twmat/googlesheets/_spreadsheetid!!sheet-id"
                              setTo={{!!title}} tooltip="Import from this sheet only"
@@ -97,6 +98,7 @@ title: /googlesheets/SheetSelector
                   - <$view field=title/>
                </$button>
             </$list>
+            </div>
          </$vars>
       </$list>
       <div style="text-align:center;color:silver;" title=" no, don't hover here ;-) ">[hover for description]</div>

@@ -1,7 +1,7 @@
 caption: About
 created: 20210222214533477
 creator: TwMat
-modified: 20210222215309911
+modified: 20210225113658732
 modifier: 
 tags: TW2Sheet
 title: $:/plugins/twmat/googlesheets/readme_about
@@ -9,10 +9,12 @@ title: $:/plugins/twmat/googlesheets/readme_about
 The GoogleSheets plugin lets you import [[Google Sheets|https://www.google.com/sheets/about/]] into TiddlyWiki.
 
 *Each Google sheet row becomes a tiddler.
-*The first row - the column "heads" - defines the tiddler fields.
-*Imported tiddlers appear in the //Recent// sidebar and are listed in the Import lists.
-*Importing @@color:red; overwrites@@ existing tiddlers having the same title.
-*Each Spreadsheet gets a designated "spreadsheet tiddler" for easy sharing and tiddly manipulation.
+*Each Spreadsheet gets a designated "spreadsheet tiddler" with its meta-data.
+*Imported tiddlers appear in the //Recent// sidebar and are listed in "Report for ⟨sheetname⟩" tiddlers.
+*Imported tiddlers are automatically tagged with the name of the sheet.
+*Importing @@color:crimson; overwrites@@ existing tiddlers having the same title.
+
+''Share your spreadsheet tiddlers'' so others can import your tiddlers into their wikis!
 
 !!Cred
 Fellow tiddlywikian ''Siniy-Kit'' generously [[provides|https://groups.google.com/u/1/g/tiddlywiki/c/xQJ_J0AVyfM]] the framework for a webshop based on TiddlyWiki and Google services. The plugin solution for importing from Google sheets into TiddlyWiki is from Siniy-Kits solution.

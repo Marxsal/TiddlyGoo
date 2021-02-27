@@ -1,7 +1,7 @@
 caption: Demo
 created: 20210222214701871
 creator: TwMat
-modified: 20210223081448390
+modified: 20210225120949955
 modifier: 
 tags: TW2Sheet
 title: $:/plugins/twmat/googlesheets/readme_demo
@@ -30,11 +30,11 @@ The "DEMO spreadsheet" in the dropdown here above links to the google spreadshee
 <table style="width:100%; border:0; Xdisplay:none">
 <tr>
 <td style="vertical-align:top; padding:0;">
-<iframe src="https://docs.google.com/spreadsheets/d/1QUoZosiS3emBQNM_HugaptU5qY1Ze5lBQXVd8yZit6A/edit?single=true&gid=0&widget=false&rm=minimal&chrome=false&headers=false" width="100%" height="558"></iframe>
-
+<iframe src="https://docs.google.com/spreadsheets/d/1QUoZosiS3emBQNM_HugaptU5qY1Ze5lBQXVd8yZit6A/edit?single=true&gid=0&widget=false&rm=minimal&chrome=false&headers=false" width="100%" height="400"></iframe>
 </td>
+</tr><tr>
 <td style="vertical-align:top; padding:0;"> 
-<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf6o-XVmgpgZvHIbE_sebfnx7HDsyJOVeGcG9qAHA5DEjJtMA/viewform?embedded=true" width="100%" height="558" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf6o-XVmgpgZvHIbE_sebfnx7HDsyJOVeGcG9qAHA5DEjJtMA/viewform?embedded=true" width="100%" height="520" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
 </td>
 </tr>
 </table>

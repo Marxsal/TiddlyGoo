@@ -11,82 +11,10 @@ var HEEGreadyState="onload";
 var corsmax=0;
 var corscurrent=0;
 
-/*
-function ContactFormSubmit(){
-	var re = /^[\w-\.]+@[\w-]+\.[a-z]{3,14}$/i;
-	var myMail = document.querySelector('.userOO_form').value;
-	var valid = re.test(myMail);
 
-	document.querySelector('[aria-label^="name"]').value=document.querySelector('.userFF_form').value;
-	document.querySelector('[aria-label^="telephone"]').value=document.querySelector('.userII_form').value;
-	document.querySelector('[aria-label^="email"]').value=document.querySelector('.userOO_form').value;
-	document.querySelector('[aria-label^="client_comments"]').value=document.querySelector('.userCC_form').value;
-	document.querySelector('[aria-label^="order_number"]').value="Z_Запрос из контактной формы";
-	document.querySelector('[aria-label^="link_for_your_order"]').value="https:\\\\heeg.ru";
 
-	if (document.querySelector('.userFF_form').value === ""){ $tw.modal.display("$:/_alert/noname"); return;}
-	if (document.querySelector('.userII_form').value === ""){$tw.modal.display("$:/_alert/notelephone"); return;}
-	if (document.querySelector('.userOO_form').value=="") {document.querySelector('[aria-label^="email"]').value=$tw.wiki.renderTiddler("text/plain","$:/constant/_nomail");}
-	if (valid || document.querySelector('.userOO_form').value=="") {} else{ $tw.modal.display("$:/_alert/noemail"); return;}
 
-	document.querySelector('[name="rsubmit"]').click();
-	$tw.modal.display("$:/_alert/form_send");
-	document.querySelector('[target="my_iframe"]').reset();
-};
-*/
 
-/*
-function isLocalStorageAvailable() {
-	var test2 = 'test2';
-	try {
-		localStorage.setItem(test2, test2);
-		return true;
-	} catch(e) {
-		return false;
-	}
-};
-*/
-
-/*
-function StaticCut(){
-	if (isLocalStorageAvailable()) { 
-		var dataSt= localStorage.getItem("userStaticCutLS"+getUrlVars()["id"]); 
-		if(dataSt!=null){
-			var fields = Object.create(null);
-			fields.title="$:/temp/userStaticCutLS";
-			fields.text=dataSt.replace (/\+\+/g, '\n').replace (/\|\|/g, ':');
-			fields.type="application/x-tiddler-dictionary"
-			if($tw.browser) {$tw.wiki.addTiddler(new $tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))};
-		}}
-};
-
-StaticCut();
-*/
-
-/*
-function download(file,className) {
-	for(var a=0;a<file.length;a++) {
-		const link = document.createElement("a");
-		const objectURL = URL.createObjectURL(file[a]);
-		var fields = Object.create(null);
-		if(typeof className == "string"){ 
-			link.download =className+"_"+ file[a].name.replace (/\~/g, '_'); fields.tags=className;
-		}else{link.download =file[a].name};
-		link.href = objectURL;
-		document.body.appendChild(link);
-
-		fields.title=link.download;fields._canonical_uri=link.download;fields.type="image/jpeg";
-		if($tw.browser) {$tw.wiki.addTiddler(new $tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))};
-
-		//	requestAnimationFrame(() => {
-		link.click();
-		link.remove();
-		URL.revokeObjectURL(objectURL);
-		//	});
-	}
-	alert("Check pictures");
-}
-*/
 
 function a(i){
 	var text="";
@@ -97,68 +25,10 @@ function a(i){
 	return text;
 }
 
-/*
-function stickmenu() {
-	if (document.getElementById('aside1')){
-		var a = document.querySelector('#aside1'), b = null;  
-		window.addEventListener('scroll', Ascroll, false);
-		document.body.addEventListener('scroll', Ascroll, false); 
-		function Ascroll() {
-			if (b == null) {  
-				var Sa = getComputedStyle(a, ''), s = '';
-				for (var i = 0; i < Sa.length; i++) {  
-					if (Sa[i].indexOf('box-sizing') == 0 || Sa[i].indexOf('overflow') == 0 || Sa[i].indexOf('padding') == 0 || Sa[i].indexOf('border') == 0 || Sa[i].indexOf('outline') == 0 || Sa[i].indexOf('box-shadow') == 0 || Sa[i].indexOf('background') == 0) {
-						s += Sa[i] + ': ' +Sa.getPropertyValue(Sa[i]) + '; '
-					}
-				}
-				//  document.querySelector('#stick').outerHTML = '<div id="stick"  style="'+s+'">'+document.querySelector('#stick').innerHTML+'</div>';
-				b = document.querySelector('#stick');
-				//  a.style.height = b.getBoundingClientRect().height +6+ 'px';  
-				a.style.padding = '0';
-				a.style.border = '0';  
 
-				// simpleCart.initialize();
-			}
-			if (a.getBoundingClientRect().top <= 0) { 
-				b.className = 'sticky';
-			} else {
-				b.className = 'sticky2';
-			}
-		}
-	}
-} //stickmenu
 
-*/
 
-/*
-function setAttr(prmName,val) {
-	var res = '';
-	var d = location.href.split("#")[0].split("?");
-	var base = d[0];
-	var query = d[1];
-	if(query) {
-		var params = query.split("&");
-		for(var i = 0; i < params.length; i++) {
-			var keyval = params[i].split("=");
-			if(keyval[0] != prmName) {
-				res += params[i] + '&';
-			}
-		}
-	}
-	res += prmName + '=' + val;
-	window.history.pushState(null, null, base + '?' + res);
-	return false;
-}
-*/
-
-//var disqus_developer = 1;
-//var strlocat3 = window.location.toString();
 var pinframe=0;
-
-
-//var currhash=window.location.hash;
-//if (currhash =="" || currhash =="#" || currhash =="null" ) { currhash ="index"};
-
 
 if (window.parent.frames.length > 0) {pinframe=1;
 }
@@ -200,18 +70,43 @@ function ok(data,specs) {
     //alert("ok sees pattern: " + regstr ) ;
     //var spreadsheetsmail=data.feed.author[0].email.$t;
     //if(SpreadsheetsUse!="hide"){ setAttr("mail", spreadsheetsmail); }
-    /* Do we need a banlist ?
-    if (typeof banlist !== 'undefined') { 
-        for (var i=0; i<banlist.length; i++){
-            if(banlist[i]+"@gmail.com"==spreadsheetsmail) {
-                $tw.modal.display("$:/_alert/banlist"); 
-                return;
-            }; 
-        } 
-    }
-    */
-    var fields = Object.create(null);
-	//alert(regstr) ;
+   
+
+	var spreadsheetName = data.feed.title.$t ;
+	//var dataId = id.t https //spreadsheets.google.com/feeds/worksheets/1QUoZosiS3emBQNM_HugaptU5qY1Ze5lBQXVd8yZit6A/public/values/osgb28m"
+    var tabList = [] ;
+	for (var i1=0; i1<data.feed.entry.length; i1++) {
+		//var temp = data.feed.entry[i1].title.$t ; 
+		//alert(temp) ;
+		tabList.push(data.feed.entry[i1].title.$t) ; 
+	}
+	//alert( tabList.length) ;
+	var sheetTiddlers = $tw.wiki.getTiddlersWithTag("SheetTiddler") ;
+	//alert("Sheet tiddlers: "+sheetTiddlers) ;
+	var tiddler ;
+	for (var item of sheetTiddlers) {
+        tiddler = $tw.wiki.getTiddler(item) ;
+		var temp = tiddler.getFieldString("spreadsheet-id") ;
+		//alert("I see item "+item + " with id =" + temp + " specs.id=="+specs.id) ;
+
+		if(tiddler.getFieldString("spreadsheet-id") == specs.id ) {
+			var curTabList=$tw.wiki.getTiddlerList(item,"sheet-tabs") ;
+			
+			if(JSON.stringify(curTabList.sort()) !== JSON.stringify(tabList.sort())) {
+				//alert("I see item "+item + " and sheets "+tabList) ;
+				var tabListString = $tw.utils.stringifyList(tabList) ;
+				//alert(tabListString) ;
+				$tw.wiki.setText(item,"sheet-tabs",0,tabListString) ;
+				$tw.wiki.setText(item,"updated",0,"yes") ;
+			}
+			
+
+		}
+	}
+	
+	var fields = Object.create(null);
+	
+	//alert(regstr) ; 
     // CURRENT
 	if(specs.sheet == "__SHEET_NAMES_ONLY__") {
 		var reportText = "", reportList="" ;
@@ -225,32 +120,7 @@ function ok(data,specs) {
 		if($tw.browser) {$tw.wiki.addTiddler(new $tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))}   
 		return ;
 	}
-    //#region 
-	/*
-    fields.title="googlespreadsheetmail";
-    fields.text=spreadsheetsmail;
-    if($tw.browser) {
-        $tw.wiki.addTiddler(
-            new $tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))
-    };
-    fields.title="googlespreadsheet";
-    fields.text="https://docs.google.com/spreadsheets/d/"+getUrlVars()["id"]+"/";
-    if($tw.browser) {
-        $tw.wiki.addTiddler(
-            new $tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))
-    };
-    fields.title="googlespreadsheettime";
-    fields.text=data.feed.updated.$t;
-    if($tw.browser) {
-        $tw.wiki.addTiddler(
-            new $tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))
-    };
-    */
-
-    //console.log( "Загружен пользователь " + spreadsheetsmail);
-    //console.log(data.feed.entry[0].link[0].href);
-    //console.log(data.feed.updated.$t);
-    //#endregion
+   
 	corsmax=data.feed.entry.length; 
     var patt = new RegExp(specs.sheet) ; // Why do c/r come with regstr??
     for (var i1=0; i1<data.feed.entry.length; i1++) {
@@ -315,39 +185,7 @@ function ok2(data2,specs) {
             corscurrent=corscurrent+1;
             if(corscurrent==corsmax-1){
 
- //#region 
-				//var       deferredChanges = Object.create(null);
-                //$tw.pageWidgetNode.refresh(deferredChanges);
-                //window.location.hash=currhash;
-
-// setTimeout(alert("Hello"),2000) ;
-
-/*
-                setTimeout(
-                    function(){
-                        HEEGreadyState="isload"; 
-                        stickmenu();
-
  
-                        var elements = document.querySelectorAll('.tw-table-of-contents-top>ul');
-
-                        document.querySelector(".tw-table-of-contents-top>ul").onclick = function(event) {
-                            for (var i = 0; i < elements.length; i++) {
-                                elements[i].className="hover";
-                            }
-                        };
-
-                        document.querySelector(".tw-table-of-contents-top>ul").onmouseover = 
-                            function(event) {
-                                for (var i = 0; i < elements.length; i++) {
-                                    elements[i].className="hover";
-                                }
-                            } ;
-                        
-                    }
-                ,2000); // setTimeout()
-*/
-//#endregion
 			} // if corscurrent=corsmax-1
         } // if i==data2.feed.entry ....
     } // for var=0 loop
@@ -372,11 +210,6 @@ function ok2(data2,specs) {
 
         if($tw.browser) {$tw.wiki.addTiddler(new $tw.Tiddler(getModificationFields(5000),reportFields,$tw.wiki.getCreationFields()))}   
 
-/*
-    if (typeof Swiper== 'function' && currsheet=="GD-images") {
-        setTimeout(function(){sliderInit(); },700);
-    };
-*/
 
 } // function ok2
 
@@ -395,34 +228,7 @@ function getUrlVars() {
 	return vars;
 }
 
-//var con_spreadsheetid=$tw.wiki.renderTiddler("text/plain","$:/constant/_spreadsheetid");
-//var SpreadsheetsUse=$tw.wiki.renderTiddler("text/plain","SpreadsheetsUse");
 
-//idfromURL=getUrlVars()["id"];
-
-/*
-if(idfromURL===undefined && con_spreadsheetid!="" && SpreadsheetsUse=="hide"){
-	getSheetsData(con_spreadsheetid);
-}else if(idfromURL!=undefined && SpreadsheetsUse=="yes"){
-	getSheetsData(idfromURL);
-	var fields = Object.create(null);
-	fields.title="$:/constant/_spreadsheetid";fields.text=idfromURL;
-	if($tw.browser) {$tw.wiki.addTiddler(new 
-		$tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))};
-	fields = Object.create(null);
-	fields.title="SpreadsheetsUse";fields.text="no";
-	if($tw.browser) {$tw.wiki.addTiddler(new 
-		$tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))};
-}else if(SpreadsheetsUse=="no"){
-	stickmenu();
-	HEEGreadyState="isload";}else if(SpreadsheetsUse=="ondemand" && idfromURL== con_spreadsheetid ){
-	getSheetsData(idfromURL);
-}else{
-	$tw.notifier.display("$:/_noidNotify");
-	stickmenu();
-	HEEGreadyState="isload";
-}
-*/
 
 function getSheetsData(specs) {
     //alert("I see "+worksheets_id+" with pattern "+regstr) ;
@@ -447,18 +253,6 @@ function getModificationFields(offset = 0) {
 };
   
 
-/*
-function addSpaces(nStr){
-	nStr += '';
-	x = nStr.split('.');
-	x1 = x[0];
-	x2 = x.length > 1 ? '.' + x[1] : '';
-	var rgx = /(\d+)(\d{3})/;
-	while (rgx.test(x1)) {
-		x1 = x1.replace(rgx, '$1' + ' ' + '$2');
-	}
-	return x1 + x2;
-}
-*/
+
 
 </script>

@@ -1,6 +1,6 @@
 created: 20180903112812969
 creator: Mat von TWaddle
-modified: 20210224091634010
+modified: 20210225141342121
 modifier: Mat von TWaddle
 tags: $:/tags/Stylesheet TW2Sheet
 title: /googlesheets/Stylesheet
@@ -45,14 +45,26 @@ type: text/css
  width:40%;
   min-width:20em;
 }
+.gs-dropdown-spreadsheet {
+}
 .gs-dropdown-item {
   display:block;
   width:calc(100% - 30px);
   text-align:left;
   padding:2px;
 }
+.gs-dropdown-itemgroup button:first-of-type {
+  font-size:80%; line-height:120%;
+}
+.gs-dropdown-itemgroup {
+  border-bottom:1px solid silver;
+}
+.gs-dropdown-itemgroup:nth-last-of-type(2) {
+  border-bottom:0;
+}
 .gs-dropdown .gs-link {
   float:right;
   padding:0;
   background:white;
+  font-weight:500;
 }
