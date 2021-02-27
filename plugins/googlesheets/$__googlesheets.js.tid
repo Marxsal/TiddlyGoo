@@ -116,7 +116,7 @@ function ok(data,specs) {
 		}
 		fields.list=reportList ;
 		fields.text=reportText ;
-		fields.title = "GoogleSheets List" ;
+		fields.title = "Sheets in \""+spreadsheetName + "\"" ;
 		if($tw.browser) {$tw.wiki.addTiddler(new $tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))}   
 		return ;
 	}

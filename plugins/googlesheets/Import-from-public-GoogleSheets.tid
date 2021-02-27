@@ -1,6 +1,6 @@
 created: 20210209112925504
 creator: TwMat
-modified: 20210224025533743
+modified: 20210227164656796
 modifier: 
 tags: TW2Sheet
 title: $:/plugins/twmat/googlesheets/readme
@@ -14,6 +14,6 @@ To activate the GoogleSheets plugin you must first reload the wiki once more. Yo
 </$list>
 <$list filter="[gsstat[]compare:string:ne[false]]+[limit[1]]" >
 
-<<tabs "[all[tiddlers+shadows]prefix[$:/plugins/twmat/googlesheets/readme_]]" "$:/plugins/twmat/googlesheets/readme_about" "$:/state/googlesheets/readme">>
+<<tabs "[all[tiddlers+shadows]prefix[$:/plugins/twmat/googlesheets/readme_]sort[]]" "$:/plugins/twmat/googlesheets/readme_about" "$:/state/googlesheets/readme">>
 
 </$list>
