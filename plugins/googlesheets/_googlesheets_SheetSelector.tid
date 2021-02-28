@@ -1,7 +1,7 @@
 created: 20181001125122669
 creator: Mat von TWaddle
 description: Editor and dropdown to set filters for importing Google sheets
-modified: 20210227173434051
+modified: 20210228091925649
 modifier: Mat von TWaddle
 tags: TW2Sheet $:/tags/Macro
 title: /googlesheets/SheetSelector
@@ -10,20 +10,14 @@ title: /googlesheets/SheetSelector
 <table class="gs-toolbar" >
 <tr>
 <td class="gs-toolbar-btn-td">
-   <$reveal type="nomatch" text="show"
-         state=<<qualify "$:/state/popup/subscription-filter-dropdown">> >
-      <$button
+<$vars t=<<qualify "$:/state/popup/googlesheets-dropdown">>>
+   <$button
         class="tc-btn-invisible tc-btn-dropdown gs-toolbar-btn" 
-        set=<<qualify "$:/state/popup/subscription-filter-dropdown">>
-        setTo="show">{{$:/core/images/down-arrow}}</$button>
-   </$reveal>
-   <$reveal type="match" text="show"
-        state=<<qualify "$:/state/popup/subscription-filter-dropdown">> >
-      <$button
-        class="tc-btn-invisible tc-btn-dropdown gs-toolbar-btn"
-        set=<<qualify "$:/state/popup/subscription-filter-dropdown">>
-        setTo="hide">{{$:/core/images/down-arrow}}</$button>
-   </$reveal>
+        set=<<t>>
+        setTo={{{ [<t>get[text]match[show]then[hide]else[show]] }}} >
+      {{$:/core/images/down-arrow}}
+   </$button>
+</$vars>
 </td>
 
 <td class="gs-editor-td">
@@ -33,7 +27,7 @@ title: /googlesheets/SheetSelector
          focusPopup=<<qualify "$:/state/popup/import-filter">>
          class="gs-editor"
          inputActions="""<$action-setfield $tiddler="$:/plugins/twmat/googlesheets/_spreadsheetid" 
-             sheet-id="__SHEET_NAMES_ONLY__"   /> """
+         sheet-id="__SHEET_NAMES_ONLY__"   /> """
       />
 </td>
 
@@ -49,24 +43,23 @@ title: /googlesheets/SheetSelector
            sheet={{$:/plugins/twmat/googlesheets/_spreadsheetid!!sheet-id}}>
    <$button tooltip="Import previews" class="gs-import-btn"
           set="$:/plugins/twmat/googlesheets/_spreadsheetid" setTo="">
-      <$list filter="""[all[tiddlers+shadows]tag[SheetTiddler]get[spreadsheet-id]match<str>] [<str>is[tiddler]] [<str>is[shadow]]
+      <$list filter="""[all[tiddlers+shadows]tag[SpreadsheetTiddler]get[spreadsheet-id]match<str>] [<str>is[tiddler]] [<str>is[shadow]]
                             +[else[newspreadsheettiddler]]""">
          <$action-setfield $tiddler="$:/plugins/twmat/googlesheets/_spreadsheetid" sheet-id=""/>
-         <$list filter="[<currentTiddler>match[newspreadsheettiddler]]"
+         <$list filter="""[<currentTiddler>match[newspreadsheettiddler]]"""
                   emptyMessage="""<$action-sendmessage  $message="tm-sheetgetdata"  id=<<id>> sheet=<<sheet>> />""">
-            <$list filter="[<str>!match[]]">
+            <$list filter="""[<str>!match[]]""">
                <$action-createtiddler 
                   $basetitle="SpreadsheetTiddler"
                   spreadsheet-id=<<str>>
-                  tags=SheetTiddler
+                  tags=SpreadsheetTiddler
                   description="Import from all sheets."
-                  text="""This is a spreadsheet tiddler for importing from <a href={{{ [[https://docs.google.com/spreadsheets/d/]addsuffix{!!spreadsheet-id}addsuffix[/edit#gid=0]] }}} rel="noopener noreferrer">this Google spreadsheet</a>. <br>You can edit the tiddler title, the text and the description freely. 
-<br>See the [[plugin readme|$:/plugins/twmat/googlesheets/readme]] for more info."""
+                  text="""This is a spreadsheet tiddler for importing from <a href={{{ [[https://docs.google.com/spreadsheets/d/]addsuffix{!!spreadsheet-id}addsuffix[/edit#gid=0]] }}} rel="noopener noreferrer" target="_blank">this Google spreadsheet</a>. <br>You can edit the tiddler title, the text and the description freely. <br>See the [[plugin readme|$:/plugins/twmat/googlesheets/readme]] for more info."""
                />
             </$list>
          </$list>
       </$list>
-      <$list filter="[<str>!match[]]" 
+      <$list filter="""[<str>!match[]]""" 
             emptyMessage="@@color:silver;IMPORT@@">IMPORT</$list>
    </$button>
 </$vars>
@@ -76,7 +69,7 @@ title: /googlesheets/SheetSelector
 
 
 <div style="text-align:right;">
-   <$list filter="""[tag[SheetTiddler]updated[yes]]""">
+   <$list filter="""[tag[SpreadsheetTiddler]updated[yes]]""">
       Note: <$link/> has updated sheets. @@color:crimson;Confirm@@:
       <$checkbox field="updated" checked="no" unchecked="yes" default="yes"
            actions="""<$action-deletefield updated />"""/><br>
@@ -85,16 +78,16 @@ title: /googlesheets/SheetSelector
 
 
 <$reveal type="match" text="show" default=""
-       state=<<qualify "$:/state/popup/subscription-filter-dropdown">> >
+       state=<<qualify "$:/state/popup/googlesheets-dropdown">> >
    <div class="tc-block-dropdown gs-dropdown">
       <div style="text-align:center;color:silver;" title=" no, don't hover here ;-) ">[Type ID or select sheet. Hover for description]</div>
-      <$list filter="""[all[tiddlers+shadows]tag[SheetTiddler]!is[draft]]""">
+      <$list filter="""[all[tiddlers+shadows]tag[SpreadsheetTiddler]!is[draft]]""">
          <$link to=<<currentTiddler>> class="gs-link">link</$link>
          <$button  set="$:/plugins/twmat/googlesheets/_spreadsheetid"
                           setTo={{!!title}} tooltip={{!!description}}
                           class="gs-dropdown-item tc-btn-invisible">
             <$action-setfield text="hide"
-               $tiddler=<<qualify "$:/state/popup/subscription-filter-dropdown">>/>
+               $tiddler=<<qualify "$:/state/popup/googlesheets-dropdown">>/>
             <$action-setfield sheet-id=""
                $tiddler="$:/plugins/twmat/googlesheets/_spreadsheetid"/>
             <$transclude field=caption-title>''<$view field=title/>''</$transclude>
@@ -108,7 +101,7 @@ title: /googlesheets/SheetSelector
                   <$action-setfield text=<<spreadsheet>>
                      $tiddler="$:/plugins/twmat/googlesheets/_spreadsheetid"/>
                   <$action-setfield text="hide"
-                     $tiddler=<<qualify "$:/state/popup/subscription-filter-dropdown">>/>
+                     $tiddler=<<qualify "$:/state/popup/googlesheets-dropdown">>/>
                   - <$view field=title/>
                </$button>
             </$list>

@@ -81,7 +81,7 @@ function ok(data,specs) {
 		tabList.push(data.feed.entry[i1].title.$t) ; 
 	}
 	//alert( tabList.length) ;
-	var sheetTiddlers = $tw.wiki.getTiddlersWithTag("SheetTiddler") ;
+	var sheetTiddlers = $tw.wiki.getTiddlersWithTag("SpreadsheetTiddler") ;
 	//alert("Sheet tiddlers: "+sheetTiddlers) ;
 	var tiddler ;
 	for (var item of sheetTiddlers) {
