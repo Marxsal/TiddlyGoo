@@ -32,7 +32,8 @@ title: /googlesheets/SheetSelector
          default="" placeholder="Type ID or select sheet"
          focusPopup=<<qualify "$:/state/popup/import-filter">>
          class="gs-editor"
-         inputActions="""<$action-setfield $tiddler="$:/plugins/twmat/googlesheets/_spreadsheetid" sheet-id="__SHEET_NAMES_ONLY__"/>"""
+         inputActions="""<$action-setfield $tiddler="$:/plugins/twmat/googlesheets/_spreadsheetid" 
+             sheet-id="__SHEET_NAMES_ONLY__"   /> """
       />
 </td>
 
@@ -43,12 +44,12 @@ title: /googlesheets/SheetSelector
 </$list>
 
 <td class="gs-import-btn-td">
-<$vars str={{$:/plugins/twmat/googlesheets/_spreadsheetid}}
-            id={{{ [[$:/plugins/twmat/googlesheets/_spreadsheetid]get[text]get[spreadsheet-id]] }}}
+<$vars str={{{ [[$:/plugins/twmat/googlesheets/_spreadsheetid]get[text]trim[]] }}}
+            id={{{ [[$:/plugins/twmat/googlesheets/_spreadsheetid]get[text]get[spreadsheet-id]!is[blank]] [[$:/plugins/twmat/googlesheets/_spreadsheetid]get[text]] +[nth[1]] }}}
            sheet={{$:/plugins/twmat/googlesheets/_spreadsheetid!!sheet-id}}>
    <$button tooltip="Import previews" class="gs-import-btn"
           set="$:/plugins/twmat/googlesheets/_spreadsheetid" setTo="">
-      <$list filter="""[tag[SheetTiddler]get[spreadsheet-id]compare:string:eq<str>] [<str>is[tiddler]] [<str>is[shadow]]
+      <$list filter="""[all[tiddlers+shadows]tag[SheetTiddler]get[spreadsheet-id]match<str>] [<str>is[tiddler]] [<str>is[shadow]]
                             +[else[newspreadsheettiddler]]""">
          <$action-setfield $tiddler="$:/plugins/twmat/googlesheets/_spreadsheetid" sheet-id=""/>
          <$list filter="[<currentTiddler>match[newspreadsheettiddler]]"
@@ -65,7 +66,7 @@ title: /googlesheets/SheetSelector
             </$list>
          </$list>
       </$list>
-      <$list filter="[[$:/plugins/twmat/googlesheets/_spreadsheetid]has[text]]" 
+      <$list filter="[<str>!match[]]" 
             emptyMessage="@@color:silver;IMPORT@@">IMPORT</$list>
    </$button>
 </$vars>
