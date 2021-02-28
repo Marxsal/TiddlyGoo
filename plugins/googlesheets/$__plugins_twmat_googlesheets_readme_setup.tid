@@ -1,24 +1,28 @@
 caption: Setup
 created: 20210222214815164
 creator: TwMat
-modified: 20210227163948563
+modified: 20210228120133781
 modifier: 
 tags: TW2Sheet
 title: $:/plugins/twmat/googlesheets/readme_setup
 
-!!How to set up your Google Sheets for this plugin
+!!Use
+*Use the importing field in the demo tab - or create a demo field in any tiddler by typing `<<select-sheet>>`.
+*Get a ~SpreadsheetTiddler from someone or create your own (see below).
+*At some point, disable the DEMO from showing in your dropdown. (It cannot be deleted):<br><$checkbox tag="SpreadsheetTiddler" tiddler="DEMO spreadsheet"> &nbsp; Show the [[DEMO spreadsheet]] in the dropdown.</$checkbox>
+
+!!Adding a ''new'' Google spreadsheet to import from
+Each Google spreadsheet gets its own ~SpreadsheetTiddler. Here is how to create one and import from it:
+
+#In the field, enter the ''Google spreadsheet ID'', i.e this red part:<br><div style="font-size:80%">~https://docs.google.com/spreadsheets/d/ @@color:crimson;1GzZFzmgF-vBrRYOyz5VqjJC8QAQcOHnFBa1PEW9NhcU@@ /edit#gid=1627697525</div>The owner of the spreadsheet must have it set up properly, see instructions here below. 
+#Click [IMPORT] to import the sheet names. See the updated sheet names and import from either or the full spreadsheet
+
+<div style="">Importing from a new spreadsheet ID creates a ~SpreadsheetTiddler, titled like the Google sheets file. Freely edit this 
+#Edit the new ~SpreadsheetTiddler to give it a better title and a description, etc.</div>
+
+
+!!How to set up a Google Sheet for this plugin
 In your Google spreadsheet:
 
-#//Share// ''AND'' //publish// your google spreadsheet ([[instructions|https://www.freecodecamp.org/news/cjn-google-sheets-as-json-endpoint/]]).
+#//Share// ''AND'' //publish// your google spreadsheet ([[instructions|https://www.freecodecamp.org/news/cjn-google-sheets-as-json-endpoint/]]). "AND" means //two// things to do.
 #The first row (row 1) defines the tiddler fields:<br>One column must be titled ''id'' for the //tiddler titles//.<br>You'll probably also want a //text// column and a //tags// column but you can add any arbitrary columns/fields (respecting tiddler field [[naming conventions|https://tiddlywiki.com/#TiddlerFields]]).
-
-In your ~TiddlyWiki:
-
-#Get the "importing field" in your TW by typing `<<select-sheet>>`
-#In the field, enter the ''Google spreadsheet ID'', i.e this red part:<br>^^~https://docs.google.com/spreadsheets/d/ @@color:crimson;1GzZFzmgF-vBrRYOyz5VqjJC8QAQcOHnFBa1PEW9NhcU@@ /edit#gid=1627697525^^<br>
-#Click [IMPORT] to import and which also creates a ~SpreadsheetTiddler for the entered spreadsheet-id and titled "//spreadsheettiddler n//"
-#Edit the new ~SpreadsheetTiddler to give it a better title and a description, etc.
-
-At some point, disable the DEMO from showing in your dropdown:
-
-:<$checkbox tag="SheetTiddler" tiddler="DEMO spreadsheet"> &nbsp; Activate/deactivate the [[DEMO spreadsheet]]</$checkbox>

@@ -1,8 +1,12 @@
 created: 20210220211706624
 description: This links to a real demo google spreadsheet
-modified: 20210222170852735
+modified: 20210228100647834
 sheet-tabs: [[Form responses 1]] MySheet Ideas
 spreadsheet-id: 1QUoZosiS3emBQNM_HugaptU5qY1Ze5lBQXVd8yZit6A
-tags: SheetTiddler
+tags: SpreadsheetTiddler
 title: DEMO spreadsheet
 
+This is a spreadsheet tiddler for importing from <a href={{{ [[https://docs.google.com/spreadsheets/d/]addsuffix{!!spreadsheet-id}addsuffix[/edit#gid=0]] }}} rel="noopener noreferrer" target="_blank">this Google spreadsheet</a>. <br>You can edit the tiddler title, the text and the description freely. <br>See the [[plugin readme|$:/plugins/twmat/googlesheets/readme]] for more info.
+
+At some point, disable this DEMO from showing in your dropdown. (It cannot be deleted):<br><br>
+<$checkbox tag="SpreadsheetTiddler" tiddler="DEMO spreadsheet"> &nbsp; Show the [[DEMO spreadsheet]] in the dropdown.</$checkbox>

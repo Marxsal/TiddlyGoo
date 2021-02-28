@@ -1,6 +1,6 @@
 created: 20180903112812969
 creator: Mat von TWaddle
-modified: 20210227161814933
+modified: 20210228092126718
 modifier: Mat von TWaddle
 tags: $:/tags/Stylesheet TW2Sheet
 title: /googlesheets/Stylesheet
@@ -41,7 +41,7 @@ type: text/css
 .gs-import-btn {
 }
 .gs-dropdown {
-  left:6em;
+  left:7em;
   margin-top:-.5em;
   padding:10px; padding-top:0;
  width:40%;

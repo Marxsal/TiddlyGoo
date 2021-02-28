@@ -1,5 +1,5 @@
 created: 20210223231637733
-modified: 20210224111150986
+modified: 20210228104806858
 tags: $:/tags/Stylesheet
 title: /googlesheets/ReportIcon
 
@@ -9,11 +9,11 @@ title: /googlesheets/ReportIcon
     urititle="""{{{ [<uri>removeprefix[data:text/plain,]] }}}"""
 >
 <style>
-.tc-sidebar-lists a[href="#<<urititle>>"]:before { content:"▤ "; color:green;  }
+.tc-sidebar-lists a[href="#<<urititle>>"]:before { content:"&#x25a6; "; color:green;  }
 </style>
 </$vars>
 \end
 
-<$list filter="""[tag[_GSReports]]""" variable=tid>
+<$list filter="""[tag[GooglesheetsReport]]""" variable=tid>
 <<linkstyle>>
 </$list>
