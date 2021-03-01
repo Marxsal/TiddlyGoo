@@ -135,6 +135,7 @@ function ok(data,specs) {
 		fields.list=reportList ;
 		fields.text=reportText ;
 		fields.title = "Sheets in \""+spreadsheetName + "\"" ;
+		fields.tags = "GooglesheetsReport" ;
 		if($tw.browser) {$tw.wiki.addTiddler(new $tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))}   
 		return ;
 	}
@@ -224,7 +225,7 @@ function ok2(data2,specs) {
         }
         reportFields.title = "Report for \"" + currsheet + "\"";
         reportFields.text = reportText ;
-		reportFields.tags = "_GSReports" ;
+		reportFields.tags = "GooglesheetsReport" ;
 
         if($tw.browser) {$tw.wiki.addTiddler(new $tw.Tiddler(getModificationFields(5000),reportFields,$tw.wiki.getCreationFields()))}   
 

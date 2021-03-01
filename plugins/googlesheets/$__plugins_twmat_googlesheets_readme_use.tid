@@ -1,10 +1,10 @@
-caption: Setup
+caption: Use
 created: 20210222214815164
 creator: TwMat
 modified: 20210228120133781
 modifier: 
 tags: TW2Sheet
-title: $:/plugins/twmat/googlesheets/readme_setup
+title: $:/plugins/twmat/googlesheets/readme_use
 
 !!Use
 *Use the importing field in the demo tab - or create a demo field in any tiddler by typing `<<select-sheet>>`.
