@@ -67,7 +67,7 @@ function scriptRequest(url, onSuccess, onError,specs) {
 
 
 function ok(data,specs) { 
-    //alert("ok sees pattern: " + regstr ) ;
+    // alert("OK!" ) ;
     //var spreadsheetsmail=data.feed.author[0].email.$t;
     //if(SpreadsheetsUse!="hide"){ setAttr("mail", spreadsheetsmail); }
    
@@ -81,15 +81,18 @@ function ok(data,specs) {
 		tabList.push(data.feed.entry[i1].title.$t) ; 
 	}
 	//alert( tabList.length) ;
+	var needsNewSpreadsheetTiddler = true;
 	var sheetTiddlers = $tw.wiki.getTiddlersWithTag("SpreadsheetTiddler") ;
 	//alert("Sheet tiddlers: "+sheetTiddlers) ;
-	var tiddler ;
+	//var tiddler ;
 	for (var item of sheetTiddlers) {
         tiddler = $tw.wiki.getTiddler(item) ;
-		var temp = tiddler.getFieldString("spreadsheet-id") ;
+		//var temp = tiddler.getFieldString("spreadsheet-id") ;
 		//alert("I see item "+item + " with id =" + temp + " specs.id=="+specs.id) ;
 
 		if(tiddler.getFieldString("spreadsheet-id") == specs.id ) {
+			//alert("I see id " + specs.id ) ;
+			needsNewSpreadsheetTiddler = false ;
 			var curTabList=$tw.wiki.getTiddlerList(item,"sheet-tabs") ;
 			
 			if(JSON.stringify(curTabList.sort()) !== JSON.stringify(tabList.sort())) {
@@ -99,11 +102,26 @@ function ok(data,specs) {
 				$tw.wiki.setText(item,"sheet-tabs",0,tabListString) ;
 				$tw.wiki.setText(item,"updated",0,"yes") ;
 			}
-			
-
 		}
 	}
 	
+	// Make new tiddler if there wasn't one to update
+	if(needsNewSpreadsheetTiddler) {
+		//alert("I think it needs a new spreadsheet tiddler!") ;
+		var fields = Object.create(null);
+		fields["sheet-tabs"] = $tw.utils.stringifyList(tabList) ; 
+		fields.text=
+			"This is a spreadsheet tiddler for importing from " +
+			"<a href={{{ [[https://docs.google.com/spreadsheets/d/]addsuffix{!!spreadsheet-id}addsuffix[/edit#gid=0]] }}} " +
+			'rel="noopener noreferrer" target="_blank">this Google spreadsheet</a>. ' +
+			"<br>You can edit the tiddler title, the text and the description freely. " +
+			"<br>See the [[plugin readme|$:/plugins/twmat/googlesheets/readme]] for more info." ;
+		fields.title = spreadsheetName  ;
+		fields["spreadsheet-id"] = specs.id ;
+		fields.tags = "SpreadsheetTiddler" ;
+		if($tw.browser) {$tw.wiki.addTiddler(new $tw.Tiddler($tw.wiki.getModificationFields(),fields,$tw.wiki.getCreationFields()))} 
+	}
+
 	var fields = Object.create(null);
 	
 	//alert(regstr) ; 

@@ -43,12 +43,14 @@ title: /googlesheets/SheetSelector
            sheet={{$:/plugins/twmat/googlesheets/_spreadsheetid!!sheet-id}}>
    <$button tooltip="Import previews" class="gs-import-btn"
           set="$:/plugins/twmat/googlesheets/_spreadsheetid" setTo="">
-      <$list filter="""[all[tiddlers+shadows]tag[SpreadsheetTiddler]get[spreadsheet-id]match<str>] [<str>is[tiddler]] [<str>is[shadow]]
+
+      <!--  2021-02-28 Moving this process to javascript . Keep for reference ... 2 months ?
+     <$list filter="""[all[tiddlers+shadows]tag[SpreadsheetTiddler]get[spreadsheet-id]match<str>] [<str>is[tiddler]] [<str>is[shadow]]
                             +[else[newspreadsheettiddler]]""">
          <$action-setfield $tiddler="$:/plugins/twmat/googlesheets/_spreadsheetid" sheet-id=""/>
          <$list filter="""[<currentTiddler>match[newspreadsheettiddler]]"""
                   emptyMessage="""<$action-sendmessage  $message="tm-sheetgetdata"  id=<<id>> sheet=<<sheet>> />""">
-            <$list filter="""[<str>!match[]]""">
+                 <$list filter="""[<str>!match[]]""">
                <$action-createtiddler 
                   $basetitle="SpreadsheetTiddler"
                   spreadsheet-id=<<str>>
@@ -59,6 +61,11 @@ title: /googlesheets/SheetSelector
             </$list>
          </$list>
       </$list>
+      -->
+      <!-- New, post-js code -->
+      <$action-sendmessage  $message="tm-sheetgetdata"  id=<<id>> sheet=<<sheet>> />
+      <$action-setfield $tiddler="$:/plugins/twmat/googlesheets/_spreadsheetid" sheet-id=""/>
+        
       <$list filter="""[<str>!match[]]""" 
             emptyMessage="@@color:silver;IMPORT@@">IMPORT</$list>
    </$button>
