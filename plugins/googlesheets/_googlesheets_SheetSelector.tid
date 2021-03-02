@@ -1,9 +1,9 @@
 created: 20181001125122669
 creator: Mat von TWaddle
 description: Editor and dropdown to set filters for importing Google sheets
-modified: 20210228091925649
+modified: 20210301162635065
 modifier: Mat von TWaddle
-tags: TW2Sheet $:/tags/Macro
+tags: $:/tags/Macro
 title: /googlesheets/SheetSelector
 
 \define select-sheet()
@@ -43,8 +43,7 @@ title: /googlesheets/SheetSelector
            sheet={{$:/plugins/twmat/googlesheets/_spreadsheetid!!sheet-id}}>
    <$button tooltip="Import previews" class="gs-import-btn"
           set="$:/plugins/twmat/googlesheets/_spreadsheetid" setTo="">
-
-      <!--  2021-02-28 Moving this process to javascript . Keep for reference ... 2 months ?
+<!--  2021-02-28 Moving this process to javascript . Keep for reference ... 2 months ?
      <$list filter="""[all[tiddlers+shadows]tag[SpreadsheetTiddler]get[spreadsheet-id]match<str>] [<str>is[tiddler]] [<str>is[shadow]]
                             +[else[newspreadsheettiddler]]""">
          <$action-setfield $tiddler="$:/plugins/twmat/googlesheets/_spreadsheetid" sheet-id=""/>
@@ -56,13 +55,13 @@ title: /googlesheets/SheetSelector
                   spreadsheet-id=<<str>>
                   tags=SpreadsheetTiddler
                   description="Import from all sheets."
-                  text="""This is a spreadsheet tiddler for importing from <a href={{{ [[https://docs.google.com/spreadsheets/d/]addsuffix{!!spreadsheet-id}addsuffix[/edit#gid=0]] }}} rel="noopener noreferrer" target="_blank">this Google spreadsheet</a>. <br>You can edit the tiddler title, the text and the description freely. <br>See the [[plugin readme|$:/plugins/twmat/googlesheets/readme]] for more info."""
+                  text="""This is a spreadsheet tiddler for importing from <a href={{{ [[https://docs.google.com/spreadsheets/d/]addsuffix{!!spreadsheet-id}addsuffix[/edit#gid=0]] }}} rel="noopener noreferrer" target="_blank">this Google spreadsheet</a>. You can edit the tiddler title, the text and the description freely. See the [[plugin readme|$:/plugins/twmat/googlesheets/readme]] for more info.<br>Current sheets: <<list-links "[enlist{!!sheet-tabs}]">>"""
                />
             </$list>
          </$list>
       </$list>
-      -->
-      <!-- New, post-js code -->
+-->
+<!-- New, post-js code -->
       <$action-sendmessage  $message="tm-sheetgetdata"  id=<<id>> sheet=<<sheet>> />
       <$action-setfield $tiddler="$:/plugins/twmat/googlesheets/_spreadsheetid" sheet-id=""/>
         

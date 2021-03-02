@@ -1,12 +1,12 @@
 caption: Demo
 created: 20210222214701871
 creator: TwMat
-modified: 20210225120949955
+modified: 20210301163535758
 modifier: 
-tags: TW2Sheet
+tags: 
 title: $:/plugins/twmat/googlesheets/readme_demo
 
-Use `<<select-sheet>>` to get the following
+Type `<<select-sheet>>` in a tiddler to get the following "importing field":
 
 <<select-sheet>>
 

@@ -42,7 +42,7 @@ $tw.rootWidget.addEventListener("tm-sheetgetdata",
             myFields = event.param;
          }
          var sheetId = myFields.id ? myFields.id : "" ;
-         var sheetName = myFields.sheet ? myFields.sheet : "" ;
+         var sheetName = myFields.sheet ? myFields.sheet : "__SHEET_NAMES_ONLY__" ;
          
           //alert("I see id="+ sheetId+"\nsheet="+sheetName ) ;
           //$tw.wiki.getTiddlerText("$:/plugins/twmat/googlesheets/_spreadsheetid","HI!"),

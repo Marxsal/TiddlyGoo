@@ -111,11 +111,12 @@ function ok(data,specs) {
 		var fields = Object.create(null);
 		fields["sheet-tabs"] = $tw.utils.stringifyList(tabList) ; 
 		fields.text=
-			"This is a spreadsheet tiddler for importing from " +
-			"<a href={{{ [[https://docs.google.com/spreadsheets/d/]addsuffix{!!spreadsheet-id}addsuffix[/edit#gid=0]] }}} " +
+			'This is a spreadsheet tiddler for importing from ' +
+			'<a href={{{ [[https://docs.google.com/spreadsheets/d/]addsuffix{!!spreadsheet-id}addsuffix[/edit#gid=0]] }}} ' +
 			'rel="noopener noreferrer" target="_blank">this Google spreadsheet</a>. ' +
-			"<br>You can edit the tiddler title, the text and the description freely. " +
-			"<br>See the [[plugin readme|$:/plugins/twmat/googlesheets/readme]] for more info." ;
+			'You can edit the tiddler title, the text and the description freely. ' +
+			'See the [[plugin readme|$:/plugins/twmat/googlesheets/readme]] for more info.<br>' +
+			'Current sheets: <<list-links "[enlist{!!sheet-tabs}]">>' ;
 		fields.title = spreadsheetName  ;
 		fields["spreadsheet-id"] = specs.id ;
 		fields.tags = "SpreadsheetTiddler" ;
@@ -129,7 +130,7 @@ function ok(data,specs) {
 	if(specs.sheet == "__SHEET_NAMES_ONLY__") {
 		var reportText = "", reportList="" ;
 		for (var i1=0; i1<data.feed.entry.length; i1++) {
-			reportText += "* " + data.feed.entry[i1].title.$t + "\n" ; 
+			reportText += "* [[" + data.feed.entry[i1].title.$t + "]]\n" ; 
 			reportList += "[[" + data.feed.entry[i1].title.$t + "]] " ; 
 		}
 		fields.list=reportList ;
