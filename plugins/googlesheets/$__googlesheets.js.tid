@@ -167,7 +167,7 @@ function ok2(data2,specs) {
         for (var key in data2.feed.entry[i]) {
             if(key.match(/^gsx\$+/i)){ 
                 new_value=data2.feed.entry[i][key].$t;
-                if(key=="gsx$id"){ 
+                if(false ) { // WAS key=="gsx$id" 
                     fields.title=new_value} 
                 else if(key=="gsx$url" && currsheet=="images"){ 
                     fields._canonical_uri=new_value; }
@@ -189,7 +189,8 @@ function ok2(data2,specs) {
         }
         
         if( typeof fields.title === "undefined" || ! fields.title )  {
-            var defaultTitle = 'Default-' + String(Math.random()).slice(-6);
+            //var defaultTitle = 'Default-' + String(Math.random()).slice(-6);
+			var defaultTitle = $tw.wiki.generateNewTitle($tw.language.getString("DefaultNewTiddlerTitle"));
             fields.title = defaultTitle ;
         }
         
