@@ -1,10 +1,10 @@
 caption: Demo
 created: 20210222214701871
 creator: TwMat
-modified: 20210301163535758
+modified: 20210303190241001
 modifier: 
 tags: 
-title: $:/plugins/twmat/googlesheets/readme_demo
+title: $:/plugins/tiddlygoo/sheetsin/readme_demo
 
 Type `<<select-sheet>>` in a tiddler to get the following "importing field":
 
@@ -12,7 +12,7 @@ Type `<<select-sheet>>` in a tiddler to get the following "importing field":
 
 ''Select "DEMO spreadsheet"'' or one of its subsheets. Then look in the sidebar //Recent// tab as you click IMPORT. The "DEMO spreadsheet" is a //~SpreadsheetTiddler// (see its link in the dropdown) with data for a specific Google spreadsheet.
 
-''If you type some string'', instead of select something, then the import also creates a new ~SpreadsheetTiddler and adds that string to its `spreadsheet-id` field. This makes it simple to add new Google spreadsheet ID:s (see the "Setup" tab above).
+''If you type some string'', instead of select something, then the import also creates a new ~SpreadsheetTiddler and adds that string to its `spreadsheet-id` field. This makes it simple to add new Google spreadsheet ID:s (see the "Use" tab above).
 
 <$reveal type="nomatch" state="$:/state/plugins/googlesheetsdemo" text="show">
 <$button set="$:/state/plugins/googlesheetsdemo" setTo="show">Click here {{$:/core/images/chevron-down}}</$button>
@@ -25,7 +25,7 @@ Type `<<select-sheet>>` in a tiddler to get the following "importing field":
 
 (Yes, the page "jumps to top" when you open this because of the iframes below.)
 
-The "DEMO spreadsheet" in the dropdown here above links to the google spreadsheet you see below. You can add //new rows// that become tiddlers via the [[Google form|https://www.google.com/forms/about/]] - or  you can directly add data into the sheet. The ''id'' column has the tiddler titles.
+The "DEMO spreadsheet" in the dropdown here above links to the google spreadsheet you see below. You can add //new rows// that become tiddlers via the [[Google form|https://www.google.com/forms/about/]] - or  you can directly add data into the sheet. The ''title'' column has the tiddler titles.
 
 <table style="width:100%; border:0; Xdisplay:none">
 <tr>

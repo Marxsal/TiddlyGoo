@@ -2,7 +2,7 @@ created: 20210217213223919
 modified: 20210217214820546
 module-type: filteroperator
 tags: 
-title: $:/plugins/twmat/googlesheets/modules/filters/gsstat
+title: $:/plugins/tiddlygoo/sheetsin/modules/filters/gsstat
 type: application/javascript
 
 /*\

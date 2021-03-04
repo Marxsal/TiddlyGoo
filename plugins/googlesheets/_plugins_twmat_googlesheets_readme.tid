@@ -3,7 +3,7 @@ creator: TwMat
 modified: 20210301163741794
 modifier: 
 tags: 
-title: $:/plugins/twmat/googlesheets/readme
+title: $:/plugins/tiddlygoo/sheetsin/readme
 
 <$list filter="[gsstat[]compare:string:ne[true]]+[limit[1]]" >
 
@@ -14,6 +14,6 @@ To activate the GoogleSheets plugin you must first save and reload the wiki once
 </$list>
 <$list filter="[gsstat[]compare:string:ne[false]]+[limit[1]]" >
 
-<<tabs "[all[tiddlers+shadows]prefix[$:/plugins/twmat/googlesheets/readme_]sort[]]" "$:/plugins/twmat/googlesheets/readme_about" "$:/state/googlesheets/readme">>
+<<tabs "[all[tiddlers+shadows]prefix[$:/plugins/tiddlygoo/sheetsin/readme_]sort[]]" "$:/plugins/tiddlygoo/sheetsin/readme_about" "$:/state/tiddlygoo/sheetsin/readme">>
 
 </$list>

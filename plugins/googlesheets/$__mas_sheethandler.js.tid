@@ -2,7 +2,7 @@ created: 20210211012842921
 modified: 20210215181530304
 module-type: startup
 tags: 
-title: $:/plugins/twmat/googlesheets/sheethandler.js
+title: $:/plugins/tiddlygoo/sheetsin/sheethandler.js
 type: application/javascript
 
 /*\
@@ -31,6 +31,8 @@ exports.startup = function() {
 
 $tw.rootWidget.addEventListener("tm-sheetgetdata",
     function(event) {
+       // Because googlesheets is called inside of raw markup, the following
+       // function may not exist yet. So we have to check.
        if(typeof(getSheetsData) !== "function") {
             alert("Can't call import -- you may\nneed to save and reload your \nTiddlyWiki file.") ;
        } else {
@@ -45,8 +47,8 @@ $tw.rootWidget.addEventListener("tm-sheetgetdata",
          var sheetName = myFields.sheet ? myFields.sheet : "__SHEET_NAMES_ONLY__" ;
          
           //alert("I see id="+ sheetId+"\nsheet="+sheetName ) ;
-          //$tw.wiki.getTiddlerText("$:/plugins/twmat/googlesheets/_spreadsheetid","HI!"),
-          //$tw.wiki.getTiddlerText("$:/plugins/twmat/googlesheets/_regexp",".*") 
+          //$tw.wiki.getTiddlerText("$:/plugins/tiddlygoo/sheetsin/_spreadsheetid","HI!"),
+          //$tw.wiki.getTiddlerText("$:/plugins/tiddlygoo/sheetsin/_regexp",".*") 
          
           getSheetsData(myFields  ) ;
        }

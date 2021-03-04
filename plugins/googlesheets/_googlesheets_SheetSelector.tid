@@ -4,7 +4,7 @@ description: Editor and dropdown to set filters for importing Google sheets
 modified: 20210301162635065
 modifier: Mat von TWaddle
 tags: $:/tags/Macro
-title: /googlesheets/SheetSelector
+title: $:/plugins/tiddlygoo/sheetsin/SheetSelector
 
 \define select-sheet()
 <table class="gs-toolbar" >
@@ -22,31 +22,31 @@ title: /googlesheets/SheetSelector
 
 <td class="gs-editor-td">
     <$edit-text tag="input"
-         tiddler="$:/plugins/twmat/googlesheets/_spreadsheetid"
+         tiddler="$:/plugins/tiddlygoo/sheetsin/_spreadsheetid"
          default="" placeholder="Type ID or select sheet"
          focusPopup=<<qualify "$:/state/popup/import-filter">>
          class="gs-editor"
-         inputActions="""<$action-setfield $tiddler="$:/plugins/twmat/googlesheets/_spreadsheetid" 
+         inputActions="""<$action-setfield $tiddler="$:/plugins/tiddlygoo/sheetsin/_spreadsheetid" 
          sheet-id="__SHEET_NAMES_ONLY__"   /> """
       />
 </td>
 
-<$list filter="[[$:/plugins/twmat/googlesheets/_spreadsheetid]has[sheet-id]]" >
+<$list filter="[[$:/plugins/tiddlygoo/sheetsin/_spreadsheetid]has[sheet-id]]" >
    <td class="gs-sheetid-td">
       <$view field="sheet-id"/>
    </td>
 </$list>
 
 <td class="gs-import-btn-td">
-<$vars str={{{ [[$:/plugins/twmat/googlesheets/_spreadsheetid]get[text]trim[]] }}}
-            id={{{ [[$:/plugins/twmat/googlesheets/_spreadsheetid]get[text]get[spreadsheet-id]!is[blank]] [[$:/plugins/twmat/googlesheets/_spreadsheetid]get[text]] +[nth[1]] }}}
-           sheet={{$:/plugins/twmat/googlesheets/_spreadsheetid!!sheet-id}}>
+<$vars str={{{ [[$:/plugins/tiddlygoo/sheetsin/_spreadsheetid]get[text]trim[]] }}}
+            id={{{ [[$:/plugins/tiddlygoo/sheetsin/_spreadsheetid]get[text]get[spreadsheet-id]!is[blank]] [[$:/plugins/tiddlygoo/sheetsin/_spreadsheetid]get[text]] +[nth[1]] }}}
+           sheet={{$:/plugins/tiddlygoo/sheetsin/_spreadsheetid!!sheet-id}}>
    <$button tooltip="Import previews" class="gs-import-btn"
-          set="$:/plugins/twmat/googlesheets/_spreadsheetid" setTo="">
+          set="$:/plugins/tiddlygoo/sheetsin/_spreadsheetid" setTo="">
 <!--  2021-02-28 Moving this process to javascript . Keep for reference ... 2 months ?
      <$list filter="""[all[tiddlers+shadows]tag[SpreadsheetTiddler]get[spreadsheet-id]match<str>] [<str>is[tiddler]] [<str>is[shadow]]
                             +[else[newspreadsheettiddler]]""">
-         <$action-setfield $tiddler="$:/plugins/twmat/googlesheets/_spreadsheetid" sheet-id=""/>
+         <$action-setfield $tiddler="$:/plugins/tiddlygoo/sheetsin/_spreadsheetid" sheet-id=""/>
          <$list filter="""[<currentTiddler>match[newspreadsheettiddler]]"""
                   emptyMessage="""<$action-sendmessage  $message="tm-sheetgetdata"  id=<<id>> sheet=<<sheet>> />""">
                  <$list filter="""[<str>!match[]]""">
@@ -55,7 +55,7 @@ title: /googlesheets/SheetSelector
                   spreadsheet-id=<<str>>
                   tags=SpreadsheetTiddler
                   description="Import from all sheets."
-                  text="""This is a spreadsheet tiddler for importing from <a href={{{ [[https://docs.google.com/spreadsheets/d/]addsuffix{!!spreadsheet-id}addsuffix[/edit#gid=0]] }}} rel="noopener noreferrer" target="_blank">this Google spreadsheet</a>. You can edit the tiddler title, the text and the description freely. See the [[plugin readme|$:/plugins/twmat/googlesheets/readme]] for more info.<br>Current sheets: <<list-links "[enlist{!!sheet-tabs}]">>"""
+                  text="""This is a spreadsheet tiddler for importing from <a href={{{ [[https://docs.google.com/spreadsheets/d/]addsuffix{!!spreadsheet-id}addsuffix[/edit#gid=0]] }}} rel="noopener noreferrer" target="_blank">this Google spreadsheet</a>. You can edit the tiddler title, the text and the description freely. See the [[plugin readme|$:/plugins/tiddlygoo/sheetsin/readme]] for more info.<br>Current sheets: <<list-links "[enlist{!!sheet-tabs}]">>"""
                />
             </$list>
          </$list>
@@ -63,7 +63,7 @@ title: /googlesheets/SheetSelector
 -->
 <!-- New, post-js code -->
       <$action-sendmessage  $message="tm-sheetgetdata"  id=<<id>> sheet=<<sheet>> />
-      <$action-setfield $tiddler="$:/plugins/twmat/googlesheets/_spreadsheetid" sheet-id=""/>
+      <$action-setfield $tiddler="$:/plugins/tiddlygoo/sheetsin/_spreadsheetid" sheet-id=""/>
         
       <$list filter="""[<str>!match[]]""" 
             emptyMessage="@@color:silver;IMPORT@@">IMPORT</$list>
@@ -89,23 +89,23 @@ title: /googlesheets/SheetSelector
       <div style="text-align:center;color:silver;" title=" no, don't hover here ;-) ">[Type ID or select sheet. Hover for description]</div>
       <$list filter="""[all[tiddlers+shadows]tag[SpreadsheetTiddler]!is[draft]]""">
          <$link to=<<currentTiddler>> class="gs-link">link</$link>
-         <$button  set="$:/plugins/twmat/googlesheets/_spreadsheetid"
+         <$button  set="$:/plugins/tiddlygoo/sheetsin/_spreadsheetid"
                           setTo={{!!title}} tooltip={{!!description}}
                           class="gs-dropdown-item tc-btn-invisible">
             <$action-setfield text="hide"
                $tiddler=<<qualify "$:/state/popup/googlesheets-dropdown">>/>
             <$action-setfield sheet-id=""
-               $tiddler="$:/plugins/twmat/googlesheets/_spreadsheetid"/>
+               $tiddler="$:/plugins/tiddlygoo/sheetsin/_spreadsheetid"/>
             <$transclude field=caption-title>''<$view field=title/>''</$transclude>
          </$button>
          <$vars spreadsheet={{!!title}}>
             <div class="gs-dropdown-itemgroup">
             <$list filter="""__SHEET_NAMES_ONLY__ [enlist{!!sheet-tabs}]""">
-               <$button  set="$:/plugins/twmat/googlesheets/_spreadsheetid!!sheet-id"
+               <$button  set="$:/plugins/tiddlygoo/sheetsin/_spreadsheetid!!sheet-id"
                              setTo={{!!title}} tooltip="Import from this sheet only"
                              class="gs-dropdown-item tc-btn-invisible">
                   <$action-setfield text=<<spreadsheet>>
-                     $tiddler="$:/plugins/twmat/googlesheets/_spreadsheetid"/>
+                     $tiddler="$:/plugins/tiddlygoo/sheetsin/_spreadsheetid"/>
                   <$action-setfield text="hide"
                      $tiddler=<<qualify "$:/state/popup/googlesheets-dropdown">>/>
                   - <$view field=title/>

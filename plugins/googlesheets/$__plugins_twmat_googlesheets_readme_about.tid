@@ -4,7 +4,7 @@ creator: TwMat
 modified: 20210301163755969
 modifier: 
 tags: 
-title: $:/plugins/twmat/googlesheets/readme_about
+title: $:/plugins/tiddlygoo/sheetsin/readme_about
 
 The GoogleSheets plugin lets you import [[Google Sheets|https://www.google.com/sheets/about/]] into TiddlyWiki.
 

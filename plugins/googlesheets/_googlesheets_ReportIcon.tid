@@ -1,7 +1,7 @@
 created: 20210223231637733
 modified: 20210228104806858
 tags: $:/tags/Stylesheet
-title: /googlesheets/ReportIcon
+title: $:/plugins/tiddlygoo/sheetsin/ReportIcon
 
 \define linkstyle()
 <$vars

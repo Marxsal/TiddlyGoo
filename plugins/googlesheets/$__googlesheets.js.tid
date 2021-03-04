@@ -1,7 +1,7 @@
 created: 20210213070543285
 modified: 20210216180730111
 tags: $:/tags/RawMarkup
-title: $:/plugins/twmat/googlesheets/googlesheets.js
+title: $:/plugins/tiddlygoo/sheetsin/googlesheets.js
 type: application/javascript
 
 <script>
@@ -115,7 +115,7 @@ function ok(data,specs) {
 			'<a href={{{ [[https://docs.google.com/spreadsheets/d/]addsuffix{!!spreadsheet-id}addsuffix[/edit#gid=0]] }}} ' +
 			'rel="noopener noreferrer" target="_blank">this Google spreadsheet</a>. ' +
 			'You can edit the tiddler title, the text and the description freely. ' +
-			'See the [[plugin readme|$:/plugins/twmat/googlesheets/readme]] for more info.<br>' +
+			'See the [[plugin readme|$:/plugins/tiddlygoo/sheetsin/readme]] for more info.<br>' +
 			'Current sheets: <<list-links "[enlist{!!sheet-tabs}]">>' ;
 		fields.title = spreadsheetName  ;
 		fields["spreadsheet-id"] = specs.id ;

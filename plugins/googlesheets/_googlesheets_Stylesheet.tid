@@ -1,9 +1,9 @@
 created: 20180903112812969
 creator: Mat von TWaddle
-modified: 20210301163646456
+modified: 20210303195012544
 modifier: Mat von TWaddle
 tags: $:/tags/Stylesheet
-title: /googlesheets/Stylesheet
+title: $:/plugins/tiddlygoo/sheetsin/Stylesheet
 type: text/css
 
 .gs-toolbar {
@@ -44,8 +44,8 @@ type: text/css
   left:7em;
   margin-top:-.5em;
   padding:10px; padding-top:0;
- width:40%;
-  min-width:20em;
+  width:40%;
+  min-width:22em;
 }
 .gs-dropdown-spreadsheet {
 }

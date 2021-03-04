@@ -1,28 +1,27 @@
 caption: Use
 created: 20210222214815164
 creator: TwMat
-modified: 20210301170505689
+modified: 20210303201308022
 modifier: 
 tags: 
-title: $:/plugins/twmat/googlesheets/readme_use
+title: $:/plugins/tiddlygoo/sheetsin/readme_use
 
 !!Use
 *Use the importing field in the demo tab or create one in a tiddler by typing `<<select-sheet>>`.
-*Get ~SpreadsheetTiddlers from others or create your own (see below).
+*Get ~SpreadsheetTiddlers from other people or create your own (see below).
 *At some point, hide the DEMO from the dropdown. (It can't be deleted):<br><$checkbox tag="SpreadsheetTiddler" tiddler="DEMO spreadsheet"> &nbsp; Show the [[DEMO spreadsheet]] in the dropdown.</$checkbox>
 
 
 !!Connect to a Google spreadsheet
 Each Google spreadsheet gets its own ~SpreadsheetTiddler for connection. Here is how to create a ~SpreadsheetTiddler and import from it:
 
-#In the field, enter the ''Google spreadsheet ID'', i.e this red part:<br><div style="font-size:80%">~https://docs.google.com/spreadsheets/d/ @@color:crimson;1GzZFzmgF-vBrRYOyz5VqjJC8QAQcOHnFBa1PEW9NhcU@@ /edit#gid=1627697525</div>The spreadsheet owner must have it set up properly (see instructions below). 
+#In the import field, enter the ''Google spreadsheet ID'', i.e this red part:<br><div style="font-size:80%">~https://docs.google.com/spreadsheets/d/ @@color:crimson;1GzZFzmgF-vBrRYOyz5VqjJC8QAQcOHnFBa1PEW9NhcU@@ /edit#gid=1627697525</div>The spreadsheet owner must have it set up properly (see instructions below). 
 #Clicking [IMPORT] creates a new ~SpreadsheetTiddler titled like the Google sheets file and containing the names on the spreadsheet tabs.
-#In the dropdown, you can now select what to import.
+#In the import dropdown, you can now select what to import.
 
 
 !!How to set up Google Sheets for this plugin
-For a Google spreadsheet to be accessed with this plugin, it must be:
+For a Google spreadsheet to be accesseible for this plugin, it must be:
 
 #//Shared// @@color:crimson;''__AND__''@@ //published// ([[instructions|https://www.freecodecamp.org/news/cjn-google-sheets-as-json-endpoint/]]).
-#The first row (row 1) defines the tiddler fields:<br>One column must be titled ''id'' for the //tiddler titles//.
-#Optionally add a //text// column, a //tags// column and/or any arbitrary columns/fields, respecting tiddler field [[naming conventions|https://tiddlywiki.com/#TiddlerFields]].
+#The first row (row 1) defines the tiddler fields.<br>- If a column heading is `title` then its column values become the tiddler titles. If there is no title column, default titles will be created for the generated tiddlers.<br>- There can be a `tags` column heading. Tag values are written e.g<br>&nbsp;&nbsp; `tag1 [[spaced tag2]]`<br>- Other columnn headings must also respect tiddler field [[naming conventions|https://tiddlywiki.com/#TiddlerFields]].
