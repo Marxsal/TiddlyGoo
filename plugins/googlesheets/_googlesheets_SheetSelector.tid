@@ -1,18 +1,18 @@
 created: 20181001125122669
 creator: Mat von TWaddle
 description: Editor and dropdown to set filters for importing Google sheets
-modified: 20210301162635065
+modified: 20210304102757765
 modifier: Mat von TWaddle
 tags: $:/tags/Macro
 title: $:/plugins/tiddlygoo/sheetsin/SheetSelector
 
 \define select-sheet()
-<table class="gs-toolbar" >
+<table class="tg-toolbar" >
 <tr>
-<td class="gs-toolbar-btn-td">
+<td class="tg-toolbar-btn-td">
 <$vars t=<<qualify "$:/state/popup/googlesheets-dropdown">>>
    <$button
-        class="tc-btn-invisible tc-btn-dropdown gs-toolbar-btn" 
+        class="tc-btn-invisible tc-btn-dropdown tg-toolbar-btn" 
         set=<<t>>
         setTo={{{ [<t>get[text]match[show]then[hide]else[show]] }}} >
       {{$:/core/images/down-arrow}}
@@ -20,28 +20,28 @@ title: $:/plugins/tiddlygoo/sheetsin/SheetSelector
 </$vars>
 </td>
 
-<td class="gs-editor-td">
+<td class="tg-toolbar-editor-td">
     <$edit-text tag="input"
          tiddler="$:/plugins/tiddlygoo/sheetsin/_spreadsheetid"
          default="" placeholder="Type ID or select sheet"
          focusPopup=<<qualify "$:/state/popup/import-filter">>
-         class="gs-editor"
+         class="tg-toolbar-editor"
          inputActions="""<$action-setfield $tiddler="$:/plugins/tiddlygoo/sheetsin/_spreadsheetid" 
          sheet-id="__SHEET_NAMES_ONLY__"   /> """
       />
 </td>
 
 <$list filter="[[$:/plugins/tiddlygoo/sheetsin/_spreadsheetid]has[sheet-id]]" >
-   <td class="gs-sheetid-td">
+   <td class="tg-toolbar-sheetid-td">
       <$view field="sheet-id"/>
    </td>
 </$list>
 
-<td class="gs-import-btn-td">
+<td class="tg-toolbar-import-btn-td">
 <$vars str={{{ [[$:/plugins/tiddlygoo/sheetsin/_spreadsheetid]get[text]trim[]] }}}
             id={{{ [[$:/plugins/tiddlygoo/sheetsin/_spreadsheetid]get[text]get[spreadsheet-id]!is[blank]] [[$:/plugins/tiddlygoo/sheetsin/_spreadsheetid]get[text]] +[nth[1]] }}}
            sheet={{$:/plugins/tiddlygoo/sheetsin/_spreadsheetid!!sheet-id}}>
-   <$button tooltip="Import previews" class="gs-import-btn"
+   <$button tooltip="Import previews" class="tg-toolbar-import-btn"
           set="$:/plugins/tiddlygoo/sheetsin/_spreadsheetid" setTo="">
 <!--  2021-02-28 Moving this process to javascript . Keep for reference ... 2 months ?
      <$list filter="""[all[tiddlers+shadows]tag[SpreadsheetTiddler]get[spreadsheet-id]match<str>] [<str>is[tiddler]] [<str>is[shadow]]
@@ -85,25 +85,25 @@ title: $:/plugins/tiddlygoo/sheetsin/SheetSelector
 
 <$reveal type="match" text="show" default=""
        state=<<qualify "$:/state/popup/googlesheets-dropdown">> >
-   <div class="tc-block-dropdown gs-dropdown">
-      <div style="text-align:center;color:silver;" title=" no, don't hover here ;-) ">[Type ID or select sheet. Hover for description]</div>
+   <div class="tc-block-dropdown tg-dropdown">
+      <div class="tg-dropdown-msg" title=" no, don't hover here ;-) ">[Hover item for description]</div>
       <$list filter="""[all[tiddlers+shadows]tag[SpreadsheetTiddler]!is[draft]]""">
-         <$link to=<<currentTiddler>> class="gs-link">link</$link>
+<div class="tg-dropdown-itemgroup">
+         <$link to=<<currentTiddler>> class="tg-dropdown-link">link</$link>
          <$button  set="$:/plugins/tiddlygoo/sheetsin/_spreadsheetid"
                           setTo={{!!title}} tooltip={{!!description}}
-                          class="gs-dropdown-item tc-btn-invisible">
+                          class="tg-dropdown-sstid tc-btn-invisible">
             <$action-setfield text="hide"
                $tiddler=<<qualify "$:/state/popup/googlesheets-dropdown">>/>
             <$action-setfield sheet-id=""
                $tiddler="$:/plugins/tiddlygoo/sheetsin/_spreadsheetid"/>
-            <$transclude field=caption-title>''<$view field=title/>''</$transclude>
+            <$transclude field=caption-title><$view field=title/></$transclude>
          </$button>
          <$vars spreadsheet={{!!title}}>
-            <div class="gs-dropdown-itemgroup">
             <$list filter="""__SHEET_NAMES_ONLY__ [enlist{!!sheet-tabs}]""">
                <$button  set="$:/plugins/tiddlygoo/sheetsin/_spreadsheetid!!sheet-id"
                              setTo={{!!title}} tooltip="Import from this sheet only"
-                             class="gs-dropdown-item tc-btn-invisible">
+                             class="tg-dropdown-item tc-btn-invisible">
                   <$action-setfield text=<<spreadsheet>>
                      $tiddler="$:/plugins/tiddlygoo/sheetsin/_spreadsheetid"/>
                   <$action-setfield text="hide"
@@ -111,8 +111,8 @@ title: $:/plugins/tiddlygoo/sheetsin/SheetSelector
                   - <$view field=title/>
                </$button>
             </$list>
-            </div>
          </$vars>
+</div>
       </$list>
    </div>
 </$reveal>

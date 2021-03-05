@@ -156,7 +156,7 @@ function ok(data,specs) {
 function ok2(data2,specs) {  
     var currsheet=data2.feed.title.$t;
     var titleList = {} ;
-    var fieldsList = {} ;
+    var fieldsList = {};
 
     if(currsheet.indexOf("hide")==0 || data2.feed.entry==undefined){return;};
     //console.log(currsheet);
@@ -228,6 +228,20 @@ function ok2(data2,specs) {
         reportFields.title = "Report for \"" + currsheet + "\"";
         reportFields.text = reportText ;
 		reportFields.tags = "GooglesheetsReport" ;
+
+	    // For some reason, object.keys() wasn't working. So doing this manually
+		var importTiddlers = [] ;
+		for (var key in titleList ) {
+            importTiddlers.push(key)  ;
+        }
+		var importFields = [] ;
+		for (var key in fieldsList ) {
+            importFields.push(key)  ;
+        }
+		
+		reportFields["imported-tiddlers"] = $tw.utils.stringifyList(importTiddlers) ;
+		reportFields["imported-fields"] = $tw.utils.stringifyList(importFields) ;
+		
 
         if($tw.browser) {$tw.wiki.addTiddler(new $tw.Tiddler(getModificationFields(5000),reportFields,$tw.wiki.getCreationFields()))}   
 
