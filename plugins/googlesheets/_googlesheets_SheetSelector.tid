@@ -43,24 +43,6 @@ title: $:/plugins/tiddlygoo/sheetsin/SheetSelector
            sheet={{$:/plugins/tiddlygoo/sheetsin/_spreadsheetid!!sheet-id}}>
    <$button tooltip="Import previews" class="tg-toolbar-import-btn"
           set="$:/plugins/tiddlygoo/sheetsin/_spreadsheetid" setTo="">
-<!--  2021-02-28 Moving this process to javascript . Keep for reference ... 2 months ?
-     <$list filter="""[all[tiddlers+shadows]tag[SpreadsheetTiddler]get[spreadsheet-id]match<str>] [<str>is[tiddler]] [<str>is[shadow]]
-                            +[else[newspreadsheettiddler]]""">
-         <$action-setfield $tiddler="$:/plugins/tiddlygoo/sheetsin/_spreadsheetid" sheet-id=""/>
-         <$list filter="""[<currentTiddler>match[newspreadsheettiddler]]"""
-                  emptyMessage="""<$action-sendmessage  $message="tm-sheetgetdata"  id=<<id>> sheet=<<sheet>> />""">
-                 <$list filter="""[<str>!match[]]""">
-               <$action-createtiddler 
-                  $basetitle="SpreadsheetTiddler"
-                  spreadsheet-id=<<str>>
-                  tags=SpreadsheetTiddler
-                  description="Import from all sheets."
-                  text="""This is a spreadsheet tiddler for importing from <a href={{{ [[https://docs.google.com/spreadsheets/d/]addsuffix{!!spreadsheet-id}addsuffix[/edit#gid=0]] }}} rel="noopener noreferrer" target="_blank">this Google spreadsheet</a>. You can edit the tiddler title, the text and the description freely. See the [[plugin readme|$:/plugins/tiddlygoo/sheetsin/readme]] for more info.<br>Current sheets: <<list-links "[enlist{!!sheet-tabs}]">>"""
-               />
-            </$list>
-         </$list>
-      </$list>
--->
 <!-- New, post-js code -->
       <$action-sendmessage  $message="tm-sheetgetdata"  id=<<id>> sheet=<<sheet>> />
       <$action-setfield $tiddler="$:/plugins/tiddlygoo/sheetsin/_spreadsheetid" sheet-id=""/>

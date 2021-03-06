@@ -6,9 +6,6 @@ tags: $:/tags/Stylesheet
 title: $:/plugins/tiddlygoo/sheetsin/Stylesheet
 type: text/css
 
-/*
- * 
- */
 .tg-toolbar {
   display:block;
   margin-bottom:.4em;

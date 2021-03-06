@@ -11,11 +11,6 @@ var HEEGreadyState="onload";
 var corsmax=0;
 var corscurrent=0;
 
-
-
-
-
-
 function a(i){
 	var text="";
 	for (var k = 0; k < i; k++){
@@ -24,8 +19,6 @@ function a(i){
 	}
 	return text;
 }
-
-
 
 
 var pinframe=0;
@@ -142,12 +135,13 @@ function ok(data,specs) {
 	}
    
 	corsmax=data.feed.entry.length; 
-    var patt = new RegExp(specs.sheet) ; // Why do c/r come with regstr??
+    //var patt = new RegExp(specs.sheet) ; // Why do c/r come with regstr??
     for (var i1=0; i1<data.feed.entry.length; i1++) {
         //alert("sheet?: "+data.feed.entry[i1].title.$t) ;
         //alert("True or false for "+ data.feed.entry[i1].title.$t + " matched \nwith /" + regstr + "/ is: " +patt.test(data.feed.entry[i1].title.$t));
-        if(patt.test(data.feed.entry[i1].title.$t)) {
-            scriptRequest(data.feed.entry[i1].link[0].href+"?alt=json-in-script", ok2, fail,specs);
+        //if(patt.test(data.feed.entry[i1].title.$t)) {
+        if(data.feed.entry[i1].title.$t === specs.sheet) {
+			scriptRequest(data.feed.entry[i1].link[0].href+"?alt=json-in-script", ok2, fail,specs);
         }
     }
 }
