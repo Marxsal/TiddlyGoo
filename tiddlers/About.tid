@@ -1,0 +1,9 @@
+created: 20210307194426284
+modified: 20210307194528734
+tags: 
+title: About
+type: text/vnd.tiddlywiki
+
+Install by drag'n dropping this into your wiki: <<tag "$:/plugins/tiddlygoo/sheetsin">>
+
+{{$:/plugins/tiddlygoo/sheetsin/readme}}
