@@ -1,9 +1,11 @@
 created: 20210307194426284
-modified: 20210307194528734
+modified: 20210308003337821
 tags: 
 title: About
 type: text/vnd.tiddlywiki
 
-Install by drag'n dropping this into your wiki: <<tag "$:/plugins/tiddlygoo/sheetsin">>
+Install by drag'n dropping this into your wiki: [[$:/plugins/tiddlygoo/sheetsin]]
+
+Source code is currently being maintained at [[https://github.com/Marxsal/TiddlyGoo]] .
 
 {{$:/plugins/tiddlygoo/sheetsin/readme}}

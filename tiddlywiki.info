@@ -8,7 +8,7 @@
         "index": [
             "--rendertiddler",
             "$:/core/save/all",
-            "index.html",
+            "index2.html",
             "text/plain"
         ],
         "plugins" : [
