@@ -1,7 +1,7 @@
 caption: Demo
 created: 20210222214701871
 creator: TwMat
-modified: 20210303190241001
+modified: 20210309203434623
 modifier: 
 tags: 
 title: $:/plugins/tiddlygoo/sheetsin/readme_demo
@@ -25,7 +25,7 @@ Type `<<select-sheet>>` in a tiddler to get the following "importing field":
 
 (Yes, the page "jumps to top" when you open this because of the iframes below.)
 
-The "DEMO spreadsheet" in the dropdown here above links to the google spreadsheet you see below. You can add //new rows// that become tiddlers via the [[Google form|https://www.google.com/forms/about/]] - or  you can directly add data into the sheet. The ''title'' column has the tiddler titles.
+The "DEMO spreadsheet" in the dropdown here above links to the google spreadsheet you see below. You can add //new rows// that become tiddlers via the [[Google form|https://www.google.com/forms/about/]] here below.
 
 <table style="width:100%; border:0; Xdisplay:none">
 <tr>
