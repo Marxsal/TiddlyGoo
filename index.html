@@ -430,9 +430,17 @@ Error message and password prompt
 
 <li>$:/plugins/tiddlygoo/sheetsin</li>
 
+<li>$:/plugins/tiddlygoo/sheetsin/readme_use</li>
+
 <li>$:/SiteSubtitle</li>
 
 <li>$:/SiteTitle</li>
+
+<li>$:/state/plugin-info-1369265406-$:/plugins/tiddlygoo/sheetsin--1344991190</li>
+
+<li>$:/state/tab-1749438307</li>
+
+<li>$:/state/tiddlygoo/sheetsin/readme-888320071</li>
 
 <li>$:/status/RequireReloadDueToPluginChange</li>
 
@@ -10463,16 +10471,55 @@ Error message and password prompt
     }
 }</pre>
 </div>
+<div caption="Use" created="20210222214815164" creator="TwMat" modified="20210310144055812" modifier="" tags="" title="$:/plugins/tiddlygoo/sheetsin/readme_use">
+<pre>!!Use
+*Use the importing field in the demo tab or create one in a tiddler by typing `&lt;&lt;select-sheet&gt;&gt;`.
+*Get ~SpreadsheetTiddlers from other people or create your own (see below).
+*Each import generates a &quot;Report&quot; tiddler.
+*Imported tiddlers are tagged with the name of the sheet.
+*Note: Importing @@color:crimson; overwrites@@ existing tiddlers having the same title.
+*At some point, hide the DEMO from the dropdown. (It can't be deleted):&lt;br&gt;&lt;$checkbox tag=&quot;SpreadsheetTiddler&quot; tiddler=&quot;DEMO spreadsheet&quot;&gt; &amp;nbsp; Show the [[DEMO spreadsheet]] in the dropdown.&lt;/$checkbox&gt;
+
+!!Connect to a Google spreadsheet
+Each Google spreadsheet gets its own ~SpreadsheetTiddler for connection. Here is how to create a ~SpreadsheetTiddler and import from it:
+
+#In the import field, enter the ''Google spreadsheet ID'', i.e this red part:&lt;br&gt;&lt;div style=&quot;font-size:80%&quot;&gt;~https://docs.google.com/spreadsheets/d/ @@color:crimson;1GzZFzmgF-vBrRYOyz5VqjJC8QAQcOHnFBa1PEW9NhcU@@ /edit#gid=1627697525&lt;/div&gt;The spreadsheet owner must have it set up properly (see instructions below). 
+#Clicking [IMPORT] creates a new ~SpreadsheetTiddler titled like the Google sheets file and containing the names on the spreadsheet tabs.
+#In the import dropdown, you can now select what to import.
+
+
+!!How to set up Google Sheets for this plugin
+For a Google spreadsheet to be accesseible for this plugin, it must be:
+
+#//Shared// @@color:crimson;''__AND__''@@ //published// ([[instructions|https://www.freecodecamp.org/news/cjn-google-sheets-as-json-endpoint/]]).
+#The first row (row 1) defines the tiddler fields.&lt;br&gt;- If a column heading is `title` then its column values become the tiddler titles. If there is no title column, default titles will be created for the generated tiddlers.&lt;br&gt;- There can be a `tags` column heading. Spaced tags are bracketed e.g&lt;br&gt;&amp;nbsp;&amp;nbsp; `tag1 [[Spaced tag2]]`&lt;br&gt;All column headings should respect tiddler field [[naming conventions|https://tiddlywiki.com/#TiddlerFields]] or they are automatically modified to do so upon import.
+
+!!Further integrations
+You can make almost anything come into Google sheets, and thereby to TiddlyWiki.
+
+*[[Google forms|https://www.google.com/forms/about/]] is already integrated with Google sheets. It allows you to send &quot;surveys&quot; to people and their answers are automatically collected in a Google sheet.
+*Use commercial services ([[example|https://zapier.com/apps/google-sheets/integrations]]) to get &quot;anything&quot; into the Google spreadsheets.
+*...or, better yet, hack your own integrations with [[Google scripts|https://developers.google.com/apps-script]] and ''share your scripts with the ~TiddlyWiki community''! :-)</pre>
+</div>
 <div created="20210306234209735" modified="20210306234241846" title="$:/SiteSubtitle" type="text/vnd.tiddlywiki">
 <pre>Import Google Sheets into ~TiddlyWiki</pre>
 </div>
 <div created="20210223174309472" modified="20210306234143301" title="$:/SiteTitle" type="text/vnd.tiddlywiki">
 <pre>TiddlyGoo</pre>
 </div>
+<div created="20210310144024102" modified="20210310144024102" title="$:/state/plugin-info-1369265406-$:/plugins/tiddlygoo/sheetsin--1344991190">
+<pre>contents</pre>
+</div>
+<div created="20210310144016242" modified="20210310144016242" title="$:/state/tab-1749438307">
+<pre>$:/core/ui/ControlPanel/Plugins</pre>
+</div>
+<div created="20210310143919066" modified="20210310143919066" title="$:/state/tiddlygoo/sheetsin/readme-888320071">
+<pre>$:/plugins/tiddlygoo/sheetsin/readme_use</pre>
+</div>
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div list="About" title="$:/StoryList">
+<div created="20210310144012183" list="$:/ControlPanel $:/plugins/tiddlygoo/sheetsin $:/plugins/tiddlygoo/sheetsin/readme_use About" modified="20210310144030090" title="$:/StoryList">
 <pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.23">
