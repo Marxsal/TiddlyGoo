@@ -33,4 +33,4 @@ You can make almost anything come into Google sheets, and thereby to TiddlyWiki.
 
 *[[Google forms|https://www.google.com/forms/about/]] is already integrated with Google sheets. It allows you to send "surveys" to people and their answers are automatically collected in a Google sheet.
 *Use commercial services ([[example|https://zapier.com/apps/google-sheets/integrations]]) to get "anything" into the Google spreadsheets.
-*...or, better yet, hack your own integrations with [[Google scripts|https://www.youtube.com/watch?v=aPJ-2U45BpA&list=PLv9Pf9aNgemv62NNC5bXLR0CzeaIj5bcw]] and ''share your scripts with the ~TiddlyWiki community''! :-)
+*...or, better yet, hack your own integrations with [[Google scripts|https://developers.google.com/apps-script]] and ''share your scripts with the ~TiddlyWiki community''! :-)
